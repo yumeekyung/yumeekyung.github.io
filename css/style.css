@@ -121,6 +121,8 @@ section h2 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; }
 .card[hidden] { display: none; }
 .thumb { aspect-ratio: 1600 / 1014; overflow: hidden; border-radius: 6px; background: #f3f3f3; margin-bottom: 16px; }
 .thumb-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+.thumb--contain { background: var(--c); }
+.thumb--contain .thumb-img { object-fit: contain; }
 .card a:hover .thumb-img { transform: scale(1.04); }
 .card h3 { font-size: 18px; letter-spacing: -0.01em; }
 .card p { color: var(--muted); font-size: 15px; }
