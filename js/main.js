@@ -47,9 +47,9 @@
     grid.innerHTML = PROJECTS.map(
       (p) => `
       <li class="card" data-cat="${p.category.join(" ")}">
-        <a href="project.html#${p.id}">
+        <a href="${p.url || `project.html#${p.id}`}"${p.url ? ' target="_blank" rel="noopener noreferrer"' : ""}>
           <div class="thumb">${media(p.thumb || p.images[0], p, "thumb-img", p.title)}</div>
-          <h3>${p.title}</h3>
+          <h3>${p.title}${p.url ? ' <span aria-hidden="true">↗</span>' : ""}</h3>
           <p>${p.subtitle}</p>
           <span class="tags">${catLabel(p)}</span>
         </a>
@@ -77,9 +77,11 @@
   addEventListener("hashchange", () => $(".shots") && location.reload());
   const shots = $(".shots");
   if (shots) {
+    // 외부 링크 프로젝트는 자체 상세페이지 및 이전/다음 순서에서 제외합니다.
+    const detailProjects = PROJECTS.filter((p) => !p.url);
     const id = location.hash.slice(1) || new URLSearchParams(location.search).get("id");
-    const idx = Math.max(0, PROJECTS.findIndex((p) => p.id === id));
-    const p = PROJECTS[idx];
+    const idx = Math.max(0, detailProjects.findIndex((p) => p.id === id));
+    const p = detailProjects[idx];
     document.title = `${p.title} — ${PROFILE.nameEn}`;
     setText("[data-p-cat]", catLabel(p));
     setText("[data-p-title]", p.title);
@@ -95,8 +97,8 @@
       .map((src, i) => media(src, p, "shot", `Image ${String(i + 1).padStart(2, "0")}`))
       .join("");
 
-    const prev = PROJECTS[(idx - 1 + PROJECTS.length) % PROJECTS.length];
-    const next = PROJECTS[(idx + 1) % PROJECTS.length];
+    const prev = detailProjects[(idx - 1 + detailProjects.length) % detailProjects.length];
+    const next = detailProjects[(idx + 1) % detailProjects.length];
     $(".pager").innerHTML = `
       <a href="project.html#${prev.id}"><small>Prev</small>${prev.title}</a>
       <a href="project.html#${next.id}" class="next"><small>Next</small>${next.title}</a>`;

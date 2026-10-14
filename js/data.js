@@ -5,6 +5,7 @@
   - thumb: 목록에 보이는 썸네일 (비우면 images의 첫 장을 사용)
   - images: 상세 페이지에 위에서부터 순서대로 이어지는 이미지들
   - category: CATEGORIES의 키 중 하나 이상
+  - url: 외부 프로젝트 링크 (있으면 카드를 새 탭으로 엽니다)
 */
 
 const PROFILE = {
@@ -45,6 +46,7 @@ const CATEGORIES = {
   uxui: "UI/UX",
   bx: "Branding",
   pkg: "Package",
+  flow: "UI∙BX Flow",
 };
 
 const shots = (id, n) => Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg`);
@@ -133,5 +135,14 @@ const PROJECTS = [
     images: shots("pocheon-package", 2),
     summary:
       "포천 이동갈비의 전통성과 제품별 특징이 명확히 전달되도록 패키지를 리뉴얼했습니다. 어두운 바탕과 절제된 전통 문양, 선명한 음식 이미지로 브랜드의 신뢰감과 상품성을 강화했습니다.",
+  },
+  {
+    id: "ui-bx-flow",
+    title: "UI∙BX Flow",
+    subtitle: "Claude Artifact · 새 탭에서 보기",
+    category: ["flow"],
+    thumb: "assets/works/ui-bx-flow/cover.svg",
+    images: [],
+    url: "https://claude.ai/artifact/3aMUKrFPw3ByW8uoHpQAEy",
   },
 ];
