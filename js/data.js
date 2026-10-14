@@ -43,10 +43,10 @@ const PROFILE = {
 };
 
 const CATEGORIES = {
+  flow: "UI∙BX Flow",
   uxui: "UI/UX",
   bx: "Branding",
   pkg: "Package",
-  flow: "UI∙BX Flow",
 };
 
 const shots = (id, n) => Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg`);
