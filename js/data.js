@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261014c";
+const IMG_VERSION = "20261014d";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -110,6 +110,7 @@ const PROJECTS = [
     year: "2025.04 — 2025.05",
     role: "BX Planning, Identity Design, Character, Application (100%)",
     tools: "Illustrator, Photoshop",
+    thumb: `assets/works/siminsanghoe/thumb.jpg?v=${IMG_VERSION}`,
     images: shots("siminsanghoe", 7),
     summary:
       "동네 상회의 친근함과 시민이 함께 만드는 열린 공간의 이미지를 하나의 브랜드로 정리했습니다. 옛 간판의 둥근 형태에 눈과 손발을 더한 캐릭터 '시민이'를 중심으로 로고, 컬러, 일러스트 시스템을 만들고 매장 외관, 패키지, 굿즈, SNS까지 적용했습니다.",
