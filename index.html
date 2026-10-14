@@ -12,7 +12,7 @@
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-  <header class="nav nav--dark">
+  <header class="nav">
     <a href="./" class="logo" data-name-en></a>
     <nav>
       <a href="#work">Work</a>
@@ -22,17 +22,17 @@
   </header>
 
   <main>
-    <section class="hero">
+    <section class="hero" aria-labelledby="intro-title">
       <div class="wrap hero-in">
         <p class="hero-eyebrow" data-hero-eyebrow></p>
-        <h1 class="hero-name" data-name></h1>
+        <h1 id="intro-title" class="hero-name" data-name></h1>
         <p class="hero-lead"><span data-hero-lead></span> <span class="hero-accent" data-hero-accent></span></p>
         <p class="hero-sub" data-hero-sub></p>
+        <a href="#work" class="hero-scroll">
+          작업 보기
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+        </a>
       </div>
-      <a href="#work" class="hero-scroll" aria-label="작업 보기">
-        Scroll
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-      </a>
     </section>
 
     <section id="work" class="wrap">

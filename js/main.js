@@ -24,11 +24,6 @@
     setText("[data-hero-accent]", PROFILE.hero.accent);
     setText("[data-hero-sub]", PROFILE.hero.sub);
 
-    // 어두운 첫 화면 위에서는 메뉴를 밝게, 지나가면 원래대로
-    const nav = $(".nav");
-    new IntersectionObserver(([e]) => nav.classList.toggle("nav--dark", e.isIntersecting), {
-      rootMargin: "-64px 0px 0px 0px",
-    }).observe($(".hero"));
     setText("[data-about]", PROFILE.about);
 
     const resume = $("[data-resume]");
