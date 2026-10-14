@@ -1,0 +1,287 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>동반성장몰 입점안내 — 유미경</title></head><body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Noto+Sans+KR:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: long scroll case page — blue hero, white process, navy overview, white details; reveals on scroll */
+:root{
+  --blue:#2463EB; --blue-d:#1A4FC4; --navy:#0E2A4F; --green:#14A37F; --mint:#E3F6EF;
+  --ink:#1F2733; --mute:#5E6A7A; --line:#E3E8F0; --paper:#FFFFFF; --soft:#F4F7FC; --mark:#CFE0FF;
+  --en:"Montserrat","Noto Sans KR",sans-serif; --sans:"Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.7 var(--sans);word-break:keep-all;overflow-x:hidden}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+.en{font-family:var(--en)}
+.label{font-family:var(--en);font-weight:700;font-size:18px;color:var(--blue);margin:0 0 10px}
+h1,h2,h3{margin:0;letter-spacing:-.02em;text-wrap:balance}
+.mark{background:linear-gradient(transparent 58%,var(--mark) 58%) no-repeat 0 0/0% 100%;transition:background-size 1s cubic-bezier(.2,.8,.2,1) .3s;font-weight:700;color:var(--blue-d)}
+.mark.on,.no-js .mark{background-size:100% 100%}
+
+/* ---------- hero ---------- */
+.hero{position:relative;overflow:hidden;color:#fff;background:radial-gradient(circle at 85% 20%,rgba(255,255,255,.18) 0,rgba(255,255,255,0) 35%),linear-gradient(150deg,#2F74F0 0%,#2463EB 45%,#1B55D6 100%);padding-block:72px 0}
+.meta{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;font-size:12px;text-align:center;border-bottom:1px solid rgba(255,255,255,.25);padding-bottom:16px}
+.meta b{display:block;font-family:var(--en);font-weight:700;font-size:11px;letter-spacing:.12em;opacity:.75;margin-bottom:4px}
+.water{position:absolute;right:-40px;top:120px;font-family:var(--en);font-weight:800;font-size:clamp(120px,20vw,280px);line-height:1;color:transparent;-webkit-text-stroke:2px rgba(255,255,255,.14);white-space:nowrap;animation:slide 30s linear infinite alternate;pointer-events:none}
+.hero-grid{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:32px;align-items:end;min-height:560px}
+.hero-copy{padding-block:60px 70px;display:flex;flex-direction:column;gap:18px}
+.app-icon{width:84px;height:84px;border-radius:22px;background:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 18px 30px rgba(10,30,90,.25)}
+.app-icon path{stroke-dasharray:130;stroke-dashoffset:130;animation:draw 1.8s .3s ease forwards}
+.wordmark{font-weight:900;font-size:clamp(44px,6vw,72px);line-height:1.05}
+.sub{font-family:var(--en);font-weight:600;font-size:18px;opacity:.9}
+.hero-copy p{margin:0;max-width:30em;font-size:15px;line-height:1.85;color:rgba(255,255,255,.88)}
+.hero-copy .hl{background:rgba(255,255,255,.2);color:#fff;font-weight:700;padding:0 4px;border-radius:3px}
+.load{animation:up .9s cubic-bezier(.2,.8,.2,1) both}
+.phones{position:relative;height:540px}
+.phone{position:absolute;width:250px;height:510px;border-radius:40px;padding:10px;background:linear-gradient(140deg,#F4F6FA,#C9CFD9);box-shadow:0 40px 70px rgba(8,24,80,.35),inset 0 0 0 1px rgba(255,255,255,.7)}
+.phone .scr{width:100%;height:100%;border-radius:31px;overflow:hidden;background:#fff;color:var(--ink);display:flex;flex-direction:column}
+.p1{left:4%;bottom:-60px;transform:rotate(-8deg);animation:phoneIn 1.2s .5s cubic-bezier(.2,.8,.2,1) both,bob 6s 1.8s ease-in-out infinite}
+.p2{right:2%;bottom:20px;transform:rotate(7deg);animation:phoneIn2 1.2s .7s cubic-bezier(.2,.8,.2,1) both,bob2 7s 2s ease-in-out infinite}
+.scr .top{padding:26px 14px 10px;display:flex;justify-content:space-between;align-items:center;font-size:11px;font-weight:900;color:var(--blue)}
+.mini-hero{margin:0 10px;border-radius:14px;padding:14px;background:linear-gradient(160deg,#DCEBFF,#EAF7F1);text-align:center}
+.mini-hero b{display:block;font-size:12px;color:var(--green)}
+.mini-hero strong{display:block;font-size:17px;line-height:1.25;color:var(--blue-d);margin-top:2px}
+.sky{display:flex;align-items:flex-end;justify-content:center;gap:3px;height:56px;margin-top:8px}
+.sky i{display:block;width:12px;border-radius:2px 2px 0 0;background:linear-gradient(#7FA9F2,#2463EB)}
+.sky i:nth-child(even){background:linear-gradient(#9DDCC7,#14A37F)}
+.mini-steps{padding:12px 10px;display:flex;flex-direction:column;gap:7px}
+.mini-steps div{display:grid;grid-template-columns:54px 1fr;gap:6px;align-items:center;font-size:9px;color:var(--mute)}
+.mini-steps em{font-style:normal;background:var(--green);color:#fff;font-weight:700;font-size:10px;text-align:center;border-radius:4px;padding:5px 0}
+.blob{position:absolute;border-radius:50%;pointer-events:none}
+.b1{width:120px;height:120px;left:-40px;bottom:120px;background:rgba(20,163,127,.85);animation:bob 8s ease-in-out infinite}
+.b2{width:16px;height:16px;right:40%;top:140px;border:2px dashed rgba(255,255,255,.7);animation:spin 12s linear infinite}
+
+/* ---------- sections ---------- */
+section{position:relative}
+.sec{padding-block:110px}
+.split{display:grid;grid-template-columns:minmax(0,380px) minmax(0,1fr);gap:48px;align-items:start}
+.big{font-family:var(--en);font-weight:800;font-size:clamp(34px,4.4vw,52px);line-height:1.1;color:#334155}
+.split p{margin:0;color:var(--mute);font-size:15.5px;line-height:1.9;max-width:44em}
+.cards{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;margin-top:70px;position:relative}
+.cards::before{content:"";position:absolute;left:4%;right:4%;top:34px;height:2px;background:repeating-linear-gradient(90deg,var(--blue) 0 8px,transparent 8px 16px);transform-origin:left;transform:scaleX(var(--prog,1));transition:transform 1.4s ease}
+.card{position:relative;background:#fff;border-radius:22px;padding:26px 22px 24px;box-shadow:0 20px 50px rgba(30,60,140,.10);display:flex;flex-direction:column;gap:10px;min-width:0}
+.num{font-family:var(--en);font-weight:800;font-size:44px;line-height:1;color:#D4E2FB;margin-top:-6px}
+.card h3{font-size:19px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.card h3 small{font-family:var(--en);font-size:11px;font-weight:600;color:#9AA7BA;letter-spacing:.04em}
+.card .k{display:inline-block;align-self:flex-start;background:var(--mint);color:var(--green);font-weight:700;font-size:12px;padding:3px 10px;border-radius:999px}
+.card p{margin:0;font-size:14px;color:var(--mute);line-height:1.75}
+.card .warn{font-size:12.5px;color:var(--green)}
+
+.navy{background:var(--navy);color:#fff;overflow:hidden}
+.navy .label{color:#7FB0FF}
+.navy .q{font-size:clamp(30px,4vw,46px);font-weight:500;line-height:1.35}
+.navy .q b{font-weight:900;color:#9EE6CF}
+.navy p{color:rgba(255,255,255,.8)}
+.navy p strong{color:#fff}
+.dash{position:absolute;inset:0;pointer-events:none}
+.dash path{fill:none;stroke:#3E7BE6;stroke-width:2;stroke-dasharray:8 9}
+.dash .draw{stroke-dasharray:1600;stroke-dashoffset:1600;transition:stroke-dashoffset 2.6s ease}
+.dash.on .draw{stroke-dashoffset:0}
+.partners{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.partners span{border:1px solid rgba(255,255,255,.28);border-radius:999px;padding:6px 14px;font-size:13px;background:rgba(255,255,255,.06)}
+.partners span.g{border-color:rgba(158,230,207,.5);color:#9EE6CF}
+
+.center{text-align:center}
+.center .q2{font-size:clamp(28px,3.6vw,40px);font-weight:500;line-height:1.4;margin-top:6px}
+.center .q2 b{font-weight:900}
+.center .desc{color:var(--mute);margin:14px auto 0;max-width:40em;font-size:15px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px;margin-top:56px;text-align:left}
+.panel{background:var(--soft);border-radius:24px;padding:30px 30px 28px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.panel h3{font-size:20px;display:flex;align-items:center;gap:10px}
+.panel h3 i{width:34px;height:34px;border-radius:10px;background:var(--blue);display:inline-flex;align-items:center;justify-content:center}
+.panel h4{margin:0;font-size:14px;color:var(--green)}
+.chips{display:flex;flex-wrap:wrap;gap:8px}
+.chips span{background:#fff;border:1px solid var(--line);border-radius:999px;padding:5px 12px;font-size:13.5px}
+.panel ol{margin:0;padding-left:20px;font-size:14.5px;color:var(--ink);display:flex;flex-direction:column;gap:6px}
+.panel .note{font-size:13px;color:var(--mute);margin:0}
+
+.contact{background:linear-gradient(150deg,#14A37F 0%,#118C78 100%);color:#fff;border-radius:28px;padding:44px 40px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:30px;align-items:center;margin-block:0 110px;overflow:hidden;position:relative}
+.contact h2{font-size:34px;font-weight:900}
+.contact .team{opacity:.85;margin-top:6px}
+.contact .rows{display:flex;flex-direction:column;gap:10px;font-size:15px}
+.contact .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.contact .row b{font-family:var(--en);font-size:12px;letter-spacing:.1em;opacity:.8;min-width:64px}
+.contact .pill{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.3);border-radius:999px;padding:5px 14px;user-select:all}
+.contact .tip{font-size:13px;opacity:.9}
+.contact .tip em{font-style:normal;background:#fff;color:#0F7C66;font-weight:700;padding:1px 8px;border-radius:4px}
+.ring{position:absolute;right:-60px;bottom:-60px;width:220px;height:220px;border:2px dashed rgba(255,255,255,.35);border-radius:50%;animation:spin 30s linear infinite}
+
+.replay{position:fixed;right:max(16px,env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:10;font:700 13px var(--sans);color:#fff;background:var(--navy);border:0;border-radius:999px;padding:10px 16px;cursor:pointer;box-shadow:0 8px 20px rgba(14,42,79,.3)}
+.replay:focus-visible{outline:3px solid #9EE6CF;outline-offset:2px}
+
+/* reveal: visible at rest; JS arms only what starts below the fold */
+.rv{transition:opacity .9s ease,transform .9s cubic-bezier(.2,.8,.2,1)}
+.rv.armed{opacity:0;transform:translateY(40px)}
+.rv.armed.l{transform:translateX(-50px)}
+.rv.armed.r{transform:translateX(50px)}
+.rv.armed.in{opacity:1;transform:none}
+
+@keyframes up{from{opacity:0;transform:translateY(40px)}to{opacity:1;transform:none}}
+@keyframes phoneIn{from{opacity:0;transform:translateY(160px) rotate(-14deg)}to{opacity:1;transform:rotate(-8deg)}}
+@keyframes phoneIn2{from{opacity:0;transform:translateY(200px) rotate(14deg)}to{opacity:1;transform:rotate(7deg)}}
+@keyframes bob{0%,100%{translate:0 0}50%{translate:0 -12px}}
+@keyframes bob2{0%,100%{translate:0 0}50%{translate:0 10px}}
+@keyframes draw{to{stroke-dashoffset:0}}
+@keyframes slide{from{transform:translateX(0)}to{transform:translateX(-120px)}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+@media(max-width:900px){
+  .hero-grid,.split,.duo,.contact{grid-template-columns:1fr}
+  .cards{grid-template-columns:repeat(2,minmax(0,1fr))}.cards::before{display:none}
+  .phones{height:420px}.phone{width:200px;height:410px}
+  .meta{grid-template-columns:repeat(3,minmax(0,1fr))}
+  .sec{padding-block:80px}
+}
+@media(max-width:520px){.cards{grid-template-columns:1fr}.meta{grid-template-columns:repeat(2,minmax(0,1fr))}.contact{padding:32px 22px}.phone{width:170px;height:350px}.p2{right:0}}
+@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.app-icon path{stroke-dashoffset:0}.rv.armed{opacity:1;transform:none}.mark{background-size:100% 100%}.dash .draw{stroke-dashoffset:0}}
+</style>
+
+<style>
+.pf-back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(16px + env(safe-area-inset-top,0px));z-index:20;display:inline-flex;align-items:center;gap:6px;font:700 13px "Noto Sans KR",sans-serif;color:#0E2A4F;background:rgba(255,255,255,.92);border-radius:999px;padding:9px 16px 9px 12px;text-decoration:none;box-shadow:0 8px 20px rgba(14,42,79,.25)}
+.pf-back:hover{background:#fff}
+.pf-back:focus-visible{outline:3px solid #9EE6CF;outline-offset:2px}
+.pf-back svg{width:16px;height:16px}
+</style>
+<a class="pf-back" href="../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>포트폴리오</a>
+<header class="hero">
+  <div class="water en" aria-hidden="true">DONGBAN</div>
+  <span class="blob b1" aria-hidden="true"></span><span class="blob b2" aria-hidden="true"></span>
+  <div class="wrap">
+    <div class="meta load">
+      <div><b>MADE BY</b>유미경</div>
+      <div><b>PARTICIPATION</b>100%</div>
+      <div><b>CLIENT</b>중소기업유통센터</div>
+      <div><b>TYPE</b>입점안내 이벤트 페이지</div>
+      <div><b>TOOL</b>Photoshop, Illustrator</div>
+    </div>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <div class="app-icon load" style="animation-delay:.1s"><svg width="58" height="28" viewBox="0 0 64 30" aria-hidden="true"><path d="M32 15c-6-8-12-12-18-12a12 12 0 0 0 0 24c6 0 12-4 18-12s12-12 18-12a12 12 0 0 1 0 24c-6 0-12-4-18-12z" fill="none" stroke="#14A37F" stroke-width="5" stroke-linecap="round"/></svg></div>
+        <h1 class="wordmark load" style="animation-delay:.2s">동반성장몰</h1>
+        <span class="sub load" style="animation-delay:.3s">MRO납품지원의 온라인유통 판로개척</span>
+        <p class="load" style="animation-delay:.45s">중소기업의 유통판로 확대를 위해 대기업과 공공기관 임직원에게 복지서비스를 제공하는 <span class="hl">폐쇄형 임직원 쇼핑몰</span>입니다. 입점을 고민하는 중소기업이 <span class="hl">절차·서류·자격요건을 한 번에 이해</span>할 수 있도록 안내 페이지를 설계했습니다.</p>
+      </div>
+      <div class="phones" aria-hidden="true">
+        <div class="phone p1"><div class="scr">
+          <div class="top">동반성장몰<span style="color:var(--green)">∞</span></div>
+          <div class="mini-hero"><b>MRO납품지원의 온라인유통 판로개척</b><strong>동반성장몰과<br>함께하세요.</strong><div class="sky"><i style="height:30px"></i><i style="height:44px"></i><i style="height:22px"></i><i style="height:52px"></i><i style="height:34px"></i><i style="height:46px"></i><i style="height:26px"></i></div></div>
+          <div class="mini-steps"><div><em>서류접수</em>1차 평가 · 적격여부 확인</div><div><em>선정위원회</em>2차 평가 · 내부 품의</div><div><em>계약</em>전자계약</div><div><em>상품등록</em>SCM 계정 · 상품등록 확정</div></div>
+        </div></div>
+        <div class="phone p2"><div class="scr">
+          <div class="top">입점 안내<span style="color:var(--green)">●</span></div>
+          <div style="padding:6px 12px;display:flex;flex-direction:column;gap:10px;font-size:10px;color:var(--mute)">
+            <div style="background:var(--soft);border-radius:12px;padding:12px"><b style="color:var(--blue-d);font-size:12px">필요서류</b><br>사업자등록증 · 통장사본 · 회사소개서 · 상품소개서 · 법인공인인증서 · 인감증명서</div>
+            <div style="background:var(--mint);border-radius:12px;padding:12px"><b style="color:var(--green);font-size:12px">자격요건</b><br>상품등록·배송·CS 전담 인원이 있는 업체</div>
+            <div style="background:var(--soft);border-radius:12px;padding:12px"><b style="color:var(--blue-d);font-size:12px">문의처</b><br>온라인운영팀 02-6678-9821~2</div>
+            <div style="background:var(--blue);color:#fff;border-radius:10px;padding:10px;text-align:center;font-weight:700;font-size:11px">신규입점 문의하기</div>
+          </div>
+        </div></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="sec">
+  <div class="wrap">
+    <div class="split">
+      <div class="rv"><p class="label">Process.</p><h2 class="big">입점절차</h2></div>
+      <p class="rv">동반성장몰 입점은 <span class="mark">서류접수부터 상품등록까지 4단계</span>로 진행됩니다. 각 단계에서 무엇을 확인하는지 한눈에 보이도록 단계별 카드로 정리했고, <span class="mark">식품업체 QA처럼 예외 조건</span>은 따로 표시했습니다.</p>
+    </div>
+    <div class="cards" id="cards" style="--prog:1">
+      <article class="card rv"><span class="num">01</span><h3>서류접수 <small>1st REVIEW</small></h3><span class="k">1차 평가</span><p>회사소개서, 상품소개서, 온라인 유통현황(홈쇼핑, 종합몰 상품운영현황)을 바탕으로 적격여부를 확인합니다.</p></article>
+      <article class="card rv"><span class="num">02</span><h3>선정위원회 <small>2nd REVIEW</small></h3><span class="k">2차 평가</span><p>기업정보와 상품제안서를 기반으로 선정위원회 및 내부 품의를 진행합니다.</p><p class="warn">* 식품업체는 QA절차 추가 진행</p></article>
+      <article class="card rv"><span class="num">03</span><h3>계약 <small>CONTRACT</small></h3><span class="k">전자계약</span><p>온라인사업 관련 계약서, 상품공급계약서, 보안서약서, 은행입금의뢰서 등을 체결합니다.</p></article>
+      <article class="card rv"><span class="num">04</span><h3>계정·상품등록 <small>REGISTER</small></h3><span class="k">SCM 계정발급</span><p>관리자 계정 발급 후 최저가 여부, 국외브랜드 제외, 유통가능상품 확인 등을 거쳐 상품등록을 확정합니다.</p></article>
+    </div>
+  </div>
+</section>
+
+<section class="sec navy">
+  <svg class="dash" id="dash" viewBox="0 0 1200 600" preserveAspectRatio="none" aria-hidden="true">
+    <path class="draw" d="M-20 520 C 200 380, 260 120, 520 60 S 900 140, 1220 40"/>
+    <path d="M1000 620 C 1060 480, 1180 470, 1220 380" style="opacity:.6"/>
+  </svg>
+  <div class="wrap">
+    <div class="split">
+      <div class="rv"><p class="label">Overview.</p><h2 class="q">중소기업 상품을<br><b>대기업·공공기관</b><br>임직원에게</h2></div>
+      <div class="rv r">
+        <p>동반성장몰은 중소기업 유통판로 확대를 위해 <strong>대기업과 공공기관 임직원</strong>을 대상으로 복지서비스를 제공하는 <strong>폐쇄형 임직원 쇼핑몰</strong>입니다. 판로가 필요한 중소기업에게는 안정적인 온라인 유통 채널을, 임직원에게는 검증된 상품을 연결합니다.</p>
+        <div class="partners"><span>현대자동차</span><span>모비스</span><span>금호</span><span>포스코</span><span class="g">기술보증기금</span><span class="g">중소기업진흥공단</span><span class="g">공무원연금공단</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec center">
+  <div class="wrap">
+    <p class="label rv">Check List.</p>
+    <h2 class="q2 rv">입점 전, <b><span class="mark">이것만 준비</span>하면 됩니다</b></h2>
+    <p class="desc rv">필요서류와 자격요건을 나란히 배치해, 신청 전에 스스로 체크해 볼 수 있도록 구성했습니다.</p>
+    <div class="duo">
+      <div class="panel rv l">
+        <h3><i><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h9l4 4v14H6z"></path><path d="M15 3v4h4M9 12h6M9 16h6"></path></svg></i>필요서류</h3>
+        <h4>공통서류</h4>
+        <div class="chips"><span>사업자등록증</span><span>통장사본</span><span>회사소개서</span><span>상품소개서 및 기술서</span><span>법인공인인증서</span><span>인감증명서 사본</span></div>
+        <h4>식품 QA 체크리스트 (식품업체의 경우)</h4>
+        <div class="chips"><span>HACCP·보험증서 등 식품 품질 인증서류</span></div>
+      </div>
+      <div class="panel rv r">
+        <h3><i style="background:var(--green)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12l4 4 10-10"></path></svg></i>자격요건</h3>
+        <h4>지원 가능업체</h4>
+        <ol><li>위해상품 등 전자상거래법에 위반되지 않는 상품을 다루는 업체</li><li>온라인 상품 등록(상세페이지, 상품이미지 등) 가능업체</li><li>상품접수 및 배송(물류전담인원) 가능업체</li><li>고객응대(CS전담인원) 가능업체</li></ol>
+        <p class="note">* 식품업체의 경우 별도의 자격요건이 필요할 수 있습니다.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <section class="contact rv" aria-labelledby="ct">
+    <span class="ring" aria-hidden="true"></span>
+    <div><p class="label" style="color:#CFF5E8">Contact.</p><h2 id="ct">문의처</h2><p class="team">중소기업유통센터 온라인운영팀</p></div>
+    <div class="rows">
+      <div class="row"><b>E-MAIL</b><span class="pill">bkseok@sbdc.or.kr</span><span class="pill">calips@sbdc.or.kr</span></div>
+      <div class="row"><b>TEL</b><span class="pill">02-6678-9821~2</span></div>
+      <p class="tip" style="margin:4px 0 0">메일 문의 시 제목에 <em>[신규입점문의]</em>를 기입해 주세요.</p>
+    </div>
+  </section>
+</div>
+<button class="replay" id="replay" type="button">모션 다시 보기</button>
+
+<script>
+(function(){
+  var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var hasIO='IntersectionObserver' in window;
+  var rv=[].slice.call(document.querySelectorAll('.rv'));
+  var marks=[].slice.call(document.querySelectorAll('.mark'));
+  var dash=document.getElementById('dash'), cards=document.getElementById('cards');
+  if(reduce||!hasIO){marks.forEach(function(m){m.classList.add('on')});dash.classList.add('on');return}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){
+    if(!e.isIntersecting)return;var t=e.target;
+    if(t.classList.contains('rv'))t.classList.add('in');
+    if(t.classList.contains('mark'))t.classList.add('on');
+    if(t===dash)t.classList.add('on');
+    if(t===cards)t.style.setProperty('--prog','1');
+    io.unobserve(t);
+  })},{threshold:.2});
+  function arm(all){
+    var vh=window.innerHeight;
+    rv.forEach(function(el){var r=el.getBoundingClientRect();if(all||r.top>vh*.9){el.classList.remove('in');el.classList.add('armed');io.observe(el)}});
+    marks.forEach(function(m){m.classList.remove('on');io.observe(m)});
+    dash.classList.remove('on');io.observe(dash);
+    var cr=cards.getBoundingClientRect();if(all||cr.top>vh*.9){cards.style.setProperty('--prog','0');io.observe(cards)}
+    [].forEach.call(cards.children,function(c,i){c.style.transitionDelay=(i*.15)+'s'});
+  }
+  arm(false);
+  document.getElementById('replay').onclick=function(){
+    window.scrollTo({top:0,behavior:'auto'});
+    document.querySelectorAll('.load,.phone,.app-icon path').forEach(function(a){a.style.animation='none';a.offsetWidth;a.style.animation=''});
+    requestAnimationFrame(function(){arm(true)});
+  };
+})();
+</script>
+
+</body></html>

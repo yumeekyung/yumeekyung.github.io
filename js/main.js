@@ -47,9 +47,9 @@
     grid.innerHTML = PROJECTS.map(
       (p) => `
       <li class="card" data-cat="${p.category.join(" ")}">
-        <a href="${p.url || `project.html#${p.id}`}"${p.url ? ' target="_blank" rel="noopener noreferrer"' : ""}>
+        <a href="${p.url || `project.html#${p.id}`}"${/^https?:/.test(p.url || "") ? ' target="_blank" rel="noopener noreferrer"' : ""}>
           <div class="thumb${p.thumbFit === "contain" ? " thumb--contain" : ""}" style="--c:${p.color || "#f3f3f3"}">${media(p.thumb || p.images[0], p, "thumb-img", p.title)}</div>
-          <h3>${p.title}${p.url ? ' <span aria-hidden="true">↗</span>' : ""}</h3>
+          <h3>${p.title}${/^https?:/.test(p.url || "") ? ' <span aria-hidden="true">↗</span>' : ""}</h3>
           <p>${p.subtitle}</p>
           <span class="tags">${catLabel(p)}</span>
         </a>

@@ -67,13 +67,13 @@ const PROJECTS = [
   {
     id: "ui-bx-flow",
     title: "동반성장몰 소개",
-    subtitle: "입점안내 이벤트 페이지 · 새 탭에서 보기",
+    subtitle: "입점안내 이벤트 페이지",
     category: ["flow"],
     thumb: "assets/works/ui-bx-flow/cover.jpg",
     thumbFit: "contain",
     color: "#2463eb",
     images: [],
-    url: "https://claude.ai/artifact/3aMUKrFPw3ByW8uoHpQAEy",
+    url: "works/dongban.html",
   },
   {
     id: "drline",
