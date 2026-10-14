@@ -67,7 +67,7 @@ img { display: block; max-width: 100%; }
 }
 .hero-name {
   margin-bottom: clamp(24px, 3vw, 40px);
-  font-size: clamp(64px, 10vw, 144px); line-height: 1.08;
+  font-size: clamp(45px, 7vw, 101px); line-height: 1.08;
   font-weight: 800; letter-spacing: -0.045em;
 }
 .hero-lead {
