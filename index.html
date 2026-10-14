@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>유미경 — Portfolio</title>
+  <meta name="description" content="UI/UX · Web · Branding · Package 디자이너 유미경 포트폴리오" />
+  <meta property="og:title" content="유미경 — Portfolio" />
+  <meta property="og:description" content="UI/UX · Web · Branding · Package 디자이너 유미경 포트폴리오" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="nav nav--dark">
+    <a href="./" class="logo" data-name-en></a>
+    <nav>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-in">
+        <p class="hero-eyebrow" data-hero-eyebrow></p>
+        <h1 class="hero-name" data-name></h1>
+        <p class="hero-lead"><span data-hero-lead></span> <span class="hero-accent" data-hero-accent></span></p>
+        <p class="hero-sub" data-hero-sub></p>
+      </div>
+      <a href="#work" class="hero-scroll" aria-label="작업 보기">
+        Scroll
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+      </a>
+    </section>
+
+    <section id="work" class="wrap">
+      <div class="section-head">
+        <h2>Work</h2>
+        <div class="filters" role="tablist"></div>
+      </div>
+      <ul class="grid"></ul>
+    </section>
+
+    <section id="about" class="wrap about">
+      <h2>About</h2>
+      <div class="about-body">
+        <div>
+          <p class="about-name"><strong data-name></strong> <span data-name-en></span></p>
+          <p class="motto" data-motto></p>
+          <p data-about></p>
+          <a class="btn" data-resume target="_blank" rel="noopener">이력서 PDF</a>
+        </div>
+        <div>
+          <h3>Experience</h3>
+          <ul class="exp"></ul>
+          <h3>Award &amp; Education</h3>
+          <ul class="exp edu"></ul>
+          <h3>Skills</h3>
+          <ul class="skills"></ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="wrap contact">
+      <h2>Let's work together.</h2>
+      <a class="mail" data-email></a>
+      <ul class="links"></ul>
+    </section>
+  </main>
+
+  <footer class="wrap footer">© <span data-year></span> <span data-name-en></span></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

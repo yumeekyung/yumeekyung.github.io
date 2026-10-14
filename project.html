@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Project</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="nav">
+    <a href="./" class="logo" data-name-en></a>
+    <nav><a href="./#work">← All Work</a></nav>
+  </header>
+
+  <main class="detail">
+    <section class="wrap detail-head">
+      <p class="eyebrow" data-p-cat></p>
+      <h1 data-p-title></h1>
+      <p class="sub" data-p-subtitle></p>
+      <dl class="meta">
+        <div><dt>Period</dt><dd data-p-year></dd></div>
+        <div><dt>Role</dt><dd data-p-role></dd></div>
+        <div><dt>Tools</dt><dd data-p-tools></dd></div>
+      </dl>
+      <p class="summary" data-p-summary></p>
+    </section>
+
+    <section class="shots"></section>
+
+    <nav class="wrap pager"></nav>
+  </main>
+
+  <footer class="wrap footer">© <span data-year></span> <span data-name-en></span></footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
