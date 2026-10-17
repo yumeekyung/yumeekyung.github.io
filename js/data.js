@@ -65,7 +65,7 @@ const PROJECTS = [
     tools: "Figma, Photoshop",
     thumb: `assets/works/foodjang/cover.jpg?v=${IMG_VERSION}`,
     images: [],
-    url: "works/foodjang/",
+    url: "works/foodjang/?v=20261017d",
     summary:
       "이용자 니즈와 불만족도 조사를 바탕으로 홈, 검색 필터, 카테고리, 주요 서비스 페이지, 로그인, PC 메인까지 다시 설계했습니다. 단순히 고기를 사는 앱이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록, 기획자들과 의견을 맞추며 UI/UX를 개선했습니다.",
   },
