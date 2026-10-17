@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261014e";
+const IMG_VERSION = "20261017a";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -77,6 +77,16 @@ const PROJECTS = [
     color: "#2463eb",
     images: [],
     url: "works/dongban.html",
+  },
+  {
+    id: "donghaeng",
+    title: "대한민국 동행세일 리디자인",
+    subtitle: "이벤트 페이지 UI/UX 리디자인",
+    category: ["flow"],
+    thumb: `assets/works/donghaeng/cover.jpg?v=${IMG_VERSION}`,
+    color: "#1E2A78",
+    images: [],
+    url: "works/donghaeng/",
   },
   {
     id: "drline",
