@@ -1,6 +1,4 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>FOODJANG 앱 리뉴얼 — 유미경</title></head><body>
-
-<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
@@ -13,6 +11,7 @@
   --tx:#F5F2F2; --tx-2:rgba(245,242,242,.68); --tx-3:rgba(245,242,242,.44);
   --brand:#A3121A; --red:#E5343C; --red-2:#FF5A5F; --pink:#F4A6A0; --lpink:#FBE3E0; --yellow:#F7C548; --coral:#F7866A;
   --ink:#191F28; --ink-2:#4E5968; --ink-3:#8B95A1; --line:#E5E8EB; --fill:#F2F4F6; --paper:#FFFFFF; --rtint:#FFF0EF;
+  --section-space:clamp(96px,12vw,170px); --content-space:clamp(40px,5vw,56px); --card-gap:24px; --card-padding:clamp(24px,2.5vw,32px);
   --font:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
   color-scheme:dark;
 }
@@ -22,7 +21,7 @@ body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font);font-
 img,svg{max-width:100%}
 .wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
 section{position:relative}
-.band{padding-block:clamp(96px,12vw,170px)}
+.band{padding-block:var(--section-space)}
 .eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
 .eyebrow:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red-2);box-shadow:0 0 12px var(--red-2)}
 .ttl{font-weight:700;font-size:clamp(28px,4.2vw,48px);line-height:1.3;letter-spacing:-.035em;margin:16px 0 18px;text-wrap:balance}
@@ -45,9 +44,9 @@ section{position:relative}
 .nav b{font-size:1.0625em;font-weight:700;white-space:nowrap}
 .nav .ic{display:flex;gap:.9em}
 .nav svg,.ico-s{width:1.5em;height:1.5em;stroke:var(--ink);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.logo{display:flex;align-items:center;gap:.4em;font-weight:700;font-size:1.125em;color:var(--red);white-space:nowrap}
-.logo .m{width:1.6em;height:1.6em;border-radius:.45em;background:var(--red);display:grid;place-items:center}
-.logo .m svg{width:1.1em;height:1.1em}
+.logo{display:flex;align-items:center;gap:.35em;font-weight:700;font-size:1.1875em;color:var(--ink);white-space:nowrap;letter-spacing:-.04em}
+.logo b{color:var(--red);font-weight:700}
+.logo .mk{width:1.9em;height:1.4em;flex:none}
 .body{flex:1;overflow:hidden;padding:0 1.25em;min-height:0}
 .h1{font-size:1.5em;font-weight:700;line-height:1.38;letter-spacing:-.035em;margin:.5em 0 .4em}
 .h1 em{font-style:normal;color:var(--red)}
@@ -103,8 +102,10 @@ section{position:relative}
 .links{display:flex;justify-content:center;gap:1em;font-size:.8125em;color:var(--ink-3);margin-top:1em;white-space:nowrap}
 .sns{display:flex;justify-content:center;gap:.9em;margin-top:.7em}
 .sns i{width:3em;height:3em;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.875em}
-.mascot{width:4.4em;height:4.4em;border-radius:1.25em;background:var(--red);display:grid;place-items:center;margin:1.6em auto .8em;box-shadow:0 .8em 1.6em rgba(229,52,60,.28)}
-.mascot svg{width:3em;height:3em}
+.mascot{display:flex;justify-content:center;margin:1.8em auto .7em}
+.mascot svg{width:6.6em;height:4.9em}
+.lgw{font-size:1.75em;font-weight:700;letter-spacing:-.05em;color:var(--ink)}
+.lgw b{color:var(--red);font-weight:700}
 .steps3{display:flex;flex-direction:column;gap:.15em;margin-top:1em}
 .steps3>div{display:flex;gap:.8em;align-items:center;padding:.6em 0}
 .steps3 i{width:1.9em;height:1.9em;border-radius:50%;background:var(--rtint);color:var(--red);font-style:normal;font-weight:700;font-size:.8125em;display:grid;place-items:center;flex:none}
@@ -146,7 +147,6 @@ section{position:relative}
 .pills{display:flex;align-items:center;gap:8px}
 .pills span{height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--stroke-2);display:inline-flex;align-items:center;font-size:14px;font-weight:500;letter-spacing:.02em;white-space:nowrap}
 .pills span.w{background:#fff;color:#111;border-color:#fff}
-.pills svg{width:34px;height:34px;stroke:var(--red-2);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-left:6px}
 .hmeta{display:grid;grid-template-columns:auto 1fr;gap:4px 44px;margin-top:64px;font-size:15px;color:var(--tx-2);letter-spacing:.02em}
 .hmeta .n{font-size:26px;font-weight:500;color:var(--tx);line-height:1}
 .hmeta b{font-weight:600;color:var(--tx);display:block;font-size:17px;letter-spacing:.04em}
@@ -166,39 +166,39 @@ section{position:relative}
 .bub em{font-style:normal;color:var(--coral)}
 .bub.sol{background:linear-gradient(135deg,#FF6A5C,#E5343C);border-color:transparent;display:flex;align-items:center;gap:10px}
 .bub.sol i{width:26px;height:26px;border-radius:8px;background:#fff;display:grid;place-items:center}
-.bub.sol i svg{width:18px;height:18px}
+.bub.sol i svg{width:22px;height:16px}
 .b1{left:21%;top:49%}.b4{left:66%;top:60%}
 
 /* ================= OVERVIEW ================= */
 .ov{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
-.ov .q{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:56px}
+.ov .q{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:var(--content-space)}
 .ov .q span{font-size:14px;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--card);border:1px solid var(--stroke);color:var(--tx-2)}
 .ov .q span em{font-style:normal;color:var(--coral)}
 
 /* ================= RESEARCH ================= */
-.rs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:16px;margin-top:56px}
-.tg{padding:32px 28px;display:flex;flex-direction:column;gap:16px;min-width:0}
+.rs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:var(--card-gap);margin-top:var(--content-space)}
+.tg{padding:var(--card-padding);display:flex;flex-direction:column;gap:20px;min-width:0}
 .tg .n{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral)}
 .tg .av{width:48px;height:48px;border-radius:16px;background:rgba(247,134,106,.12);display:grid;place-items:center}
 .tg .av svg{width:26px;height:26px;stroke:var(--coral);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .tg h3{font-size:20px;line-height:1.4;font-weight:700;margin:0;letter-spacing:-.03em}
 .tg p{margin:0;font-size:14.5px;color:var(--tx-2);line-height:1.7}
-.chart{padding:32px 28px;background:#F8F6F6;color:var(--ink);border-radius:24px;min-width:0}
-.chart h4{margin:0 0 4px;font-size:16px;font-weight:700}
-.chart .s{font-size:13px;color:var(--ink-3);margin:0 0 20px}
-.bars{display:flex;flex-direction:column;gap:14px}
+.chart{padding:var(--card-padding);background:#F8F6F6;color:var(--ink);border-radius:24px;min-width:0}
+.chart h4{margin:0 0 8px;font-size:16px;font-weight:700}
+.chart .s{font-size:13px;color:var(--ink-3);margin:0 0 24px}
+.bars{display:flex;flex-direction:column;gap:16px}
 .bars div{display:grid;grid-template-columns:40px minmax(0,1fr) 44px;align-items:center;gap:12px;font-size:14px}
 .bars .tr{height:12px;border-radius:9px;background:#ECE7E7;overflow:hidden}
 .bars .tr i{display:block;height:100%;border-radius:9px;background:var(--coral)}
 .bars div:first-child .tr i{background:var(--red)}
 .bars b{text-align:right;font-weight:700}
-.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
 .kw span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:#FFE3E0;color:var(--red)}
 .kw span.n{background:#ECEEF1;color:var(--ink-2)}
 
 /* ================= PROCESS ================= */
 .proc{background:var(--bg-2)}
-.pc-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:56px;position:relative}
+.pc-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space);position:relative}
 .pc-row:before{content:'';position:absolute;left:24px;right:24px;top:27px;height:2px;background:linear-gradient(90deg,var(--red),rgba(229,52,60,.15))}
 .pcs{position:relative;min-width:0}
 .pcs .dot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--card-2);border:1px solid var(--stroke-2);position:relative;z-index:1}
@@ -208,12 +208,12 @@ section{position:relative}
 .pcs ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
 .pcs li{font-size:14.5px;color:var(--tx-2);padding-left:14px;position:relative}
 .pcs li:before{content:'';position:absolute;left:0;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--coral)}
-.goal{margin-top:56px;display:flex;align-items:center;gap:18px;padding:22px 26px;flex-wrap:wrap}
+.goal{margin-top:var(--content-space);display:flex;align-items:center;gap:18px;padding:22px 26px;flex-wrap:wrap}
 .goal span{font-size:12px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--red);border-radius:999px;padding:6px 12px}
 .goal b{font-size:clamp(17px,2vw,22px);font-weight:700;letter-spacing:-.02em}
 
 /* ================= PAIN → SOLUTION ================= */
-.pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
+.pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
 .pp{display:flex;flex-direction:column;gap:12px;min-width:0}
 .pp .a{padding:26px 24px}
 .pp .a small,.pp .b small{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
@@ -221,7 +221,7 @@ section{position:relative}
 .pp .a h3,.pp .b h3{margin:10px 0 0;font-size:19px;line-height:1.45;font-weight:700;letter-spacing:-.025em}
 .pp .ar{align-self:center;width:36px;height:36px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;border:1px solid var(--stroke)}
 .pp .ar svg{width:18px;height:18px;stroke:var(--coral);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.pp .b{padding:26px 24px;border-radius:24px;background:linear-gradient(140deg,#FF8A72,#E5343C);color:#fff;box-shadow:0 24px 48px -18px rgba(229,52,60,.55)}
+.pp .b{flex:1;padding:26px 24px;border-radius:24px;background:linear-gradient(140deg,#FF8A72,#E5343C);color:#fff;box-shadow:0 24px 48px -18px rgba(229,52,60,.55)}
 .pp .b small{color:rgba(255,255,255,.8)}
 .pp .b p{margin:8px 0 0;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.88)}
 
@@ -236,8 +236,8 @@ section{position:relative}
 
 /* ================= CONCEPT ================= */
 .cc{background:var(--bg-2)}
-.cc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:56px}
-.ccc{padding:34px 28px 30px;border-radius:28px;min-width:0;position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column}
+.cc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
+.ccc{padding:var(--card-padding);border-radius:28px;min-width:0;position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column}
 .ccc:nth-child(1){background:linear-gradient(150deg,#FFB39E,#F7866A)}
 .ccc:nth-child(2){background:linear-gradient(150deg,#FF8E7A,#E5343C)}
 .ccc:nth-child(3){background:linear-gradient(150deg,#D63A3F,#8E0F17)}
@@ -281,7 +281,7 @@ section{position:relative}
 .mini2 b{display:block;font-size:16px;margin-bottom:6px}
 .mini2 p{margin:0;font-size:14px;color:var(--tx-2);line-height:1.65}
 
-.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px);margin-top:56px;justify-items:center}
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px);margin-top:var(--content-space);justify-items:center}
 .svc .col{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%;min-width:0}
 .svc .pill{font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;background:rgba(229,52,60,.16);color:var(--red-2);white-space:nowrap}
 .svc .dev{max-width:270px}
@@ -295,7 +295,7 @@ section{position:relative}
 .lg .devwrap{position:relative;display:flex;justify-content:center;padding-block:40px}
 
 /* PC */
-.pcw{margin-top:56px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.pcw{margin-top:var(--content-space);display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
 .browser{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 50px 100px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.1)}
 .browser .bar{height:38px;background:#2A2526;display:flex;align-items:center;gap:7px;padding:0 14px;position:relative}
 .browser .bar i{width:11px;height:11px;border-radius:50%;background:#4A4344;display:block}
@@ -342,8 +342,16 @@ section{position:relative}
 
 /* ================= DESIGN SYSTEM ================= */
 .ds{background:var(--bg-2)}
-.ds-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin-top:56px}
-.ds-card{padding:28px}
+.lg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
+.lgc{position:relative;border-radius:24px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;border:1px solid var(--stroke)}
+.lgc img{width:78%;max-width:100%}
+.lgc img.ic{width:48%;border-radius:22%;box-shadow:0 24px 48px -16px rgba(0,0,0,.45)}
+.lgc span{position:absolute;left:20px;bottom:16px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.lgc.w{background:#fff}.lgc.w span{color:#8B95A1}
+.lgc.d{background:#141112}.lgc.d span{color:var(--tx-3)}
+.lgc.r{background:var(--red)}.lgc.r span{color:rgba(255,255,255,.8)}
+.ds-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--card-gap);margin-top:var(--content-space)}
+.ds-card{padding:var(--card-padding)}
 .ds-card h4{margin:0 0 20px;font-size:15px;font-weight:600;color:var(--tx-2);display:flex;justify-content:space-between;gap:12px}
 .ds-card h4 em{font-style:normal;color:var(--coral)}
 .sws{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
@@ -352,7 +360,7 @@ section{position:relative}
 .ty div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;padding:12px 0;border-top:1px solid var(--stroke);gap:12px}
 .ty div:first-child{border-top:0;padding-top:0}
 .ty span{font-size:12.5px;color:var(--tx-3)}
-.cmps{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cmps{margin-top:var(--card-gap);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap)}
 .cmps .ds-card{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
 .cbtn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:16px;font-size:17px;font-weight:700;white-space:nowrap;width:100%}
 .cbtn.p{background:var(--red);color:#fff}.cbtn.s{background:rgba(229,52,60,.14);color:var(--red-2)}
@@ -364,12 +372,12 @@ section{position:relative}
 .spec{font-size:12.5px;color:var(--tx-3)}
 
 /* ================= RESULT ================= */
-.rl{margin-top:56px;border-top:1px solid var(--stroke)}
+.rl{margin-top:var(--content-space);border-top:1px solid var(--stroke)}
 .rl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 4px;border-bottom:1px solid var(--stroke);align-items:center}
 .rl span{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral);text-transform:uppercase}
 .rl b{font-size:17px;font-weight:600}
-.qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:56px}
-.qa .glass{padding:30px 28px}
+.qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
+.qa .glass{padding:var(--card-padding)}
 .qa h4{margin:0 0 12px;font-size:18px;font-weight:700}
 .qa h4 em{font-style:normal;color:var(--coral);margin-right:6px}
 .qa p{margin:0;color:var(--tx-2);font-size:15.5px;line-height:1.8}
@@ -378,6 +386,9 @@ section{position:relative}
 .end p{color:var(--tx-3);font-size:14px;margin:18px 0 0}
 
 /* ================= RESPONSIVE ================= */
+@media (max-width:1180px){
+  .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
 @media (max-width:1080px){
   .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pcw{grid-template-columns:minmax(0,1fr)}
@@ -388,7 +399,7 @@ section{position:relative}
   .ft .lay.rev .txt{order:0}
   .pc-row{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
   .pc-row:before{display:none}
-  .pp-grid,.cc-grid,.svc,.qa,.ds-grid,.cmps{grid-template-columns:minmax(0,1fr)}
+  .pp-grid,.cc-grid,.svc,.qa,.ds-grid,.cmps,.lg-grid{grid-template-columns:minmax(0,1fr)}
   .svc{gap:64px}
   .pcnotes{grid-template-columns:minmax(0,1fr)}
   .bub,.bub.sol{display:none}
@@ -403,10 +414,12 @@ section{position:relative}
   .hstage .p2{left:calc(50% - 5px);bottom:140px}
   .hcirc{display:none}
   .sheet{position:relative;inset:auto!important;margin:20px auto 0;width:100%;max-width:300px}
+  .cmpstage{padding-right:0}
   .cmpstage .wrapdev.o{display:none}.cmpstage .arr{display:none}
   .ccc{min-height:220px}
 }
 @media (max-width:560px){
+  :root{--card-gap:20px}
   .rs-grid{grid-template-columns:minmax(0,1fr)}
   .pc-row{grid-template-columns:minmax(0,1fr)}
   .ps-h{display:none}
@@ -421,6 +434,7 @@ section{position:relative}
 
 <!-- ============ ICONS ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-mark" viewBox="-4 -2 248 174"><g><path d="M34 34 C70 4 140 -4 186 16 C226 34 240 78 226 114 C212 150 170 170 120 168 C76 166 36 156 16 128 C4 110 12 96 24 88 C10 76 14 50 34 34 Z" fill="#E5343C"/><clipPath id="cut00100"><path d="M34 34 C70 4 140 -4 186 16 C226 34 240 78 226 114 C212 150 170 170 120 168 C76 166 36 156 16 128 C4 110 12 96 24 88 C10 76 14 50 34 34 Z"/></clipPath><g clip-path="url(#cut00100)" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"><path d="M128 10 C172 12 208 30 224 62 C230 76 232 88 230 98" stroke-width="9"/><path d="M60 22 C78 14 96 12 112 12" stroke-width="4"/><path d="M40 108 C50 100 58 104 64 96" stroke-width="3"/><path d="M168 64 C176 60 186 62 192 56" stroke-width="3"/><path d="M150 22 C170 26 186 36 196 48 M196 48 C204 44 210 46 216 50" stroke-width="4"/><path d="M0 60 C18 52 30 58 44 46 C52 40 60 40 70 34" stroke-width="5"/><path d="M30 56 L38 64 M52 42 C56 34 62 30 70 28" stroke-width="3"/><path d="M244 96 C226 98 214 108 208 120" stroke-width="5"/><path d="M-4 136 C20 126 40 134 58 140 C70 144 80 140 88 146" stroke-width="5.5"/><path d="M18 150 C34 146 46 152 60 160" stroke-width="3"/><path d="M128 150 C146 132 160 132 172 138 C186 126 204 120 240 130" stroke-width="5.5"/><path d="M150 160 C168 152 190 156 206 150" stroke-width="3"/></g><path d="M180 133 L180 116 L191 106 L202 116 L202 131 Z" fill="#FFFFFF"/><path d="M187 132 L187 122 L195 122 L195 131 Z" fill="#E5343C"/><path d="M187 122 L195 131 M195 122 L187 131" stroke="#FFFFFF" stroke-width="1.6"/><rect x="62" y="48" width="96" height="11" rx="5.5" fill="#191919"/><circle cx="88" cy="84" r="20" fill="#FFFFFF"/><circle cx="134" cy="84" r="20" fill="#FFFFFF"/><circle cx="93" cy="86" r="10" fill="#191919"/><circle cx="139" cy="86" r="10" fill="#191919"/><path d="M100 116 Q111 124 122 116" fill="none" stroke="#191919" stroke-width="4.2" stroke-linecap="round"/></g></symbol>
   <symbol id="i-face" viewBox="0 0 40 40"><circle cx="20" cy="22" r="13" fill="#fff"/><circle cx="9" cy="11" r="5" fill="#fff"/><circle cx="31" cy="11" r="5" fill="#fff"/><circle cx="15" cy="21" r="2" fill="#E5343C"/><circle cx="25" cy="21" r="2" fill="#E5343C"/><ellipse cx="20" cy="27" rx="4.5" ry="3" fill="#FFB3AE"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
   <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></symbol>
@@ -454,8 +468,8 @@ section{position:relative}
   <div class="app">
     <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
     <div class="body" style="display:flex;flex-direction:column">
-      <div class="mascot"><svg><use href="#i-face"/></svg></div>
-      <div style="text-align:center"><b style="font-size:1.375em;font-weight:700">푸드장</b><p class="sub" style="margin-top:.2em">내가 찾던 신선함의 기준</p></div>
+      <div class="mascot"><svg><use href="#i-mark"/></svg></div>
+      <div style="text-align:center"><span class="lgw"><b>푸드</b>장</span><p class="sub" style="margin-top:.2em">내가 찾던 신선함의 기준</p></div>
       <div style="margin-top:1.4em">
         <div class="input"><label>아이디</label><div class="on">foodjang_jieun</div></div>
         <div class="input"><label>비밀번호</label><div>비밀번호를 입력해 주세요</div></div>
@@ -473,7 +487,7 @@ section{position:relative}
 <template id="t-home">
   <div class="app">
     <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="nav"><span class="logo"><span class="m"><svg><use href="#i-face"/></svg></span>푸드장</span><span class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-cart"/></svg></span></div>
+    <div class="nav"><span class="logo"><svg class="mk"><use href="#i-mark"/></svg><span><b>푸드</b>장</span></span><span class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-cart"/></svg></span></div>
     <div class="tabs"><span class="on">추천</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>선물</span></div>
     <div class="body">
       <div class="banner"><small>이번 주 특가</small><b>캠핑 시즌<br>최대 30% 할인</b><span class="ill"><svg><use href="#i-tent"/></svg></span><span class="pg">1 / 5</span></div>
@@ -595,7 +609,7 @@ section{position:relative}
 <section class="hero" id="top">
   <div class="wrap htop">
     <div class="hl h-in">
-      <div class="pills"><span>UX UI PROJECT</span><span class="w">APP RENEWAL</span><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 8v11H8"/></svg></div>
+      <div class="pills"><span>UX UI PROJECT</span><span class="w">APP RENEWAL</span></div>
       <div class="hmeta"><span class="n">/01</span><div><b>MOBILE APP · PC WEB</b><i></i>UX/UI RENEWAL DESIGN<br>CONTRIBUTION 100%<br>2023.10 – 2023.11 · FIGMA, PHOTOSHOP</div></div>
     </div>
     <div class="hr h-in">내가 찾던 신선함의 기준,<br>저렴하고 빠르고 신선하게<em>FOODJANG</em><small>LOGIN TO <b>FRESH</b><br>FROM HOME TO TABLE</small></div>
@@ -605,8 +619,7 @@ section{position:relative}
     <div class="dev p1"><div class="scr" data-t="t-login"></div></div>
     <div class="dev p2"><div class="scr" data-t="t-home"></div></div>
     <div class="bub b1">로그인 화면이<br>너무 <em>복잡해요</em></div>
-    <div class="bub sol b4"><i><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="13" fill="#E5343C"/><circle cx="9" cy="11" r="5" fill="#E5343C"/><circle cx="31" cy="11" r="5" fill="#E5343C"/><circle cx="15" cy="21" r="2" fill="#fff"/><circle cx="25" cy="21" r="2" fill="#fff"/></svg></i>푸드장이 한 번에 해결!</div>
-    <span class="hcirc"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M8 6h10v10"/></svg></span>
+    <div class="bub sol b4"><i><svg viewBox="-4 -2 248 174"><use href="#i-mark"/></svg></i>푸드장이 한 번에 해결!</div>
   </div>
 </section>
 
@@ -621,7 +634,7 @@ section{position:relative}
 </section>
 
 <!-- ================= RESEARCH ================= -->
-<section class="rs band">
+<section class="rs band" id="target-brand">
   <div class="wrap">
     <span class="eyebrow">Target &amp; Brand</span>
     <h2 class="ttl">누가, 언제 푸드장을 찾을까요?</h2>
@@ -804,7 +817,7 @@ section{position:relative}
         <div class="bar"><i></i><i></i><i></i><span>foodjang.com</span></div>
         <div class="pcs-c"><div class="pca">
           <div class="promo">신규회원 첫 구매 무료배송 · 지금 가입하고 10,000원 쿠폰 받기</div>
-          <div class="hd"><span class="logo"><span class="m"><svg><use href="#i-face"/></svg></span>푸드장</span><span class="srch"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg>캠핑 고기 세트 찾고 계신가요?</span><span class="ic"><svg viewBox="0 0 24 24"><use href="#i-user"/></svg><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg><svg viewBox="0 0 24 24"><use href="#i-cart"/></svg></span></div>
+          <div class="hd"><span class="logo"><svg class="mk"><use href="#i-mark"/></svg><span><b>푸드</b>장</span></span><span class="srch"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg>캠핑 고기 세트 찾고 계신가요?</span><span class="ic"><svg viewBox="0 0 24 24"><use href="#i-user"/></svg><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg><svg viewBox="0 0 24 24"><use href="#i-cart"/></svg></span></div>
           <div class="mn"><span>전체 카테고리</span><span class="on">선물세트</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>모닝배송</span><span>이벤트</span><span class="r">모닝배송 지역 확인</span></div>
           <div class="hb"><div><small>WELCOME</small><h5>푸드장이 처음이라면?<br>신규회원 혜택받고 구매하세요</h5><span class="b">혜택받고 구매하기</span></div><div class="cp"><small>WELCOME COUPON</small><b>10,000원</b><span>첫 구매 시 바로 사용</span></div></div>
           <div class="qk">
@@ -837,7 +850,12 @@ section{position:relative}
 <section class="ds band">
   <div class="wrap">
     <span class="eyebrow">Design System</span>
-    <h2 class="ttl">신선함을 담은 컬러, 하나의 서체</h2>
+    <h2 class="ttl">마블링 캐릭터 로고와<br>신선함을 담은 컬러, 하나의 서체</h2>
+    <div class="lg-grid">
+      <div class="lgc w"><img src="img/logo.svg" alt="푸드장 로고"><span>Primary · Light</span></div>
+      <div class="lgc d"><img src="img/logo_dark.svg" alt="푸드장 로고 다크"><span>Primary · Dark</span></div>
+      <div class="lgc r"><img src="img/appicon.svg" alt="푸드장 앱 아이콘" class="ic"><span>App Icon</span></div>
+    </div>
     <div class="ds-grid">
       <div class="ds-card glass"><h4>Color</h4>
         <div class="sws">
@@ -905,7 +923,6 @@ document.querySelectorAll('.scr[data-t]').forEach(function(s){
   gsap.registerPlugin(ScrollTrigger);
   gsap.from('.h-in',{y:50,duration:1.1,ease:'power3.out',stagger:.12});
   gsap.from('.hstage .dev',{y:220,duration:1.3,ease:'power3.out',stagger:.15,delay:.2});
-  gsap.from('.hcirc',{scale:0,duration:.9,ease:'back.out(1.6)',delay:.9});
   gsap.from('.bub',{scale:.85,y:20,duration:.8,ease:'back.out(1.8)',stagger:.12,delay:.8});
   gsap.to('.bub',{y:'-=10',duration:2.6,repeat:-1,yoyo:true,ease:'sine.inOut',stagger:.3,delay:1.8});
   gsap.from('.word',{yPercent:60,duration:1.2,ease:'power3.out'});
