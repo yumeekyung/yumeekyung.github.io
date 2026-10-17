@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261017a";
+const IMG_VERSION = "20261017b";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -63,7 +63,9 @@ const PROJECTS = [
     year: "2023.10 — 2023.11",
     role: "Data Analysis, UX Concept, UI Design (100%)",
     tools: "Figma, Photoshop",
-    images: shots("foodjang-renewal", 12),
+    thumb: `assets/works/foodjang/cover.jpg?v=${IMG_VERSION}`,
+    images: [],
+    url: "works/foodjang/",
     summary:
       "이용자 니즈와 불만족도 조사를 바탕으로 홈, 검색 필터, 카테고리, 주요 서비스 페이지, 로그인, PC 메인까지 다시 설계했습니다. 단순히 고기를 사는 앱이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록, 기획자들과 의견을 맞추며 UI/UX를 개선했습니다.",
   },

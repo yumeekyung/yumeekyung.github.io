@@ -1,0 +1,915 @@
+<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>FOODJANG 앱 리뉴얼 — 유미경</title></head><body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<style>
+/* Layout: dark long-scroll case study (research → definition → features → system → result).
+   Page is a committed dark look; phone UIs are light, Toss-style (sentence titles, 20px gutters, 56px CTAs, one red).
+   One typeface throughout: IBM Plex Sans KR (the project's own brand face). */
+:root{
+  --bg:#0F0D0E; --bg-2:#171415; --card:#1E1A1B; --card-2:#262122; --stroke:rgba(255,255,255,.08); --stroke-2:rgba(255,255,255,.14);
+  --tx:#F5F2F2; --tx-2:rgba(245,242,242,.68); --tx-3:rgba(245,242,242,.44);
+  --brand:#A3121A; --red:#E5343C; --red-2:#FF5A5F; --pink:#F4A6A0; --lpink:#FBE3E0; --yellow:#F7C548; --coral:#F7866A;
+  --ink:#191F28; --ink-2:#4E5968; --ink-3:#8B95A1; --line:#E5E8EB; --fill:#F2F4F6; --paper:#FFFFFF; --rtint:#FFF0EF;
+  --font:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font);font-size:16px;line-height:1.7;word-break:keep-all;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
+img,svg{max-width:100%}
+.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+section{position:relative}
+.band{padding-block:clamp(96px,12vw,170px)}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
+.eyebrow:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red-2);box-shadow:0 0 12px var(--red-2)}
+.ttl{font-weight:700;font-size:clamp(28px,4.2vw,48px);line-height:1.3;letter-spacing:-.035em;margin:16px 0 18px;text-wrap:balance}
+.ttl em{font-style:normal;color:var(--coral)}
+.lead{color:var(--tx-2);font-size:17px;max-width:62ch;margin:0}
+.center{text-align:center}.center .lead{margin-inline:auto}
+.glass{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--stroke);border-radius:24px}
+
+/* ================= PHONE + APP UI (light, Toss-style) ================= */
+.dev{width:100%;max-width:300px;aspect-ratio:9/19.3;border-radius:46px;background:#0A0A0B;padding:9px;box-shadow:0 50px 90px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.12),inset 0 0 0 1.5px rgba(255,255,255,.08);flex:none;position:relative}
+.dev:before{content:'';position:absolute;top:17px;left:50%;transform:translateX(-50%);width:28%;height:20px;border-radius:12px;background:#0A0A0B;z-index:3}
+.scr{height:100%;border-radius:38px;overflow:hidden;background:#fff;position:relative;container-type:inline-size}
+.app{position:absolute;inset:0;display:flex;flex-direction:column;font-size:calc(100cqw / 22.5);color:var(--ink);letter-spacing:-.02em;line-height:1.45;font-family:var(--font)}
+.app *{box-sizing:border-box}
+.sb{display:flex;justify-content:space-between;align-items:center;height:2.9em;padding:0 1.6em;font-size:.8125em;font-weight:600;flex:none}
+.sb .dots{display:flex;gap:.3em;align-items:center}
+.sb .dots i{width:1.05em;height:.6em;border-radius:.16em;background:var(--ink);display:block}
+.sb .dots i:first-child{width:.9em;height:.7em;border-radius:.1em;clip-path:polygon(0 100%,100% 0,100% 100%)}
+.nav{display:flex;align-items:center;justify-content:space-between;height:3.25em;padding:0 1.25em;flex:none;gap:.75em}
+.nav b{font-size:1.0625em;font-weight:700;white-space:nowrap}
+.nav .ic{display:flex;gap:.9em}
+.nav svg,.ico-s{width:1.5em;height:1.5em;stroke:var(--ink);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
+.logo{display:flex;align-items:center;gap:.4em;font-weight:700;font-size:1.125em;color:var(--red);white-space:nowrap}
+.logo .m{width:1.6em;height:1.6em;border-radius:.45em;background:var(--red);display:grid;place-items:center}
+.logo .m svg{width:1.1em;height:1.1em}
+.body{flex:1;overflow:hidden;padding:0 1.25em;min-height:0}
+.h1{font-size:1.5em;font-weight:700;line-height:1.38;letter-spacing:-.035em;margin:.5em 0 .4em}
+.h1 em{font-style:normal;color:var(--red)}
+.sub{font-size:.9375em;color:var(--ink-2);margin:0}
+.sec-t{display:flex;justify-content:space-between;align-items:baseline;margin:1.25em 0 .65em;gap:.5em}
+.sec-t b{font-size:1.0625em;font-weight:700;white-space:nowrap}
+.sec-t b em{font-style:normal;color:var(--red)}
+.sec-t span{font-size:.8125em;color:var(--ink-3);white-space:nowrap}
+.cta{flex:none;padding:.75em 1.25em 1.7em;background:linear-gradient(180deg,rgba(255,255,255,0) 0,#fff 28%)}
+.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:3.5em;padding:0 1em;border-radius:1em;background:var(--red);color:#fff;font-weight:700;font-size:1.0625em;white-space:nowrap;letter-spacing:-.02em}
+.btn.sub2{background:var(--rtint);color:var(--red)}
+.chip{display:inline-flex;align-items:center;gap:.3em;height:2.2em;padding:0 .9em;border-radius:999px;font-size:.8125em;font-weight:600;white-space:nowrap;background:var(--fill);color:var(--ink-2);flex:none}
+.chip.on{background:var(--ink);color:#fff}
+.chip.r{background:var(--rtint);color:var(--red)}
+.chip svg{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.chips{display:flex;gap:.4em;overflow:hidden}
+.tabs{display:flex;gap:1.15em;border-bottom:1px solid var(--line);padding:0 1.25em;flex:none}
+.tabs span{font-size:.9375em;font-weight:600;color:var(--ink-3);padding:.55em 0 .65em;white-space:nowrap;position:relative}
+.tabs span.on{color:var(--ink)}
+.tabs span.on:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--ink);border-radius:2px}
+.tabbar{flex:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);padding:.55em .4em 1.5em;background:#fff}
+.tabbar div{display:flex;flex-direction:column;align-items:center;gap:.2em;font-size:.6875em;color:var(--ink-3);font-weight:500;white-space:nowrap}
+.tabbar div.on{color:var(--ink);font-weight:700}
+.tabbar svg{width:2.1em;height:2.1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.banner{border-radius:1.25em;background:linear-gradient(135deg,#FFE7E3,#FFD3CC);padding:1.15em 1.15em 1.1em;position:relative;overflow:hidden;margin-top:.9em}
+.banner small{font-size:.75em;font-weight:600;color:var(--red)}
+.banner b{display:block;font-size:1.25em;line-height:1.35;font-weight:700;margin-top:.2em;letter-spacing:-.03em}
+.banner .pg{position:absolute;right:.9em;bottom:.8em;font-size:.6875em;background:rgba(25,31,40,.35);color:#fff;border-radius:999px;padding:.1em .6em}
+.banner .ill{position:absolute;right:.7em;top:.8em;width:4.6em;height:4.6em;border-radius:1.2em;background:#fff;display:grid;place-items:center;box-shadow:0 .5em 1.2em rgba(229,52,60,.18)}
+.banner .ill svg{width:2.6em;height:2.6em;stroke:var(--red);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:.2em;margin-top:1em}
+.quick div{display:flex;flex-direction:column;align-items:center;gap:.35em;font-size:.75em;font-weight:500;color:var(--ink-2);white-space:nowrap}
+.quick i{width:3.4em;height:3.4em;border-radius:1em;background:var(--fill);display:grid;place-items:center}
+.quick svg{width:1.7em;height:1.7em;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.deal{display:flex;gap:.8em;align-items:center}
+.deal .th{width:4.6em;height:4.6em;border-radius:.9em;overflow:hidden;flex:none;background:var(--fill)}
+.th img{width:100%;height:100%;object-fit:cover;display:block}
+.deal .t{min-width:0;flex:1}
+.nm{font-size:.875em;color:var(--ink);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pr{font-size:.9375em;font-weight:700;margin-top:.15em;white-space:nowrap}
+.pr em{font-style:normal;color:var(--red);margin-right:.25em}
+.rv{font-size:.6875em;color:var(--ink-3);margin-top:.1em;white-space:nowrap}
+.timer{font-variant-numeric:tabular-nums;color:var(--red);font-weight:700}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1em .7em}
+.grid2 .th{aspect-ratio:1;border-radius:1em;overflow:hidden;background:var(--fill);position:relative}
+.grid2 .th .cart{position:absolute;right:.45em;bottom:.45em;width:2.1em;height:2.1em;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 .2em .6em rgba(0,0,0,.12)}
+.grid2 .th .cart svg{width:1.1em;height:1.1em;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.grid2 .info{margin-top:.5em}
+.input{margin-top:.9em}
+.input label{display:block;font-size:.8125em;font-weight:600;color:var(--ink-2);margin-bottom:.4em}
+.input div{height:3.4em;border-radius:.9em;background:var(--fill);display:flex;align-items:center;padding:0 1em;font-size:.9375em;color:var(--ink-3);white-space:nowrap}
+.input div.on{background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
+.links{display:flex;justify-content:center;gap:1em;font-size:.8125em;color:var(--ink-3);margin-top:1em;white-space:nowrap}
+.sns{display:flex;justify-content:center;gap:.9em;margin-top:.7em}
+.sns i{width:3em;height:3em;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.875em}
+.mascot{width:4.4em;height:4.4em;border-radius:1.25em;background:var(--red);display:grid;place-items:center;margin:1.6em auto .8em;box-shadow:0 .8em 1.6em rgba(229,52,60,.28)}
+.mascot svg{width:3em;height:3em}
+.steps3{display:flex;flex-direction:column;gap:.15em;margin-top:1em}
+.steps3>div{display:flex;gap:.8em;align-items:center;padding:.6em 0}
+.steps3 i{width:1.9em;height:1.9em;border-radius:50%;background:var(--rtint);color:var(--red);font-style:normal;font-weight:700;font-size:.8125em;display:grid;place-items:center;flex:none}
+.steps3 b{display:block;font-size:.9375em;font-weight:600}
+.steps3 span{display:block;font-size:.75em;color:var(--ink-3)}
+.giftbox{border-radius:1.25em;overflow:hidden;margin-top:.8em;aspect-ratio:16/10;background:var(--fill)}
+.giftbox img{width:100%;height:100%;object-fit:cover;display:block}
+.seg{display:flex;background:var(--fill);border-radius:.9em;padding:.25em;margin-top:1em}
+.seg span{flex:1;text-align:center;height:2.5em;display:grid;place-items:center;border-radius:.7em;font-size:.875em;font-weight:600;color:var(--ink-3);white-space:nowrap}
+.seg span.on{background:#fff;color:var(--ink);box-shadow:0 .1em .4em rgba(0,0,0,.08)}
+.cmp{margin-top:1em;border-radius:1.1em;border:1px solid var(--line);overflow:hidden}
+.cmp div{display:grid;grid-template-columns:5.4em 1fr 1fr;font-size:.8125em;border-top:1px solid var(--line)}
+.cmp div:first-child{border-top:0;background:var(--fill);font-weight:600;color:var(--ink-2)}
+.cmp span{padding:.75em .7em;white-space:nowrap}
+.cmp span:first-child{color:var(--ink-3)}
+.cmp .hl{color:var(--red);font-weight:700}
+.dlv{margin-top:1em;border-radius:1.1em;background:linear-gradient(135deg,#FFF6E0,#FFE9B8);padding:1em 1.1em;display:flex;gap:.8em;align-items:center}
+.dlv .ic{width:3em;height:3em;border-radius:.9em;background:#fff;display:grid;place-items:center;flex:none}
+.dlv .ic svg{width:1.7em;height:1.7em;stroke:#C98A00;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.dlv b{display:block;font-size:.9375em}
+.dlv span{font-size:.75em;color:var(--ink-2)}
+.badge{position:absolute;left:.45em;top:.45em;font-size:.6875em;font-weight:700;padding:.15em .5em;border-radius:.4em;background:var(--red);color:#fff}
+/* old (AS-IS) app look */
+.old .app{filter:saturate(.75)}
+.oldbar{height:2.6em;background:#E8E8E8;display:flex;align-items:center;padding:0 .9em;gap:.5em;font-size:.75em;color:#666;flex:none}
+.oldbar b{color:#B4131B}
+.oldmenu{display:flex;gap:.6em;padding:.5em .9em;font-size:.6875em;color:#777;background:#F4F4F4;flex:none;white-space:nowrap;overflow:hidden}
+.oldb{margin:.45em .7em 0;border-radius:.25em;display:grid;place-items:center;font-size:.6875em;font-weight:700;color:#fff;text-align:center;line-height:1.3;padding:.4em}
+.oldg{display:grid;grid-template-columns:repeat(3,1fr);gap:.3em;margin:.45em .7em 0}
+.oldg div{aspect-ratio:1;background:#DADADA;border-radius:.2em;overflow:hidden}
+.oldg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(.9)}
+.oldt{margin:.45em .7em 0;font-size:.625em;color:#888;line-height:1.5}
+
+/* ================= HERO ================= */
+.hero{min-height:100vh;padding-block:28px 0;overflow:hidden;background:radial-gradient(60% 50% at 50% 62%,rgba(229,52,60,.32),rgba(229,52,60,0) 70%),radial-gradient(40% 30% at 85% 10%,rgba(247,134,106,.12),transparent 70%),var(--bg)}
+.meta{display:flex;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;color:var(--tx-3);text-transform:uppercase}
+.meta b{color:var(--tx);font-weight:600;margin-left:8px}
+.meta .g{display:flex;gap:28px;flex-wrap:wrap}
+.h-copy{text-align:center;margin-top:clamp(48px,8vw,96px);position:relative;z-index:2}
+.h-copy .k{font-size:clamp(16px,1.6vw,20px);font-weight:600;color:var(--tx-2)}
+.h-copy .k em{font-style:normal;color:var(--coral)}
+.word{font-weight:700;font-size:clamp(68px,15.5vw,224px);line-height:.9;letter-spacing:-.055em;margin:14px 0 0;background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;color:transparent}
+.stage{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:clamp(16px,3vw,40px);margin-top:clamp(-40px,-3vw,-18px);padding-bottom:0;height:clamp(420px,46vw,620px);z-index:1}
+.stage .dev{max-width:clamp(200px,21vw,290px)}
+.stage .p1{transform:translateY(16%) rotate(-7deg)}
+.stage .p3{transform:translateY(16%) rotate(7deg)}
+.stage .p2{transform:translateY(6%)}
+.bub{position:absolute;z-index:4;font-size:14px;font-weight:600;line-height:1.45;padding:12px 16px;border-radius:16px;background:rgba(30,26,27,.82);border:1px solid var(--stroke-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap;box-shadow:0 20px 40px rgba(0,0,0,.35)}
+.bub em{font-style:normal;color:var(--coral)}
+.bub.sol{background:linear-gradient(135deg,#FF6A5C,#E5343C);border-color:transparent;display:flex;align-items:center;gap:10px}
+.bub.sol i{width:26px;height:26px;border-radius:8px;background:#fff;display:grid;place-items:center}
+.bub.sol i svg{width:18px;height:18px}
+.b1{left:6%;top:24%}.b2{left:3%;top:52%}.b3{right:5%;top:22%}.b4{right:4%;top:50%}
+
+/* ================= OVERVIEW ================= */
+.ov{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
+.ov .q{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:44px}
+.ov .q span{font-size:14px;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--card);border:1px solid var(--stroke);color:var(--tx-2)}
+.ov .q span em{font-style:normal;color:var(--coral)}
+
+/* ================= RESEARCH ================= */
+.rs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:16px;margin-top:48px}
+.tg{padding:28px 24px 26px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.tg .n{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral)}
+.tg .av{width:48px;height:48px;border-radius:16px;background:rgba(247,134,106,.12);display:grid;place-items:center}
+.tg .av svg{width:26px;height:26px;stroke:var(--coral);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.tg h3{font-size:20px;line-height:1.4;font-weight:700;margin:0;letter-spacing:-.03em}
+.tg p{margin:0;font-size:14.5px;color:var(--tx-2);line-height:1.7}
+.chart{padding:28px 26px;background:#F8F6F6;color:var(--ink);border-radius:24px;min-width:0}
+.chart h4{margin:0 0 4px;font-size:16px;font-weight:700}
+.chart .s{font-size:13px;color:var(--ink-3);margin:0 0 20px}
+.bars{display:flex;flex-direction:column;gap:14px}
+.bars div{display:grid;grid-template-columns:40px minmax(0,1fr) 44px;align-items:center;gap:12px;font-size:14px}
+.bars .tr{height:12px;border-radius:9px;background:#ECE7E7;overflow:hidden}
+.bars .tr i{display:block;height:100%;border-radius:9px;background:var(--coral)}
+.bars div:first-child .tr i{background:var(--red)}
+.bars b{text-align:right;font-weight:700}
+.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
+.kw span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:#FFE3E0;color:var(--red)}
+.kw span.n{background:#ECEEF1;color:var(--ink-2)}
+
+/* ================= PROCESS ================= */
+.proc{background:var(--bg-2)}
+.pc-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;margin-top:56px;position:relative}
+.pc-row:before{content:'';position:absolute;left:24px;right:24px;top:27px;height:2px;background:linear-gradient(90deg,var(--red),rgba(229,52,60,.15))}
+.pcs{position:relative;min-width:0}
+.pcs .dot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--card-2);border:1px solid var(--stroke-2);position:relative;z-index:1}
+.pcs:first-child .dot{background:var(--red);border-color:transparent;box-shadow:0 0 0 8px rgba(229,52,60,.18)}
+.pcs h3{font-size:20px;font-weight:700;margin:22px 0 12px;letter-spacing:-.02em}
+.pcs h3 small{display:block;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--tx-3);text-transform:uppercase;margin-bottom:4px}
+.pcs ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
+.pcs li{font-size:14.5px;color:var(--tx-2);padding-left:14px;position:relative}
+.pcs li:before{content:'';position:absolute;left:0;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--coral)}
+.goal{margin-top:56px;display:flex;align-items:center;gap:18px;padding:22px 26px;flex-wrap:wrap}
+.goal span{font-size:12px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--red);border-radius:999px;padding:6px 12px}
+.goal b{font-size:clamp(17px,2vw,22px);font-weight:700;letter-spacing:-.02em}
+
+/* ================= PAIN → SOLUTION ================= */
+.pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:52px}
+.pp{display:flex;flex-direction:column;gap:12px;min-width:0}
+.pp .a{padding:26px 24px}
+.pp .a small,.pp .b small{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
+.pp .a small{color:var(--tx-3)}
+.pp .a h3,.pp .b h3{margin:10px 0 0;font-size:19px;line-height:1.45;font-weight:700;letter-spacing:-.025em}
+.pp .ar{align-self:center;width:36px;height:36px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;border:1px solid var(--stroke)}
+.pp .ar svg{width:18px;height:18px;stroke:var(--coral);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.pp .b{padding:26px 24px;border-radius:24px;background:linear-gradient(140deg,#FF8A72,#E5343C);color:#fff;box-shadow:0 24px 48px -18px rgba(229,52,60,.55)}
+.pp .b small{color:rgba(255,255,255,.8)}
+.pp .b p{margin:8px 0 0;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.88)}
+
+.ps{margin-top:80px;display:flex;flex-direction:column;gap:10px}
+.ps-h{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:12px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tx-3);padding:0 6px 4px}
+.ps-r{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:12px;align-items:center}
+.ps-r .p{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:18px;background:var(--card);border:1px solid var(--stroke);color:var(--tx-2);font-size:15.5px;min-width:0}
+.ps-r .p i{font-style:normal;font-size:13px;font-weight:700;color:var(--tx-3);flex:none}
+.ps-r .ar{width:36px;height:36px;margin:auto;border-radius:50%;display:grid;place-items:center;background:rgba(229,52,60,.14)}
+.ps-r .ar svg{width:16px;height:16px;stroke:var(--red-2);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.ps-r .s{padding:18px 22px;border-radius:18px;border:1.5px solid rgba(247,134,106,.55);background:rgba(247,134,106,.06);font-size:15.5px;font-weight:600;min-width:0}
+
+/* ================= CONCEPT ================= */
+.cc{background:var(--bg-2)}
+.cc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:52px}
+.ccc{padding:34px 28px 30px;border-radius:28px;min-width:0;position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column}
+.ccc:nth-child(1){background:linear-gradient(150deg,#FFB39E,#F7866A)}
+.ccc:nth-child(2){background:linear-gradient(150deg,#FF8E7A,#E5343C)}
+.ccc:nth-child(3){background:linear-gradient(150deg,#D63A3F,#8E0F17)}
+.ccc .no{font-size:13px;font-weight:600;color:rgba(255,255,255,.75)}
+.ccc h3{margin:auto 0 0;font-size:clamp(32px,3.4vw,44px);font-weight:700;letter-spacing:-.04em;line-height:1.15;color:#fff}
+.ccc h3 small{display:block;font-size:14px;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.75);margin-top:6px}
+.ccc p{margin:14px 0 0;color:rgba(255,255,255,.9);font-size:15px;line-height:1.7}
+.ccc svg.bg{position:absolute;right:-20px;top:-20px;width:150px;height:150px;stroke:rgba(255,255,255,.22);fill:none;stroke-width:1.2}
+
+/* ================= FEATURE SECTIONS ================= */
+.ft{overflow:hidden}
+.ft .lay{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px);align-items:center}
+.ft .lay.rev{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
+.ft .lay.rev .txt{order:2}
+.pts{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
+.pts li{display:flex;gap:14px;align-items:flex-start;font-size:16px;color:var(--tx-2)}
+.pts li i{font-style:normal;width:26px;height:26px;border-radius:50%;flex:none;background:rgba(229,52,60,.16);color:var(--red-2);font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
+.pts li b{display:block;color:var(--tx);font-weight:600;font-size:16px}
+.cmpstage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(18px,3vw,44px)}
+.tagl{position:absolute;top:-38px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.1em;padding:6px 12px;border-radius:999px;white-space:nowrap}
+.tagl.x{background:var(--card-2);color:var(--tx-3)}
+.tagl.o{background:var(--red);color:#fff}
+.wrapdev{position:relative;flex:1 1 0;min-width:0;max-width:290px}
+.wrapdev.o{max-width:230px}
+.wrapdev .dev{max-width:none}
+.cmpstage .old{opacity:.8}
+.cmpstage .arr{align-self:center;width:52px;height:52px;border-radius:50%;background:var(--card-2);border:1px solid var(--stroke-2);display:grid;place-items:center;flex:none}
+.cmpstage .arr svg{width:22px;height:22px;stroke:var(--coral);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
+.note{position:absolute;z-index:3;font-size:13px;line-height:1.45;font-weight:600;padding:9px 13px;border-radius:12px;background:rgba(30,26,27,.88);border:1px solid var(--stroke-2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap;display:flex;gap:8px;align-items:center}
+.note i{font-style:normal;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;flex:none}
+.sheet{position:absolute;z-index:3;width:clamp(180px,17vw,220px);border-radius:20px;background:#fff;color:var(--ink);padding:16px 14px;box-shadow:0 30px 60px -10px rgba(0,0,0,.55);font-size:14px}
+.sheet .h{font-size:12px;font-weight:600;color:var(--red);margin-bottom:8px}
+.sheet div{display:flex;justify-content:space-between;align-items:center;padding:9px 6px;border-radius:10px;font-weight:600}
+.sheet div.on{background:var(--rtint);color:var(--red)}
+.sheet div span{font-size:12px;color:var(--ink-3);font-weight:500}
+.sheet div.subl{padding:2px 6px 6px 18px;display:flex;align-items:stretch;flex-direction:column;gap:2px;font-size:13px;color:var(--ink-2);font-weight:500}
+.sheet .subl div{padding:5px 0;font-weight:500;justify-content:flex-start;display:block}
+.fstage{position:relative;display:flex;justify-content:center;padding-right:clamp(0px,6vw,90px)}
+.mini2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
+.mini2 div{padding:20px;border-radius:20px;background:var(--card);border:1px solid var(--stroke)}
+.mini2 b{display:block;font-size:16px;margin-bottom:6px}
+.mini2 p{margin:0;font-size:14px;color:var(--tx-2);line-height:1.65}
+
+.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px);margin-top:72px;justify-items:center}
+.svc .col{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%;min-width:0}
+.svc .pill{font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;background:rgba(229,52,60,.16);color:var(--red-2);white-space:nowrap}
+.svc .dev{max-width:270px}
+.svc .cap2{text-align:center;max-width:280px}
+.svc .cap2 b{display:block;font-size:17px;margin-bottom:6px}
+.svc .cap2 span{font-size:14.5px;color:var(--tx-2)}
+
+.lg{background:radial-gradient(45% 55% at 72% 50%,rgba(229,52,60,.28),transparent 70%),var(--bg)}
+.lg .ring{position:absolute;width:min(560px,80vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(247,134,106,.18);left:50%;top:50%;transform:translate(-50%,-50%)}
+.lg .ring.r2{width:min(420px,62vw);border-color:rgba(247,134,106,.28)}
+.lg .devwrap{position:relative;display:flex;justify-content:center;padding-block:40px}
+
+/* PC */
+.pcw{margin-top:56px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
+.browser{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 50px 100px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.1)}
+.browser .bar{height:38px;background:#2A2526;display:flex;align-items:center;gap:7px;padding:0 14px;position:relative}
+.browser .bar i{width:11px;height:11px;border-radius:50%;background:#4A4344;display:block}
+.browser .bar span{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;color:var(--tx-3);background:#1C1819;border-radius:8px;padding:3px 70px;white-space:nowrap}
+.pcs-c{container-type:inline-size}
+.pca{font-size:calc(100cqw / 80);color:var(--ink);line-height:1.45;letter-spacing:-.02em;font-family:var(--font)}
+.pca *{box-sizing:border-box}
+.pca .promo{background:var(--red);color:#fff;text-align:center;font-size:.8125em;font-weight:600;padding:.55em 0}
+.pca .hd{display:flex;align-items:center;gap:2em;padding:1.2em 3em}
+.pca .hd .logo{font-size:1.5em}
+.pca .srch{flex:1;max-width:30em;height:2.8em;border-radius:999px;background:var(--fill);display:flex;align-items:center;padding:0 1.2em;font-size:.875em;color:var(--ink-3);gap:.6em}
+.pca .srch svg{width:1.3em;height:1.3em;stroke:var(--ink-3);fill:none;stroke-width:2}
+.pca .hd .ic{margin-left:auto;display:flex;gap:1.4em}
+.pca .hd .ic svg{width:1.6em;height:1.6em;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pca .mn{display:flex;gap:2em;padding:0 3em .9em;font-size:.9375em;font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--line);white-space:nowrap}
+.pca .mn .on{color:var(--red)}
+.pca .mn .r{margin-left:auto;font-size:.8125em;color:var(--ink-3);font-weight:500}
+.pca .hb{margin:1.6em 3em 0;border-radius:1.5em;background:linear-gradient(120deg,#FFE7E3,#FFC9C0);padding:2.6em 3em;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
+.pca .hb small{font-size:.875em;font-weight:600;color:var(--red)}
+.pca .hb h5{margin:.4em 0 1em;font-size:2em;line-height:1.3;font-weight:700;letter-spacing:-.035em}
+.pca .hb .b{display:inline-flex;height:3em;padding:0 1.4em;align-items:center;border-radius:.8em;background:var(--red);color:#fff;font-weight:700;font-size:.9375em;white-space:nowrap}
+.pca .cp{width:15em;border-radius:1.2em;background:#fff;padding:1.3em 1.5em;box-shadow:0 1.2em 2.4em rgba(229,52,60,.2);transform:rotate(-6deg);margin-right:3em}
+.pca .cp small{font-size:.75em;font-weight:700;letter-spacing:.1em;color:var(--red)}
+.pca .cp b{display:block;font-size:2.4em;font-weight:700;letter-spacing:-.04em;line-height:1.1;margin:.15em 0}
+.pca .cp span{font-size:.75em;color:var(--ink-3)}
+.pca .qk{display:grid;grid-template-columns:repeat(6,1fr);margin:1.8em 3em 0;gap:1em}
+.pca .qk div{display:flex;flex-direction:column;align-items:center;gap:.5em;font-size:.8125em;color:var(--ink-2);font-weight:500;white-space:nowrap}
+.pca .qk i{width:3.8em;height:3.8em;border-radius:1.1em;background:var(--fill);display:grid;place-items:center}
+.pca .qk svg{width:1.8em;height:1.8em;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.pca .bt{display:flex;justify-content:space-between;align-items:baseline;margin:2.2em 3em .9em}
+.pca .bt b{font-size:1.375em;font-weight:700}
+.pca .bt b em{font-style:normal;color:var(--red)}
+.pca .bt span{font-size:.8125em;color:var(--ink-3)}
+.pca .pl{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2em;margin:0 3em 2.4em}
+.pca .pl .th{aspect-ratio:1;border-radius:1em;overflow:hidden;background:var(--fill)}
+.pca .pl .nm{margin-top:.6em;font-size:.9375em}
+.pca .pl .pr{font-size:1em}
+.pcnotes{display:flex;flex-direction:column;gap:12px}
+.pcnotes div{padding:20px 22px}
+.pcnotes small{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral);text-transform:uppercase}
+.pcnotes p{margin:6px 0 0;font-size:15px;line-height:1.65}
+.sw5{display:flex;gap:8px;padding:6px 4px}
+.sw5 i{width:30px;height:30px;border-radius:9px;display:block}
+
+/* ================= DESIGN SYSTEM ================= */
+.ds{background:var(--bg-2)}
+.ds-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:16px;margin-top:52px}
+.ds-card{padding:28px}
+.ds-card h4{margin:0 0 20px;font-size:15px;font-weight:600;color:var(--tx-2);display:flex;justify-content:space-between;gap:12px}
+.ds-card h4 em{font-style:normal;color:var(--coral)}
+.sws{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
+.sws div{aspect-ratio:1/1.05;border-radius:18px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:13px;font-weight:600;min-width:0}
+.sws div span{font-size:11.5px;font-weight:500;opacity:.8;margin-top:2px}
+.ty div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;padding:12px 0;border-top:1px solid var(--stroke);gap:12px}
+.ty div:first-child{border-top:0;padding-top:0}
+.ty span{font-size:12.5px;color:var(--tx-3)}
+.cmps{margin-top:16px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.cmps .ds-card{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
+.cbtn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:16px;font-size:17px;font-weight:700;white-space:nowrap;width:100%}
+.cbtn.p{background:var(--red);color:#fff}.cbtn.s{background:rgba(229,52,60,.14);color:var(--red-2)}
+.cchips{display:flex;flex-wrap:wrap;gap:8px}
+.cchips span{height:36px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;background:var(--card-2);color:var(--tx-2);white-space:nowrap}
+.cchips span.on{background:#fff;color:var(--ink)}
+.cinput{width:100%;height:54px;border-radius:14px;background:var(--card-2);display:flex;align-items:center;padding:0 16px;font-size:15px;color:var(--tx-3)}
+.cinput.on{box-shadow:inset 0 0 0 1.5px #fff;color:var(--tx)}
+.spec{font-size:12.5px;color:var(--tx-3)}
+
+/* ================= RESULT ================= */
+.rl{margin-top:48px;border-top:1px solid var(--stroke)}
+.rl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 4px;border-bottom:1px solid var(--stroke);align-items:center}
+.rl span{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral);text-transform:uppercase}
+.rl b{font-size:17px;font-weight:600}
+.qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:56px}
+.qa .glass{padding:30px 28px}
+.qa h4{margin:0 0 12px;font-size:18px;font-weight:700}
+.qa h4 em{font-style:normal;color:var(--coral);margin-right:6px}
+.qa p{margin:0;color:var(--tx-2);font-size:15.5px;line-height:1.8}
+.end{margin-top:120px;text-align:center}
+.end .w{font-size:clamp(56px,11vw,150px);font-weight:700;letter-spacing:-.055em;line-height:1;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.12));-webkit-background-clip:text;background-clip:text;color:transparent}
+.end p{color:var(--tx-3);font-size:14px;margin:18px 0 0}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width:1080px){
+  .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .pcw{grid-template-columns:minmax(0,1fr)}
+  .pcnotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
+}
+@media (max-width:900px){
+  .ft .lay,.ft .lay.rev{grid-template-columns:minmax(0,1fr)}
+  .ft .lay.rev .txt{order:0}
+  .pc-row{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
+  .pc-row:before{display:none}
+  .pp-grid,.cc-grid,.svc,.qa,.ds-grid,.cmps{grid-template-columns:minmax(0,1fr)}
+  .svc{gap:64px}
+  .pcnotes{grid-template-columns:minmax(0,1fr)}
+  .bub,.bub.sol{display:none}
+  .fstage{flex-direction:column;align-items:center;padding-right:0}
+  .note{display:none}
+  .stage .p1,.stage .p3{display:none}
+  .stage{height:auto;margin-top:24px}
+  .stage .p2{transform:none;max-width:280px}
+  .sheet{position:relative;inset:auto!important;margin:20px auto 0;width:100%;max-width:300px}
+  .cmpstage .wrapdev.o{display:none}.cmpstage .arr{display:none}
+  .ccc{min-height:220px}
+}
+@media (max-width:560px){
+  .rs-grid{grid-template-columns:minmax(0,1fr)}
+  .pc-row{grid-template-columns:minmax(0,1fr)}
+  .ps-h{display:none}
+  .ps-r{grid-template-columns:minmax(0,1fr)}
+  .ps-r .ar{transform:rotate(90deg)}
+  .mini2{grid-template-columns:minmax(0,1fr)}
+  .sws{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .rl div{grid-template-columns:minmax(0,1fr);gap:4px}
+  .meta{font-size:11px}
+}
+</style>
+
+<!-- ============ ICONS ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-face" viewBox="0 0 40 40"><circle cx="20" cy="22" r="13" fill="#fff"/><circle cx="9" cy="11" r="5" fill="#fff"/><circle cx="31" cy="11" r="5" fill="#fff"/><circle cx="15" cy="21" r="2" fill="#E5343C"/><circle cx="25" cy="21" r="2" fill="#E5343C"/><ellipse cx="20" cy="27" rx="4.5" ry="3" fill="#FFB3AE"/></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.2l2 11h10.6l2-8H6.4"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5V20H14.5v-5h-5v5H4z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0112 7.6 4.3 4.3 0 0119.5 10c0 5.6-7.5 10-7.5 10z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></symbol>
+  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="2"/><path d="M3.5 13h17M12 9v11.5"/><path d="M12 9c-1.5-3.8-6-4.4-6-1.6C6 9 9 9 12 9zm0 0c1.5-3.8 6-4.4 6-1.6C18 9 15 9 12 9z"/></symbol>
+  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></symbol>
+  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.8l2.5 5.2 5.6.7-4.1 3.9 1 5.6L12 16.5l-5 2.7 1-5.6-4.1-3.9 5.6-.7z"/></symbol>
+  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.8 12.5V4.5h8l8.4 8.4-7.9 7.9z"/><circle cx="8.3" cy="8.8" r="1.5"/></symbol>
+  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
+  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11zM13.5 10h4l3 3.4v3.1h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
+  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
+  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
+  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="8.5" cy="9" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19c.8-3 3-4.6 5.5-4.6S13.2 16 14 19M14.5 14.8c2.6-.5 5 .8 6 4.2"/></symbol>
+  <symbol id="i-tent" viewBox="0 0 24 24"><path d="M12 4L3 20h18z"/><path d="M12 4v16M9 20l3-6 3 6"/></symbol>
+  <symbol id="i-pan" viewBox="0 0 24 24"><circle cx="10" cy="13" r="6.5"/><path d="M16.2 11.5H21.5"/><circle cx="10" cy="13" r="2.5"/></symbol>
+  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></symbol>
+  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></symbol>
+  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5.5a1.5 1.5 0 013 0V11m0-1.5V4a1.5 1.5 0 013 0v6m0-4.5a1.5 1.5 0 013 0V13c0 4-2.5 7-6.5 7S6 18 4.5 15.2L3 12.5a1.4 1.4 0 012.3-1.5L8 13.5"/></symbol>
+</svg>
+
+<!-- ============ SCREEN TEMPLATES ============ -->
+<template id="t-login">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="body" style="display:flex;flex-direction:column">
+      <div class="mascot"><svg><use href="#i-face"/></svg></div>
+      <div style="text-align:center"><b style="font-size:1.375em;font-weight:700">푸드장</b><p class="sub" style="margin-top:.2em">내가 찾던 신선함의 기준</p></div>
+      <div style="margin-top:1.4em">
+        <div class="input"><label>아이디</label><div class="on">foodjang_jieun</div></div>
+        <div class="input"><label>비밀번호</label><div>비밀번호를 입력해 주세요</div></div>
+      </div>
+      <div class="links"><span>회원가입</span><span style="color:var(--line)">|</span><span>아이디·비밀번호 찾기</span></div>
+      <div style="margin-top:auto;text-align:center;padding-bottom:.4em">
+        <span style="font-size:.75em;color:var(--ink-3)">간편 로그인</span>
+        <div class="sns"><i style="background:#FEE500;color:#191919">K</i><i style="background:#03C75A;color:#fff">N</i><i style="background:#191F28;color:#fff">A</i></div>
+      </div>
+    </div>
+    <div class="cta"><div class="btn">로그인</div></div>
+  </div>
+</template>
+
+<template id="t-home">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="nav"><span class="logo"><span class="m"><svg><use href="#i-face"/></svg></span>푸드장</span><span class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-cart"/></svg></span></div>
+    <div class="tabs"><span class="on">추천</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>선물</span></div>
+    <div class="body">
+      <div class="banner"><small>이번 주 특가</small><b>캠핑 시즌<br>최대 30% 할인</b><span class="ill"><svg><use href="#i-tent"/></svg></span><span class="pg">1 / 5</span></div>
+      <div class="quick">
+        <div><i><svg stroke="#E5343C"><use href="#i-gift"/></svg></i>선물하기</div>
+        <div><i><svg stroke="#E0A100"><use href="#i-sun"/></svg></i>모닝배송</div>
+        <div><i><svg stroke="#E5343C"><use href="#i-sparkle"/></svg></i>신상품</div>
+        <div><i><svg stroke="#4E5968"><use href="#i-tag"/></svg></i>알뜰쇼핑</div>
+        <div><i><svg stroke="#4E5968"><use href="#i-cal"/></svg></i>이벤트</div>
+      </div>
+      <div class="sec-t"><b>알뜰쇼핑 <span class="timer" data-cd>08:37:15</span></b><span>더보기</span></div>
+      <div class="deal"><div class="th"><img src="img/p_la.jpg" alt=""></div><div class="t"><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr"><em>22%</em>14,900원</div><div class="rv">★ 4.9 · 후기 1,204</div></div></div>
+      <div class="sec-t"><b>지은님을 위한 추천</b><span>전체보기</span></div>
+      <div class="grid2">
+        <div><div class="th"><img src="img/p_samgye.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr"><em>12%</em>24,900원</div></div></div>
+        <div><div class="th"><img src="img/p_pork.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">한돈 삼겹살 구이용 500g</div><div class="pr"><em>10%</em>15,900원</div></div></div>
+      </div>
+    </div>
+    <div class="tabbar"><div class="on"><svg><use href="#i-home"/></svg>홈</div><div><svg><use href="#i-grid"/></svg>카테고리</div><div><svg><use href="#i-heart"/></svg>찜</div><div><svg><use href="#i-cart"/></svg>장바구니</div><div><svg><use href="#i-user"/></svg>마이</div></div>
+  </div>
+</template>
+
+<template id="t-old">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="oldbar"><b>FOOD JANG</b><span style="margin-left:auto">로그인 · 회원가입 · 고객센터 · 주문조회</span></div>
+    <div class="oldmenu"><span>전체</span><span>소고기</span><span>돼지고기</span><span>양고기</span><span>간편식</span><span>양념</span><span>베이커리</span></div>
+    <div class="oldb" style="height:5.5em;background:linear-gradient(90deg,#5B4BC4,#8E5BD6)">원 오브 원 기획전<br>가정의 달 최대 50% 할인</div>
+    <div class="oldb" style="height:2.2em;background:#F2C230;color:#333">★ 회원 등급별 혜택 바로가기 ★</div>
+    <div class="oldb" style="height:2.2em;background:#3DAA6A">무료배송 이벤트 진행중! 5만원 이상</div>
+    <div class="oldt">추천상품 &gt;&gt;</div>
+    <div class="oldg"><div><img src="img/p_la.jpg" alt=""></div><div><img src="img/p_kimchi.jpg" alt=""></div><div><img src="img/p_samgye.jpg" alt=""></div><div><img src="img/p_pork.jpg" alt=""></div><div><img src="img/p_gift.jpg" alt=""></div><div></div></div>
+    <div class="oldt">27,800원 · 19,800원 · 24,900원 · 39,900원<br>※ 상품은 입고 상황에 따라 변경될 수 있습니다</div>
+    <div class="oldb" style="height:2.6em;background:#DDD;color:#888;margin-bottom:.4em">공지사항 · 배송안내 · 교환/반품 · 이벤트</div>
+  </div>
+</template>
+
+<template id="t-cat">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="nav"><svg><use href="#i-back"/></svg><b>고기·간편식</b><svg><use href="#i-search"/></svg></div>
+    <div class="tabs"><span class="on">전체</span><span>소고기</span><span>돼지고기</span><span>간편식</span></div>
+    <div class="body">
+      <div class="chips" style="margin:.9em 0 .4em"><span class="chip on"><svg><use href="#i-check"/></svg>추천순</span><span class="chip">가격대<svg><use href="#i-down"/></svg></span><span class="chip">부위<svg><use href="#i-down"/></svg></span><span class="chip">용량<svg><use href="#i-down"/></svg></span></div>
+      <div style="font-size:.8125em;color:var(--ink-3);margin:.6em 0 .8em">상품 128개</div>
+      <div class="grid2">
+        <div><div class="th"><img src="img/p_la.jpg" alt=""><span class="badge">BEST</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr"><em>22%</em>14,900원</div></div></div>
+        <div><div class="th"><img src="img/p_kimchi.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">남영돈 김치찌개 세트</div><div class="pr"><em>15%</em>12,900원</div></div></div>
+        <div><div class="th"><img src="img/p_pork.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">한돈 삼겹살 구이용 500g</div><div class="pr"><em>10%</em>15,900원</div></div></div>
+        <div><div class="th"><img src="img/p_samgye.jpg" alt=""><span class="badge">NEW</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr"><em>12%</em>24,900원</div></div></div>
+      </div>
+    </div>
+    <div class="tabbar"><div><svg><use href="#i-home"/></svg>홈</div><div class="on"><svg><use href="#i-grid"/></svg>카테고리</div><div><svg><use href="#i-heart"/></svg>찜</div><div><svg><use href="#i-cart"/></svg>장바구니</div><div><svg><use href="#i-user"/></svg>마이</div></div>
+  </div>
+</template>
+
+<template id="t-gift">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="nav"><svg><use href="#i-back"/></svg><b>선물하기</b><svg><use href="#i-cart"/></svg></div>
+    <div class="body">
+      <div class="h1">주소 몰라도<br><em>연락처만으로</em> 선물해요</div>
+      <p class="sub">받는 분이 직접 배송지를 입력해요.</p>
+      <div class="giftbox"><img src="img/p_gift.jpg" alt=""></div>
+      <div class="steps3">
+        <div><i>1</i><div><b>선물 고르기</b><span>선물세트 · 모바일 상품권</span></div></div>
+        <div><i>2</i><div><b>연락처로 보내기</b><span>카카오톡 · 문자 중 선택</span></div></div>
+        <div><i>3</i><div><b>받는 분이 주소 입력</b><span>입력 즉시 출고 준비</span></div></div>
+      </div>
+    </div>
+    <div class="cta"><div class="btn">선물 보내기</div></div>
+  </div>
+</template>
+
+<template id="t-morning">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="nav"><svg><use href="#i-back"/></svg><b>배송 안내</b><svg><use href="#i-bell"/></svg></div>
+    <div class="body">
+      <div class="h1">모닝배송과 택배배송,<br><em>한눈에</em> 비교해요</div>
+      <div class="seg"><span class="on">모닝배송</span><span>택배배송</span><span>배송지역</span></div>
+      <div class="cmp">
+        <div><span>구분</span><span>모닝</span><span>택배</span></div>
+        <div><span>주문마감</span><span class="hl">밤 11시</span><span>오후 3시</span></div>
+        <div><span>도착</span><span class="hl">다음날 7시</span><span>1–2일</span></div>
+        <div><span>지역</span><span>수도권</span><span>전국</span></div>
+      </div>
+      <div class="dlv"><span class="ic"><svg><use href="#i-sun"/></svg></span><div><b>지금 주문하면 내일 아침 7시</b><span>마감까지 <span class="timer" data-cd2>02:22:45</span></span></div></div>
+    </div>
+    <div class="cta"><div class="btn">모닝배송 상품 보기</div></div>
+  </div>
+</template>
+
+<template id="t-new">
+  <div class="app">
+    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
+    <div class="nav"><svg><use href="#i-back"/></svg><b>신상품</b><svg><use href="#i-search"/></svg></div>
+    <div class="body">
+      <div class="h1">이번 주<br><em>MD가 고른</em> 신상품</div>
+      <div class="chips" style="margin:.4em 0 1em"><span class="chip on">전체</span><span class="chip">소고기</span><span class="chip">간편식</span><span class="chip">선물세트</span></div>
+      <div class="grid2">
+        <div><div class="th"><img src="img/p_samgye.jpg" alt=""><span class="badge">NEW</span></div><div class="info"><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr">24,900원</div></div></div>
+        <div><div class="th"><img src="img/p_gift.jpg" alt=""><span class="badge">NEW</span></div><div class="info"><div class="nm">블랙비프 프리미엄 선물세트</div><div class="pr">89,000원</div></div></div>
+        <div><div class="th"><img src="img/p_kimchi.jpg" alt=""></div><div class="info"><div class="nm">남영돈 김치찌개 세트</div><div class="pr">12,900원</div></div></div>
+        <div><div class="th"><img src="img/p_la.jpg" alt=""></div><div class="info"><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr">14,900원</div></div></div>
+      </div>
+    </div>
+    <div class="tabbar"><div><svg><use href="#i-home"/></svg>홈</div><div class="on"><svg><use href="#i-grid"/></svg>카테고리</div><div><svg><use href="#i-heart"/></svg>찜</div><div><svg><use href="#i-cart"/></svg>장바구니</div><div><svg><use href="#i-user"/></svg>마이</div></div>
+  </div>
+</template>
+
+<!-- ================= HERO ================= -->
+<style>
+.pf-back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(16px + env(safe-area-inset-top,0px));z-index:50;display:inline-flex;align-items:center;gap:6px;font:700 13px 'IBM Plex Sans KR',sans-serif;color:#191F28;background:rgba(255,255,255,.92);border-radius:999px;padding:9px 16px 9px 12px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.pf-back:hover{background:#fff}
+.pf-back svg{width:16px;height:16px}
+.hero{padding-top:72px!important}
+</style>
+<a class="pf-back" href="../../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>포트폴리오</a>
+<section class="hero" id="top">
+  <div class="wrap">
+    <div class="meta">
+      <div class="g"><span>Contribution<b>100%</b></span><span>Period<b>2023.10 – 2023.11</b></span></div>
+      <div class="g"><span>Service<b>Mobile App · PC Web</b></span><span>Tools<b>Figma, Photoshop</b></span></div>
+    </div>
+    <div class="h-copy">
+      <div class="k h-in">내가 찾던 <em>신선함의 기준</em>, 푸드장</div>
+      <h1 class="word h-in">FOODJANG</h1>
+    </div>
+  </div>
+  <div class="stage">
+    <div class="dev p1"><div class="scr" data-t="t-login"></div></div>
+    <div class="dev p2"><div class="scr" data-t="t-home"></div></div>
+    <div class="dev p3"><div class="scr" data-t="t-cat"></div></div>
+    <div class="bub b1">로그인 화면이<br>너무 <em>복잡해요</em></div>
+    <div class="bub b2">원하는 고기를<br><em>빠르게 찾고</em> 싶어요</div>
+    <div class="bub b3">주소를 몰라도<br><em>선물</em>할 수 있나요?</div>
+    <div class="bub sol b4"><i><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="13" fill="#E5343C"/><circle cx="9" cy="11" r="5" fill="#E5343C"/><circle cx="31" cy="11" r="5" fill="#E5343C"/><circle cx="15" cy="21" r="2" fill="#fff"/><circle cx="25" cy="21" r="2" fill="#fff"/></svg></i>푸드장이 한 번에 해결!</div>
+  </div>
+</section>
+
+<!-- ================= OVERVIEW ================= -->
+<section class="ov band">
+  <div class="wrap center">
+    <span class="eyebrow">Overview</span>
+    <h2 class="ttl">단순히 고기를 사는 앱이 아니라,<br><em>저렴하고 빠르고 신선하게</em></h2>
+    <p class="lead">푸드장을 이용하는 사람들의 니즈와 불만족도 조사 결과를 반영해, 데이터 기반 통계로 진행한 이벤트 및 애플리케이션 기획입니다. 단순히 육류를 구매하는 것이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록 기획자들과 의견을 취합하고, 마케팅 방향에 맞춰 UI/UX 디자인을 진행했습니다.</p>
+    <div class="q"><span>“메인이 <em>너무 길어요</em>”</span><span>“필터가 <em>어디 있죠?</em>”</span><span>“카테고리가 <em>헷갈려요</em>”</span><span>“지난 주문을 <em>못 찾겠어요</em>”</span></div>
+  </div>
+</section>
+
+<!-- ================= RESEARCH ================= -->
+<section class="rs band" style="padding-top:0">
+  <div class="wrap">
+    <span class="eyebrow">Target &amp; Brand</span>
+    <h2 class="ttl">누가, 언제 푸드장을 찾을까요?</h2>
+    <p class="lead">주 이용 고객을 세 그룹으로 나누고, 브랜드 이미지 조사로 푸드장이 떠오르는 순간을 확인했습니다.</p>
+    <div class="rs-grid">
+      <div class="tg glass"><span class="n">TARGET 01</span><span class="av"><svg><use href="#i-people"/></svg></span><h3>주말 저녁,<br>집에서 맛집처럼</h3><p>가족·친구와 함께 집에서 근사한 한 끼를 즐기려는 사람들</p></div>
+      <div class="tg glass"><span class="n">TARGET 02</span><span class="av"><svg><use href="#i-tent"/></svg></span><h3>캠핑을<br>좋아하는 사람들</h3><p>캠핑이나 요리에 쓸 고기를 간편하게 준비하려는 사람들</p></div>
+      <div class="tg glass"><span class="n">TARGET 03</span><span class="av"><svg><use href="#i-pan"/></svg></span><h3>집에서 요리하는<br>1~3인 가구</h3><p>직접 요리하는 소가구, 다이어트를 하는 사람들</p></div>
+      <div class="chart">
+        <h4>푸드장 브랜드 이미지 분포도</h4>
+        <p class="s">푸드장이 떠오르는 시간대</p>
+        <div class="bars">
+          <div><span>저녁</span><span class="tr"><i style="width:100%"></i></span><b>39%</b></div>
+          <div><span>주말</span><span class="tr"><i style="width:46%"></i></span><b>18%</b></div>
+          <div><span>점심</span><span class="tr"><i style="width:33%"></i></span><b>13%</b></div>
+          <div><span>아침</span><span class="tr"><i style="width:21%"></i></span><b>8%</b></div>
+        </div>
+        <div class="kw"><span>맛있다</span><span>캠핑</span><span>신뢰</span><span class="n">비싸다</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROCESS ================= -->
+<section class="proc band">
+  <div class="wrap">
+    <span class="eyebrow">Design Process</span>
+    <h2 class="ttl">데이터에서 출발한 <em>4단계</em> 개선 프로세스</h2>
+    <p class="lead">이용자 조사와 통계를 근거로 문제를 정의하고, 기획자들과 의견을 맞추며 디자인까지 진행했습니다.</p>
+    <div class="pc-row">
+      <div class="pcs"><span class="dot">01</span><h3><small>Research</small>데이터 분석</h3><ul><li>이용자 니즈·불만족도 조사</li><li>이용 통계 분석</li><li>브랜드 이미지 분석</li><li>타깃 정의</li></ul></div>
+      <div class="pcs"><span class="dot">02</span><h3><small>Define</small>문제 정의</h3><ul><li>핵심 페인포인트 도출</li><li>Problem 5가지 정리</li><li>기획자 의견 취합</li></ul></div>
+      <div class="pcs"><span class="dot">03</span><h3><small>Concept</small>UX 컨셉</h3><ul><li>직관적 · 나를 위한 · 편리한</li><li>컬러 · 톤앤매너 정리</li><li>정보 구조 재설계</li></ul></div>
+      <div class="pcs"><span class="dot">04</span><h3><small>Design</small>UI 디자인</h3><ul><li>홈 · 필터 · 카테고리 개선</li><li>선물하기 · 모닝배송 · 신상품</li><li>로그인 간소화</li><li>PC 메인페이지</li></ul></div>
+    </div>
+    <div class="goal glass"><span>GOAL</span><b>직관적이고, 나를 위한, 편리한 신선식품 쇼핑 경험</b></div>
+  </div>
+</section>
+
+<!-- ================= PAIN POINT ================= -->
+<section class="pain band">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">Pain Point</span>
+      <h2 class="ttl">기존 앱에서 발견한 세 가지 불편함</h2>
+    </div>
+    <div class="pp-grid">
+      <div class="pp"><div class="a glass"><small>Pain point 01</small><h3>데이터 기반 추천 모듈 부재</h3></div><span class="ar"><svg><use href="#i-down"/></svg></span><div class="b"><small>Solution</small><h3>홈 화면 콘텐츠 재구성</h3><p>이용자 데이터 기반 추천 모듈과 알뜰쇼핑 최상위 노출로 전체 스크롤을 단축</p></div></div>
+      <div class="pp"><div class="a glass"><small>Pain point 02</small><h3>검색 필터 인지도 및 기준 부족</h3></div><span class="ar"><svg><use href="#i-down"/></svg></span><div class="b"><small>Solution</small><h3>필터 옵션 다양화, 노출형 모듈</h3><p>필터 기능을 더 잘 인지하도록 레이아웃을 바꾸고 더 노출되게 변경</p></div></div>
+      <div class="pp"><div class="a glass"><small>Pain point 03</small><h3>복잡한 카테고리 구성</h3></div><span class="ar"><svg><use href="#i-down"/></svg></span><div class="b"><small>Solution</small><h3>명확한 카테고리 구성</h3><p>한눈에 잘 보이도록 소비자 기준으로 카테고리 구성 변경</p></div></div>
+    </div>
+
+    <div class="ps">
+      <div class="ps-h"><span>Problem</span><span></span><span>Solution</span></div>
+      <div class="ps-r"><div class="p"><i>01</i>메인페이지의 복잡한 스크롤과 콘텐츠 구성</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">메인페이지 스크롤 단축과 콘텐츠 재구성</div></div>
+      <div class="ps-r"><div class="p"><i>02</i>검색 필터의 낮은 인지도와 필터링 기준 부족</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">다양한 필터링 기준 추가 및 레이아웃 노출</div></div>
+      <div class="ps-r"><div class="p"><i>03</i>인지도 낮은 카테고리 구성</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">보기 쉬운 카테고리 구성</div></div>
+      <div class="ps-r"><div class="p"><i>04</i>상품별 후기를 한눈에 확인하기 어려움</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">상품별 후기에 키워드와 별점제 도입</div></div>
+      <div class="ps-r"><div class="p"><i>05</i>이전 주문 내역을 한눈에 확인하기 어려움</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">이전 주문 내역에 상품 이미지 및 검색 기능 추가</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= UX CONCEPT ================= -->
+<section class="cc band">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">UX Concept</span>
+      <h2 class="ttl">모든 화면은 세 가지 기준으로 설계했어요</h2>
+    </div>
+    <div class="cc-grid">
+      <div class="ccc"><svg class="bg" viewBox="0 0 24 24"><use href="#i-target"/></svg><span class="no">01</span><h3>직관적인<small>Intuitive</small></h3><p>명확하고 직관적인 인터페이스와 유용한 내비게이션으로 만족스러운 사용자 경험을 제공합니다.</p></div>
+      <div class="ccc"><svg class="bg" viewBox="0 0 24 24"><use href="#i-heart"/></svg><span class="no">02</span><h3>나를 위한<small>Personalize</small></h3><p>맞춤형 추천과 다양한 제품을 통해 개인의 취향을 고려한 쇼핑 경험을 제공합니다.</p></div>
+      <div class="ccc"><svg class="bg" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><span class="no">03</span><h3>편리한<small>Convenient</small></h3><p>간편한 주문, 신속한 배송, 사용자 친화적인 인터페이스로 편리한 쇼핑 경험을 제공합니다.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURE 01 HOME ================= -->
+<section class="ft band">
+  <div class="wrap">
+    <div class="lay">
+      <div class="txt">
+        <span class="eyebrow">01 · Home</span>
+        <h2 class="ttl">원하는 상품,<br>아직도 <em>스크롤로</em> 찾고 계신가요?</h2>
+        <p class="lead">이전에는 사용자 데이터를 활용한 맞춤 추천 시스템이 없어 원하는 상품을 찾는 데 어려움이 있었습니다. 홈 화면을 재구성해 맞춤 추천 모듈을 추가하고, 전체 스크롤 길이를 줄여 사용자 경험을 개선했습니다.</p>
+        <ul class="pts">
+          <li><i>1</i><div><b>이용자 데이터 기반 추천</b>‘지은님을 위한 추천’ 모듈로 개인화</div></li>
+          <li><i>2</i><div><b>알뜰쇼핑 최상위 노출</b>남은 시간 타이머로 구매 동기 부여</div></li>
+          <li><i>3</i><div><b>전체 스크롤 길이 단축</b>배너·공지를 줄이고 퀵 메뉴로 정리</div></li>
+        </ul>
+      </div>
+      <div class="cmpstage">
+        <div class="wrapdev o"><span class="tagl x">AS-IS · 맞춤화 X</span><div class="dev old"><div class="scr" data-t="t-old"></div></div></div>
+        <span class="arr"><svg><use href="#i-arrow"/></svg></span>
+        <div class="wrapdev"><span class="tagl o">TO-BE · 맞춤화 O</span><div class="dev"><div class="scr" data-t="t-home"></div></div>
+          <span class="note" style="left:calc(100% + 14px);top:39%"><i>2</i>알뜰쇼핑 타이머</span>
+          <span class="note" style="left:calc(100% + 14px);top:60%"><i>1</i>맞춤 추천</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURE 02 FILTER ================= -->
+<section class="ft band" style="background:var(--bg-2)">
+  <div class="wrap">
+    <div class="lay rev">
+      <div class="txt">
+        <span class="eyebrow">02 · Search &amp; Category</span>
+        <h2 class="ttl">숨어 있던 필터를<br><em>눈앞으로</em> 꺼냈어요</h2>
+        <p class="lead">이전 검색 필터는 원하는 상품을 찾는 데 충분한 도움을 주지 못해 사용률이 낮았습니다. 필터 옵션을 다양화하고 노출형으로 배치했으며, 카테고리는 소비자가 많이 찾는 순서로 재구성해 가시성을 높였습니다.</p>
+        <div class="mini2">
+          <div><b>노출형 필터</b><p>드롭다운 안에 있던 필터를 칩 형태로 상단에 노출</p></div>
+          <div><b>소비자 기준 카테고리</b><p>많이 찾는 순서로, 한눈에 보이는 아코디언 구조</p></div>
+        </div>
+      </div>
+      <div class="fstage">
+        <div class="dev"><div class="scr" data-t="t-cat"></div></div>
+        <span class="note" style="left:-30px;top:12.5%"><i>1</i>칩으로 바로 보이는 필터</span>
+        <div class="sheet" style="right:-24px;top:30%">
+          <div class="h">카테고리</div>
+          <div>선물세트<span>›</span></div>
+          <div class="on">육류<span>⌃</span></div>
+          <div class="subl"><div>소고기</div><div>돼지고기</div><div>양고기</div></div>
+          <div>간편식<span>›</span></div>
+          <div>베이커리·치즈<span>›</span></div>
+          <div>양념·오일<span>›</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURE 03 SERVICES ================= -->
+<section class="ft band">
+  <div class="wrap">
+    <div class="center">
+      <span class="eyebrow">03 · Key Services</span>
+      <h2 class="ttl">선물부터 배송, 신상품까지<br><em>한눈에</em> 이해되도록</h2>
+      <p class="lead">각 서비스 페이지는 첫 줄에서 무엇을 할 수 있는지 문장으로 말하고, 하단 버튼 하나로 다음 행동을 연결했습니다.</p>
+    </div>
+    <div class="svc">
+      <div class="col"><span class="pill">선물하기</span><div class="dev"><div class="scr" data-t="t-gift"></div></div><div class="cap2"><b>연락처만으로 선물</b><span>받는 분이 주소를 입력하는 3단계 흐름</span></div></div>
+      <div class="col"><span class="pill">모닝배송</span><div class="dev"><div class="scr" data-t="t-morning"></div></div><div class="cap2"><b>배송 방식 비교표</b><span>마감·도착·지역을 표 한 장으로</span></div></div>
+      <div class="col"><span class="pill">신상품</span><div class="dev"><div class="scr" data-t="t-new"></div></div><div class="cap2"><b>MD 큐레이션</b><span>NEW 배지와 2열 그리드로 빠른 탐색</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= FEATURE 04 LOGIN ================= -->
+<section class="ft lg band">
+  <div class="wrap">
+    <div class="lay">
+      <div class="txt">
+        <span class="eyebrow">04 · Login</span>
+        <h2 class="ttl">들어오는 문은<br><em>단순할수록</em> 좋으니까</h2>
+        <p class="lead">꼭 필요한 요소만 남기고, 브랜드 레드는 가장 중요한 행동인 ‘로그인’ 버튼 하나에만 사용했습니다. 처음 들어온 사용자도 무엇을 눌러야 할지 바로 알 수 있도록 정리했습니다.</p>
+        <ul class="pts">
+          <li><i>1</i><div><b>요소 덜어내기</b>배너·부가 링크를 정리해 입력과 버튼에 집중</div></li>
+          <li><i>2</i><div><b>브랜드 컬러는 한 곳에만</b>주요 버튼에만 레드, 나머지는 무채색</div></li>
+          <li><i>3</i><div><b>읽기 쉬운 입력</b>큰 입력 필드, 명확한 라벨, 충분한 터치 영역</div></li>
+        </ul>
+      </div>
+      <div class="devwrap">
+        <span class="ring"></span><span class="ring r2"></span>
+        <div class="dev" style="z-index:1"><div class="scr" data-t="t-login"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PC ================= -->
+<section class="ft band" style="background:var(--bg-2)">
+  <div class="wrap">
+    <span class="eyebrow">05 · PC Web</span>
+    <h2 class="ttl">앱과 같은 톤으로,<br><em>PC에서도</em> 같은 푸드장</h2>
+    <div class="pcw">
+      <div class="browser">
+        <div class="bar"><i></i><i></i><i></i><span>foodjang.com</span></div>
+        <div class="pcs-c"><div class="pca">
+          <div class="promo">신규회원 첫 구매 무료배송 · 지금 가입하고 10,000원 쿠폰 받기</div>
+          <div class="hd"><span class="logo"><span class="m"><svg><use href="#i-face"/></svg></span>푸드장</span><span class="srch"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg>캠핑 고기 세트 찾고 계신가요?</span><span class="ic"><svg viewBox="0 0 24 24"><use href="#i-user"/></svg><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg><svg viewBox="0 0 24 24"><use href="#i-cart"/></svg></span></div>
+          <div class="mn"><span>전체 카테고리</span><span class="on">선물세트</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>모닝배송</span><span>이벤트</span><span class="r">모닝배송 지역 확인</span></div>
+          <div class="hb"><div><small>WELCOME</small><h5>푸드장이 처음이라면?<br>신규회원 혜택받고 구매하세요</h5><span class="b">혜택받고 구매하기</span></div><div class="cp"><small>WELCOME COUPON</small><b>10,000원</b><span>첫 구매 시 바로 사용</span></div></div>
+          <div class="qk">
+            <div><i><svg stroke="#E5343C" viewBox="0 0 24 24"><use href="#i-gift"/></svg></i>선물하기</div>
+            <div><i><svg stroke="#E0A100" viewBox="0 0 24 24"><use href="#i-sun"/></svg></i>모닝배송</div>
+            <div><i><svg stroke="#E5343C" viewBox="0 0 24 24"><use href="#i-star"/></svg></i>베스트</div>
+            <div><i><svg stroke="#4E5968" viewBox="0 0 24 24"><use href="#i-tag"/></svg></i>알뜰쇼핑</div>
+            <div><i><svg stroke="#E5343C" viewBox="0 0 24 24"><use href="#i-sparkle"/></svg></i>신상품</div>
+            <div><i><svg stroke="#4E5968" viewBox="0 0 24 24"><use href="#i-cal"/></svg></i>이벤트</div>
+          </div>
+          <div class="bt"><b>이번 주 <em>베스트</em></b><span>전체보기</span></div>
+          <div class="pl">
+            <div><div class="th"><img src="img/p_la.jpg" alt=""></div><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr"><em>22%</em>14,900원</div></div>
+            <div><div class="th"><img src="img/p_kimchi.jpg" alt=""></div><div class="nm">남영돈 김치찌개 세트</div><div class="pr"><em>15%</em>12,900원</div></div>
+            <div><div class="th"><img src="img/p_samgye.jpg" alt=""></div><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr"><em>12%</em>24,900원</div></div>
+            <div><div class="th"><img src="img/p_gift.jpg" alt=""></div><div class="nm">블랙비프 프리미엄 선물세트</div><div class="pr"><em>8%</em>129,000원</div></div>
+          </div>
+        </div></div>
+      </div>
+      <div class="pcnotes">
+        <div class="glass"><small>01 · Tone &amp; Manner</small><p>앱과 같은 브랜드 레드·핑크 톤으로 전체적인 통일성을 주었어요.</p><div class="sw5" style="margin-top:12px"><i style="background:#A3121A"></i><i style="background:#E5343C"></i><i style="background:#F4A6A0"></i><i style="background:#FBE3E0"></i><i style="background:#F7C548"></i></div></div>
+        <div class="glass"><small>02 · Simple Menu</small><p>소비자들이 자주 찾는 메뉴를 퀵 메뉴로 모아 간결하게 구축했어요.</p></div>
+        <div class="glass"><small>03 · Clear Benefit</small><p>신규회원 혜택을 메인 배너와 쿠폰으로 명확하게 보여줬어요.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= DESIGN SYSTEM ================= -->
+<section class="ds band">
+  <div class="wrap">
+    <span class="eyebrow">Design System</span>
+    <h2 class="ttl">신선함을 담은 컬러, 하나의 서체</h2>
+    <div class="ds-grid">
+      <div class="ds-card glass"><h4>Color</h4>
+        <div class="sws">
+          <div style="background:#A3121A;color:#fff">Brand Red<span>#A3121A</span></div>
+          <div style="background:#F4A6A0;color:#3A1013">Pink<span>#F4A6A0</span></div>
+          <div style="background:#FBE3E0;color:#3A1013">Light Pink<span>#FBE3E0</span></div>
+          <div style="background:#F7C548;color:#3A2A00">Yellow<span>#F7C548</span></div>
+        </div>
+      </div>
+      <div class="ds-card glass"><h4>Typography <em>IBM Plex Sans KR</em></h4>
+        <div class="ty">
+          <div><span>Title · 24 / Bold</span><b style="font-size:24px;font-weight:700">일상이 신선해</b></div>
+          <div><span>Subtitle · 17 / Semi</span><b style="font-size:17px;font-weight:600">일상이 신선해</b></div>
+          <div><span>Body · 15 / Regular</span><span style="font-size:15px;color:var(--tx)">일상이 신선해</span></div>
+          <div><span>Caption · 13 / Regular</span><span style="font-size:13px;color:var(--tx-2)">일상이 신선해</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="cmps">
+      <div class="ds-card glass"><h4>Button</h4><span class="cbtn p">선물 보내기</span><span class="cbtn s">장바구니 담기</span><span class="spec">높이 56 · 라운드 16 · 텍스트 17 Bold</span></div>
+      <div class="ds-card glass"><h4>Chip &amp; Tab</h4><div class="cchips"><span class="on">추천순</span><span>가격대</span><span>부위</span><span>용량</span><span>배송</span></div><span class="spec">높이 36 · 좌우 14 · 선택 시 반전</span></div>
+      <div class="ds-card glass"><h4>Input</h4><span class="cinput on">foodjang_jieun</span><span class="cinput">비밀번호를 입력해 주세요</span><span class="spec">높이 54 · 라운드 14 · 포커스 시 테두리</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= RESULT ================= -->
+<section class="res band">
+  <div class="wrap">
+    <span class="eyebrow">Result</span>
+    <h2 class="ttl">앱부터 PC까지,<br><em>하나의 푸드장 경험</em>으로</h2>
+    <div class="rl">
+      <div><span>Home</span><b>맞춤 추천 모듈 · 알뜰쇼핑 상단 노출 · 스크롤 단축</b></div>
+      <div><span>Search</span><b>노출형 필터 · 소비자 기준 카테고리</b></div>
+      <div><span>Order</span><b>후기 키워드·별점제 · 주문내역 이미지·검색</b></div>
+      <div><span>Service</span><b>선물하기 · 모닝배송 · 신상품 · 로그인</b></div>
+      <div><span>PC</span><b>앱과 통일된 톤의 메인페이지</b></div>
+    </div>
+    <div class="qa">
+      <div class="glass"><h4><em>Q.</em>프로젝트를 통해 배운 점은?</h4><p>데이터와 이용자 조사에서 출발하니 디자인 결정의 근거가 분명해졌습니다. 기획자들과 의견을 맞추는 과정에서 ‘예쁜 화면’보다 ‘빠르게 찾고 사는 화면’이 우선이라는 기준을 세울 수 있었습니다.</p></div>
+      <div class="glass"><h4><em>Q.</em>어려웠던 점과 해결 방법은?</h4><p>홈 화면에 넣고 싶은 콘텐츠가 많았던 점이 가장 어려웠습니다. 이용 데이터로 우선순위를 정해 스크롤을 줄이는 방향으로 합의했습니다.</p></div>
+    </div>
+    <div class="end"><div class="w">FOODJANG</div><p>UI/UX Designer · 유미경</p></div>
+  </div>
+</section>
+
+<script>
+document.querySelectorAll('.scr[data-t]').forEach(function(s){
+  var t=document.getElementById(s.getAttribute('data-t'));
+  if(t) s.appendChild(t.content.cloneNode(true));
+});
+(function(){
+  var end=Date.now()+(8*3600+37*60+15)*1000, end2=Date.now()+(2*3600+22*60+45)*1000;
+  function f(ms){var s=Math.max(0,Math.floor(ms/1000));function p(n){return String(n).padStart(2,'0')}return p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60)}
+  function tick(){var n=Date.now();document.querySelectorAll('[data-cd]').forEach(function(e){e.textContent=f(end-n)});document.querySelectorAll('[data-cd2]').forEach(function(e){e.textContent=f(end2-n)});}
+  tick();setInterval(tick,1000);
+})();
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  if(!window.gsap||!window.ScrollTrigger) return;
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from('.h-in',{y:50,duration:1.1,ease:'power3.out',stagger:.12});
+  gsap.from('.stage .dev',{y:160,duration:1.3,ease:'power3.out',stagger:.12,delay:.2});
+  gsap.from('.bub',{scale:.85,y:20,duration:.8,ease:'back.out(1.8)',stagger:.12,delay:.8});
+  gsap.to('.bub',{y:'-=10',duration:2.6,repeat:-1,yoyo:true,ease:'sine.inOut',stagger:.3,delay:1.8});
+  gsap.to('.word',{yPercent:-18,scale:.94,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+
+  function rise(sel,trig){gsap.utils.toArray(sel).forEach(function(el,i){gsap.from(el,{y:60,ease:'none',scrollTrigger:{trigger:trig||el,start:'top 95%',end:'top 60%',scrub:1}})})}
+  rise('.ttl');rise('.tg');rise('.chart');rise('.pp');rise('.ps-r');rise('.ccc');rise('.svc .col');rise('.qa .glass');rise('.ds-card');
+  gsap.from('.bars .tr i',{width:0,duration:1.2,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.chart',start:'top 75%'}});
+  gsap.from('.pcs',{y:40,stagger:.12,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.pc-row',start:'top 80%'}});
+  gsap.from('.cmpstage .wrapdev',{y:120,ease:'none',stagger:.2,scrollTrigger:{trigger:'.cmpstage',start:'top 95%',end:'top 40%',scrub:1}});
+  gsap.from('.note',{scale:.6,duration:.6,ease:'back.out(2)',stagger:.15,scrollTrigger:{trigger:'.note',start:'top 85%'}});
+  gsap.from('.sheet',{x:60,rotate:4,ease:'none',scrollTrigger:{trigger:'.sheet',start:'top 95%',end:'top 50%',scrub:1}});
+  gsap.to('.lg .ring',{scale:1.08,duration:3,repeat:-1,yoyo:true,ease:'sine.inOut',stagger:.6});
+  gsap.from('.browser',{y:100,rotateX:8,transformPerspective:1200,ease:'none',scrollTrigger:{trigger:'.browser',start:'top 100%',end:'top 45%',scrub:1}});
+  gsap.from('.end .w',{yPercent:40,ease:'none',scrollTrigger:{trigger:'.end',start:'top 100%',end:'top 50%',scrub:1}});
+})();
+</script>
+
+</body></html>
