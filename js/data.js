@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261017b";
+const IMG_VERSION = "20261017c";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 

@@ -139,25 +139,35 @@ section{position:relative}
 .oldt{margin:.45em .7em 0;font-size:.625em;color:#888;line-height:1.5}
 
 /* ================= HERO ================= */
-.hero{min-height:100vh;padding-block:28px 0;overflow:hidden;background:radial-gradient(60% 50% at 50% 62%,rgba(229,52,60,.32),rgba(229,52,60,0) 70%),radial-gradient(40% 30% at 85% 10%,rgba(247,134,106,.12),transparent 70%),var(--bg)}
-.meta{display:flex;justify-content:space-between;gap:16px 28px;flex-wrap:wrap;font-size:12px;letter-spacing:.08em;color:var(--tx-3);text-transform:uppercase}
-.meta b{color:var(--tx);font-weight:600;margin-left:8px}
-.meta .g{display:flex;gap:28px;flex-wrap:wrap}
-.h-copy{text-align:center;margin-top:clamp(48px,8vw,96px);position:relative;z-index:2}
-.h-copy .k{font-size:clamp(16px,1.6vw,20px);font-weight:600;color:var(--tx-2)}
-.h-copy .k em{font-style:normal;color:var(--coral)}
-.word{font-weight:700;font-size:clamp(68px,15.5vw,224px);line-height:.9;letter-spacing:-.055em;margin:14px 0 0;background:linear-gradient(180deg,#fff 30%,rgba(255,255,255,.55));-webkit-background-clip:text;background-clip:text;color:transparent}
-.stage{position:relative;display:flex;justify-content:center;align-items:flex-end;gap:clamp(16px,3vw,40px);margin-top:clamp(-40px,-3vw,-18px);padding-bottom:0;height:clamp(420px,46vw,620px);z-index:1}
-.stage .dev{max-width:clamp(200px,21vw,290px)}
-.stage .p1{transform:translateY(16%) rotate(-7deg)}
-.stage .p3{transform:translateY(16%) rotate(7deg)}
-.stage .p2{transform:translateY(6%)}
+.hero{position:relative;min-height:max(780px,100vh);overflow:hidden;background:radial-gradient(45% 55% at 58% 60%,rgba(229,52,60,.30),rgba(229,52,60,0) 70%),var(--bg)}
+.hero:before,.hero:after{content:'';position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.05)}
+.hero:before{left:max(20px,calc((100vw - 1200px)/2 + 20px))}.hero:after{right:max(20px,calc((100vw - 1200px)/2 + 20px))}
+.htop{position:relative;z-index:4;display:flex;justify-content:space-between;gap:32px;padding-block:clamp(48px,7vh,80px) 0;flex-wrap:wrap}
+.pills{display:flex;align-items:center;gap:8px}
+.pills span{height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--stroke-2);display:inline-flex;align-items:center;font-size:14px;font-weight:500;letter-spacing:.02em;white-space:nowrap}
+.pills span.w{background:#fff;color:#111;border-color:#fff}
+.pills svg{width:34px;height:34px;stroke:var(--red-2);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;margin-left:6px}
+.hmeta{display:grid;grid-template-columns:auto 1fr;gap:4px 44px;margin-top:64px;font-size:15px;color:var(--tx-2);letter-spacing:.02em}
+.hmeta .n{font-size:26px;font-weight:500;color:var(--tx);line-height:1}
+.hmeta b{font-weight:600;color:var(--tx);display:block;font-size:17px;letter-spacing:.04em}
+.hmeta i{display:block;width:16px;height:1px;background:var(--tx-3);margin:12px 0}
+.hr{text-align:right;font-size:clamp(20px,2vw,28px);line-height:1.4;font-weight:500;letter-spacing:-.02em}
+.hr em{font-style:normal;color:var(--coral);display:block}
+.hr small{display:block;margin-top:clamp(40px,10vw,150px);font-size:14px;line-height:1.6;letter-spacing:.04em;color:var(--tx-3);font-weight:500}
+.hr small b{color:var(--tx);font-weight:600}
+.hstage{position:absolute;inset:0;z-index:2;pointer-events:none}
+.word{position:absolute;left:0;right:0;bottom:clamp(40px,7vh,72px);margin:0;text-align:center;font-weight:700;font-size:clamp(64px,13.6vw,210px);line-height:.8;letter-spacing:-.05em;color:#F4F1F1;z-index:1;white-space:nowrap}
+.hstage .dev{position:absolute;z-index:2;width:clamp(190px,15.5vw,236px);max-width:none}
+.hstage .p1{left:36%;bottom:9%;transform:rotate(-14deg)}
+.hstage .p2{left:51%;bottom:21%;transform:rotate(13deg)}
+.hcirc{position:absolute;right:max(20px,calc((100vw - 1200px)/2 + 20px));bottom:31%;width:clamp(96px,9vw,130px);aspect-ratio:1;border-radius:50%;background:var(--red);display:grid;place-items:center;z-index:3}
+.hcirc svg{width:42%;height:42%;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .bub{position:absolute;z-index:4;font-size:14px;font-weight:600;line-height:1.45;padding:12px 16px;border-radius:16px;background:rgba(30,26,27,.82);border:1px solid var(--stroke-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap;box-shadow:0 20px 40px rgba(0,0,0,.35)}
 .bub em{font-style:normal;color:var(--coral)}
 .bub.sol{background:linear-gradient(135deg,#FF6A5C,#E5343C);border-color:transparent;display:flex;align-items:center;gap:10px}
 .bub.sol i{width:26px;height:26px;border-radius:8px;background:#fff;display:grid;place-items:center}
 .bub.sol i svg{width:18px;height:18px}
-.b1{left:6%;top:24%}.b2{left:3%;top:52%}.b3{right:5%;top:22%}.b4{right:4%;top:50%}
+.b1{left:21%;top:49%}.b4{left:66%;top:60%}
 
 /* ================= OVERVIEW ================= */
 .ov{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
@@ -384,9 +394,14 @@ section{position:relative}
   .bub,.bub.sol{display:none}
   .fstage{flex-direction:column;align-items:center;padding-right:0}
   .note{display:none}
-  .stage .p1,.stage .p3{display:none}
-  .stage{height:auto;margin-top:24px}
-  .stage .p2{transform:none;max-width:280px}
+  .hero{min-height:0}
+  .hero:before,.hero:after{display:none}
+  .hr{text-align:left}.hr small{margin-top:20px}
+  .hstage{position:relative;inset:auto;height:600px;margin-top:20px}
+  .hstage .dev{width:180px}
+  .hstage .p1{left:calc(50% - 165px);bottom:70px}
+  .hstage .p2{left:calc(50% - 5px);bottom:140px}
+  .hcirc{display:none}
   .sheet{position:relative;inset:auto!important;margin:20px auto 0;width:100%;max-width:300px}
   .cmpstage .wrapdev.o{display:none}.cmpstage .arr{display:none}
   .ccc{min-height:220px}
@@ -572,31 +587,26 @@ section{position:relative}
 
 <!-- ================= HERO ================= -->
 <style>
-.pf-back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(16px + env(safe-area-inset-top,0px));z-index:50;display:inline-flex;align-items:center;gap:6px;font:700 13px 'IBM Plex Sans KR',sans-serif;color:#191F28;background:rgba(255,255,255,.92);border-radius:999px;padding:9px 16px 9px 12px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
+.pf-back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));z-index:50;display:inline-flex;align-items:center;gap:6px;font:700 13px 'IBM Plex Sans KR',sans-serif;color:#191F28;background:rgba(255,255,255,.92);border-radius:999px;padding:8px 15px 8px 11px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
 .pf-back:hover{background:#fff}
 .pf-back svg{width:16px;height:16px}
-.hero{padding-top:72px!important}
 </style>
 <a class="pf-back" href="../../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>포트폴리오</a>
 <section class="hero" id="top">
-  <div class="wrap">
-    <div class="meta">
-      <div class="g"><span>Contribution<b>100%</b></span><span>Period<b>2023.10 – 2023.11</b></span></div>
-      <div class="g"><span>Service<b>Mobile App · PC Web</b></span><span>Tools<b>Figma, Photoshop</b></span></div>
+  <div class="wrap htop">
+    <div class="hl h-in">
+      <div class="pills"><span>UX UI PROJECT</span><span class="w">APP RENEWAL</span><svg viewBox="0 0 24 24"><path d="M5 5l14 14M19 8v11H8"/></svg></div>
+      <div class="hmeta"><span class="n">/01</span><div><b>MOBILE APP · PC WEB</b><i></i>UX/UI RENEWAL DESIGN<br>CONTRIBUTION 100%<br>2023.10 – 2023.11 · FIGMA, PHOTOSHOP</div></div>
     </div>
-    <div class="h-copy">
-      <div class="k h-in">내가 찾던 <em>신선함의 기준</em>, 푸드장</div>
-      <h1 class="word h-in">FOODJANG</h1>
-    </div>
+    <div class="hr h-in">내가 찾던 신선함의 기준,<br>저렴하고 빠르고 신선하게<em>FOODJANG</em><small>LOGIN TO <b>FRESH</b><br>FROM HOME TO TABLE</small></div>
   </div>
-  <div class="stage">
+  <div class="hstage">
+    <h1 class="word">FOODJANG</h1>
     <div class="dev p1"><div class="scr" data-t="t-login"></div></div>
     <div class="dev p2"><div class="scr" data-t="t-home"></div></div>
-    <div class="dev p3"><div class="scr" data-t="t-cat"></div></div>
     <div class="bub b1">로그인 화면이<br>너무 <em>복잡해요</em></div>
-    <div class="bub b2">원하는 고기를<br><em>빠르게 찾고</em> 싶어요</div>
-    <div class="bub b3">주소를 몰라도<br><em>선물</em>할 수 있나요?</div>
     <div class="bub sol b4"><i><svg viewBox="0 0 40 40"><circle cx="20" cy="22" r="13" fill="#E5343C"/><circle cx="9" cy="11" r="5" fill="#E5343C"/><circle cx="31" cy="11" r="5" fill="#E5343C"/><circle cx="15" cy="21" r="2" fill="#fff"/><circle cx="25" cy="21" r="2" fill="#fff"/></svg></i>푸드장이 한 번에 해결!</div>
+    <span class="hcirc"><svg viewBox="0 0 24 24"><path d="M6 18L18 6M8 6h10v10"/></svg></span>
   </div>
 </section>
 
@@ -894,10 +904,12 @@ document.querySelectorAll('.scr[data-t]').forEach(function(s){
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   gsap.registerPlugin(ScrollTrigger);
   gsap.from('.h-in',{y:50,duration:1.1,ease:'power3.out',stagger:.12});
-  gsap.from('.stage .dev',{y:160,duration:1.3,ease:'power3.out',stagger:.12,delay:.2});
+  gsap.from('.hstage .dev',{y:220,duration:1.3,ease:'power3.out',stagger:.15,delay:.2});
+  gsap.from('.hcirc',{scale:0,duration:.9,ease:'back.out(1.6)',delay:.9});
   gsap.from('.bub',{scale:.85,y:20,duration:.8,ease:'back.out(1.8)',stagger:.12,delay:.8});
   gsap.to('.bub',{y:'-=10',duration:2.6,repeat:-1,yoyo:true,ease:'sine.inOut',stagger:.3,delay:1.8});
-  gsap.to('.word',{yPercent:-18,scale:.94,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
+  gsap.from('.word',{yPercent:60,duration:1.2,ease:'power3.out'});
+  gsap.to('.hstage .p2',{y:-50,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
 
   function rise(sel,trig){gsap.utils.toArray(sel).forEach(function(el,i){gsap.from(el,{y:60,ease:'none',scrollTrigger:{trigger:trig||el,start:'top 95%',end:'top 60%',scrub:1}})})}
   rise('.ttl');rise('.tg');rise('.chart');rise('.pp');rise('.ps-r');rise('.ccc');rise('.svc .col');rise('.qa .glass');rise('.ds-card');
