@@ -70,6 +70,18 @@ const PROJECTS = [
       "이용자 니즈와 불만족도 조사를 바탕으로 홈, 검색 필터, 카테고리, 주요 서비스 페이지, 로그인, PC 메인까지 다시 설계했습니다. 단순히 고기를 사는 앱이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록, 기획자들과 의견을 맞추며 UI/UX를 개선했습니다.",
   },
   {
+    id: "onimal-package",
+    title: "오니몰 스킨케어 패키지 디자인",
+    subtitle: "Package design · Brand concept · Personal work",
+    category: ["pkg"],
+    year: "",
+    role: "Brand Concept, Illustration, Package Design",
+    tools: "Illustrator, Photoshop",
+    images: shots("onimal-package", 8),
+    summary:
+      "오가닉(Organic)과 애니멀(Animal)을 합친 이름의 스킨케어 브랜드를 구상한 개인 작업입니다. 2014 대한민국 디자인전람회 포장디자인 부문 입선작의 손그림 사슴 일러스트를 중심으로, 필기체 로고와 플로럴 패턴, 블랙·그레이·아이보리 컬러를 묶어 용기와 단상자, 모바일 웹까지 하나의 패밀리룩으로 확장했습니다.",
+  },
+  {
     id: "beauty-promotion",
     title: "뷰티 프로모션 비주얼 시스템",
     subtitle: "Web · App · SNS Design",
