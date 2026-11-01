@@ -1,4 +1,6 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>FOODJANG 앱 리뉴얼 — 유미경</title></head><body>
+
+<meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
@@ -256,7 +258,7 @@ section{position:relative}
 .pts li{display:flex;gap:14px;align-items:flex-start;font-size:16px;color:var(--tx-2)}
 .pts li i{font-style:normal;width:26px;height:26px;border-radius:50%;flex:none;background:rgba(229,52,60,.16);color:var(--red-2);font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
 .pts li b{display:block;color:var(--tx);font-weight:600;font-size:16px}
-.cmpstage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(18px,3vw,44px)}
+.cmpstage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(18px,3vw,44px);padding-right:clamp(0px,10vw,150px)}
 .tagl{position:absolute;top:-38px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.1em;padding:6px 12px;border-radius:999px;white-space:nowrap}
 .tagl.x{background:var(--card-2);color:var(--tx-3)}
 .tagl.o{background:var(--red);color:#fff}
@@ -371,6 +373,54 @@ section{position:relative}
 .cinput.on{box-shadow:inset 0 0 0 1.5px #fff;color:var(--tx)}
 .spec{font-size:12.5px;color:var(--tx-3)}
 
+/* ================= STORY (why / problem / decision / role) ================= */
+.st-why{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:var(--card-gap);margin-top:var(--content-space)}
+.voice{padding:var(--card-padding)}
+.voice .row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;padding:14px 0;border-top:1px solid var(--stroke)}
+.voice .row:first-of-type{border-top:0}
+.voice .row span{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral);padding-top:4px}
+.voice .row b{display:block;font-size:18px;font-weight:600}
+.voice .row p{margin:4px 0 0;font-size:14.5px;color:var(--tx-2);line-height:1.65}
+.lbl2{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--tx-3);text-transform:uppercase}
+.biz{padding:var(--card-padding)}
+.biz p{margin:12px 0 0;font-size:17px;line-height:1.7}
+.goalc{padding:var(--card-padding);border-radius:24px;background:linear-gradient(140deg,#FF8A72,#E5343C);color:#fff;margin-top:var(--card-gap);box-shadow:0 24px 48px -18px rgba(229,52,60,.55)}
+.goalc .lbl2{color:rgba(255,255,255,.8)}
+.goalc p{margin:10px 0 0;font-size:clamp(19px,2vw,23px);font-weight:700;line-height:1.45}
+.scn-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
+.scn{padding:var(--card-padding);display:flex;flex-direction:column;gap:16px;min-width:0}
+.scn .hd{display:flex;justify-content:space-between;align-items:center;gap:10px}
+.scn .hd b{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral)}
+.scn .hd span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--tx-2)}
+.scn h4{margin:6px 0 0;font-size:18px;font-weight:600;line-height:1.5}
+.scn .w{margin:4px 0 0;font-size:14px;color:var(--tx-2)}
+.scn hr{border:0;height:1px;background:var(--stroke);margin:0}
+.scn p{margin:6px 0 0;font-size:15px;line-height:1.7}
+.scn .why{color:#FFB4A8}
+.scn .lbl2.r{color:var(--red-2)}
+.dec-list{display:flex;flex-direction:column;gap:var(--card-gap);margin-top:var(--content-space)}
+.dec{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr) minmax(0,1.25fr);gap:20px;align-items:center;padding:var(--card-padding)}
+.dec .ar{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral)}
+.dec .op{padding:16px 18px;border-radius:14px;min-width:0}
+.dec .op.a{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.18);color:var(--tx-2)}
+.dec .op.b{background:rgba(229,52,60,.12);border:1.5px solid rgba(255,106,100,.7);font-weight:600}
+.dec .op.b .lbl2{color:#FF8A84}
+.dec .op p{margin:6px 0 0;font-size:15px;line-height:1.55}
+.dec .rs{margin:0;font-size:14.5px;line-height:1.75;color:var(--tx-2)}
+.role-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:var(--card-gap);margin-top:var(--content-space)}
+.role{padding:var(--card-padding)}
+.role .it{margin-top:18px}
+.role .it b{display:block;font-size:17px;font-weight:600}
+.role .it p{margin:4px 0 0;font-size:14.5px;color:var(--tx-2);line-height:1.65}
+.iter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
+.iter div{padding:18px;border-radius:16px;background:rgba(255,255,255,.04);position:relative}
+.iter div.fin{background:rgba(229,52,60,.14);border:1px solid rgba(255,106,100,.5)}
+.iter span{font-size:12px;font-weight:600;color:var(--coral)}
+.iter div.fin span{color:#FF8A84}
+.iter p{margin:8px 0 0;font-size:14.5px;line-height:1.65}
+.lesson{margin-top:22px;padding-top:20px;border-top:1px solid var(--stroke)}
+.lesson p{margin:8px 0 0;font-size:15px;line-height:1.75;color:var(--tx-2)}
+
 /* ================= RESULT ================= */
 .rl{margin-top:var(--content-space);border-top:1px solid var(--stroke)}
 .rl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 4px;border-bottom:1px solid var(--stroke);align-items:center}
@@ -390,7 +440,6 @@ section{position:relative}
   .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 @media (max-width:1080px){
-  .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
   .pcw{grid-template-columns:minmax(0,1fr)}
   .pcnotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
 }
@@ -399,7 +448,7 @@ section{position:relative}
   .ft .lay.rev .txt{order:0}
   .pc-row{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
   .pc-row:before{display:none}
-  .pp-grid,.cc-grid,.svc,.qa,.ds-grid,.cmps,.lg-grid{grid-template-columns:minmax(0,1fr)}
+  .st-why,.scn-grid,.role-grid,.pp-grid,.cc-grid,.svc,.qa,.ds-grid,.cmps,.lg-grid{grid-template-columns:minmax(0,1fr)}
   .svc{gap:64px}
   .pcnotes{grid-template-columns:minmax(0,1fr)}
   .bub,.bub.sol{display:none}
@@ -419,13 +468,16 @@ section{position:relative}
   .ccc{min-height:220px}
 }
 @media (max-width:560px){
-  :root{--card-gap:20px}
   .rs-grid{grid-template-columns:minmax(0,1fr)}
   .pc-row{grid-template-columns:minmax(0,1fr)}
   .ps-h{display:none}
   .ps-r{grid-template-columns:minmax(0,1fr)}
   .ps-r .ar{transform:rotate(90deg)}
   .mini2{grid-template-columns:minmax(0,1fr)}
+  :root{--card-gap:20px}
+  .dec{grid-template-columns:minmax(0,1fr);gap:12px}
+  .iter{grid-template-columns:minmax(0,1fr)}
+  .voice .row{grid-template-columns:minmax(0,1fr);gap:4px}
   .sws{grid-template-columns:repeat(2,minmax(0,1fr))}
   .rl div{grid-template-columns:minmax(0,1fr);gap:4px}
   .meta{font-size:11px}
@@ -658,6 +710,40 @@ section{position:relative}
   </div>
 </section>
 
+<!-- ================= WHY ================= -->
+<section class="band" style="background:var(--bg-2)">
+  <div class="wrap">
+    <span class="eyebrow">Why · 프로젝트 배경</span>
+    <h2 class="ttl">“고기를 사러 들어왔다가,<br><em>찾다가 나가는</em> 앱”이었습니다</h2>
+    <p class="lead">2023년 하반기, 앱 개편 전 이용자 니즈·불만족도 조사를 진행했습니다. 응답에서 반복된 불만은 ‘상품이 나빠서’가 아니라 ‘원하는 상품까지 가는 길이 멀어서’였습니다. 그래서 이번 개편의 목표를 새로운 기능 추가가 아니라 <b style="color:var(--tx)">탐색 단계를 줄이는 것</b>으로 정했습니다.</p>
+    <div class="st-why">
+      <div class="voice glass"><div class="lbl2" style="margin-bottom:6px">조사에서 반복된 목소리</div><div class="row"><span>HOME</span><div><b>“메인이 너무 길어요”</b><p>모든 고객에게 같은 배너·공지 순서가 노출돼, 관심 상품은 스크롤 아래에 있었습니다.</p></div></div><div class="row"><span>SEARCH</span><div><b>“필터가 어디 있죠?”</b><p>필터가 접힌 메뉴 안에 있어 존재 자체를 모르는 사용자가 많았습니다.</p></div></div><div class="row"><span>CATEGORY</span><div><b>“카테고리가 헷갈려요”</b><p>축종·부위 같은 내부 분류 기준이라 ‘구이용’, ‘캠핑용’처럼 용도로 찾기 어려웠습니다.</p></div></div><div class="row"><span>ORDER</span><div><b>“지난 주문을 못 찾겠어요”</b><p>재구매하려 해도 주문 내역에 이미지와 검색이 없어 상품을 다시 찾아야 했습니다.</p></div></div></div>
+      <div><div class="biz glass"><div class="lbl2">비즈니스 관점</div><p>푸드장의 주 고객은 <b>주말 저녁·캠핑처럼 목적이 분명한 구매자</b>입니다. 목적이 분명한 사용자에게 탐색이 길어지면 이탈로 이어진다고 판단했고, 이것이 개편의 출발점이었습니다.</p></div>
+      <div class="goalc"><div class="lbl2">개편 목표</div><p>원하는 고기까지 가는 단계를 줄여,<br>목적 구매를 끝까지 완료하게 만들기</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= PROBLEM ================= -->
+<section class="band">
+  <div class="wrap">
+    <span class="eyebrow">Problem · 문제 정의</span>
+    <h2 class="ttl">‘불편한 UI’가 아니라,<br><em>누가 어디서 멈췄는지</em>로 정의했습니다</h2>
+    <p class="lead">조사 응답과 타깃 세 그룹을 겹쳐, 각 불만이 실제로 일어나는 장면을 하나씩 재구성했습니다. 장면을 기준으로 보니 원인은 기능 부족이 아니라 <b style="color:var(--tx)">정보의 순서와 분류 기준</b>에 있었습니다.</p>
+    <div class="scn-grid"><div class="scn glass"><div class="hd"><b>PROBLEM 01</b><span>HOME</span></div><div><div class="lbl2">누가 · 언제</div><h4>캠핑을 준비하는 30대</h4><p class="w">금요일 퇴근길, 내일 쓸 고기를 급하게 고를 때</p></div><hr><div><div class="lbl2">무슨 일이</div><p>홈에 들어오면 기획전 배너와 공지가 먼저 나오고, 평소 사던 상품은 여러 번 스크롤해야 보였습니다.</p></div><div><div class="lbl2 r">왜</div><p class="why">고객 행동과 무관하게 모든 사람에게 같은 순서로 콘텐츠가 노출되는 구조</p></div></div><div class="scn glass"><div class="hd"><b>PROBLEM 02</b><span>SEARCH</span></div><div><div class="lbl2">누가 · 언제</div><h4>집에서 요리하는 1~2인 가구</h4><p class="w">300g 소용량 고기만 골라 보고 싶을 때</p></div><hr><div><div class="lbl2">무슨 일이</div><p>검색 결과에서 용량으로 좁힐 방법을 찾지 못해, 결과 전체를 눈으로 훑어야 했습니다.</p></div><div><div class="lbl2 r">왜</div><p class="why">필터가 드롭다운 안에 접혀 있고, 기준도 가격·정렬 위주로 용량·부위가 없었음</p></div></div><div class="scn glass"><div class="hd"><b>PROBLEM 03</b><span>CATEGORY</span></div><div><div class="lbl2">누가 · 언제</div><h4>주말 저녁을 준비하는 가족</h4><p class="w">‘구이용 소고기’를 바로 찾고 싶을 때</p></div><hr><div><div class="lbl2">무슨 일이</div><p>육류 → 소고기 → 부위 순서로 세 번 들어가야 했고, 중간에 검색으로 빠지는 경우가 많았습니다.</p></div><div><div class="lbl2 r">왜</div><p class="why">카테고리가 사용 목적이 아닌 내부 상품 분류(축종) 기준으로 짜여 있었음</p></div></div></div>
+  </div>
+</section>
+
+<!-- ================= DECISION ================= -->
+<section class="band" style="background:var(--bg-2)">
+  <div class="wrap">
+    <span class="eyebrow">Decision · 대안 비교</span>
+    <h2 class="ttl">왜 이 해결책이었나,<br><em>함께 고민한 다른 안</em></h2>
+    <p class="lead">각 문제마다 두 가지 이상의 방향을 놓고, ‘문제의 원인을 직접 해결하는가’와 ‘개발·운영 부담’ 두 기준으로 비교했습니다.</p>
+    <div class="dec-list"><div class="dec glass"><span class="ar">HOME</span><div class="op a"><div class="lbl2">검토안 A</div><p>‘추천’ 탭을 따로 만들어 개인화 상품을 분리</p></div><div class="op b"><div class="lbl2">선택 · B</div><p>홈 최상단에 맞춤 추천·알뜰쇼핑 모듈 배치</p></div><p class="rs">탭을 하나 더 만들면 ‘찾으러 가야 하는’ 구조가 그대로 남습니다. 첫 화면에서 바로 보이게 해야 스크롤 문제를 직접 줄일 수 있었습니다.</p></div><div class="dec glass"><span class="ar">SEARCH</span><div class="op a"><div class="lbl2">검토안 A</div><p>필터 버튼을 눌러 여는 하단 시트 필터</p></div><div class="op b"><div class="lbl2">선택 · B</div><p>결과 상단에 항상 보이는 칩형 필터</p></div><p class="rs">문제의 원인이 ‘기능이 없음’이 아니라 ‘있는 줄 모름’이었기 때문에, 숨기지 않고 보이게 하는 쪽을 택했습니다. 상세 조건만 시트로 남겼습니다.</p></div><div class="dec glass"><span class="ar">CATEGORY</span><div class="op a"><div class="lbl2">검토안 A</div><p>기존 분류 유지 + 검색 자동완성 강화</p></div><div class="op b"><div class="lbl2">선택 · B</div><p>소비자가 많이 찾는 순서·용도 기준으로 재구성</p></div><p class="rs">검색 강화는 검색하는 사람만 돕습니다. 둘러보는 사용자까지 돕기 위해 분류 기준 자체를 사용 목적 중심으로 바꿨습니다.</p></div></div>
+  </div>
+</section>
+
 <!-- ================= PROCESS ================= -->
 <section class="proc band">
   <div class="wrap">
@@ -882,6 +968,25 @@ section{position:relative}
   </div>
 </section>
 
+<!-- ================= ROLE ================= -->
+<section class="band" style="background:var(--bg-2)">
+  <div class="wrap">
+    <span class="eyebrow">My Role &amp; Iteration</span>
+    <h2 class="ttl">제안에서 끝나지 않고,<br><em>설득하고 고쳐가며</em> 완성했습니다</h2>
+    <div class="role-grid">
+      <div class="role glass"><div class="lbl2">내가 주도한 부분 · 기여도 100%</div>
+        <div class="it"><b>조사 결과 → 문제 5가지로 구조화</b><p>흩어진 불만 응답을 홈·검색·카테고리·후기·주문내역으로 묶어 개편 범위를 정의</p></div>
+        <div class="it"><b>우선순위 제안과 합의</b><p>기획·마케팅 의견을 취합해 ‘탐색 단계 줄이기’를 1순위로 제안</p></div>
+        <div class="it"><b>UX 컨셉 · 전 화면 UI 설계</b><p>직관적 · 나를 위한 · 편리한 3원칙을 세우고 앱·PC 전 화면에 적용</p></div>
+      </div>
+      <div class="role glass"><div class="lbl2">반복 개선 과정</div>
+        <div class="iter"><div><span>V1 · 첫 시안</span><p>홈 상단에 기획전 배너를 유지한 채 추천 모듈을 그 아래 추가</p></div><div><span>피드백</span><p>“결국 첫 화면은 그대로다” — 스크롤 문제가 해결되지 않음</p></div><div class="fin"><span>V2 · 최종</span><p>배너를 1개 캐러셀로 줄이고, 알뜰쇼핑·맞춤 추천을 최상단으로 이동</p></div></div>
+        <div class="lesson"><div class="lbl2">아쉬웠던 점 · 다음에 한다면</div><p>개편 후 정량 지표를 같은 기준으로 다시 측정하지 못해, 효과를 수치로 증명하지 못한 점이 아쉽습니다. 다음에는 개편 전후 탐색 단계 수와 검색 이탈률을 함께 설계하고 시작하겠습니다.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <!-- ================= RESULT ================= -->
 <section class="res band">
   <div class="wrap">
@@ -929,7 +1034,7 @@ document.querySelectorAll('.scr[data-t]').forEach(function(s){
   gsap.to('.hstage .p2',{y:-50,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
 
   function rise(sel,trig){gsap.utils.toArray(sel).forEach(function(el,i){gsap.from(el,{y:60,ease:'none',scrollTrigger:{trigger:trig||el,start:'top 95%',end:'top 60%',scrub:1}})})}
-  rise('.ttl');rise('.tg');rise('.chart');rise('.pp');rise('.ps-r');rise('.ccc');rise('.svc .col');rise('.qa .glass');rise('.ds-card');
+  rise('.ttl');rise('.tg');rise('.scn');rise('.dec');rise('.role');rise('.voice');rise('.biz');rise('.chart');rise('.pp');rise('.ps-r');rise('.ccc');rise('.svc .col');rise('.qa .glass');rise('.ds-card');
   gsap.from('.bars .tr i',{width:0,duration:1.2,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.chart',start:'top 75%'}});
   gsap.from('.pcs',{y:40,stagger:.12,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.pc-row',start:'top 80%'}});
   gsap.from('.cmpstage .wrapdev',{y:120,ease:'none',stagger:.2,scrollTrigger:{trigger:'.cmpstage',start:'top 95%',end:'top 40%',scrub:1}});

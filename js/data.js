@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261017d";
+const IMG_VERSION = "20261101a";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -65,9 +65,21 @@ const PROJECTS = [
     tools: "Figma, Photoshop",
     thumb: `assets/works/foodjang/cover.jpg?v=${IMG_VERSION}`,
     images: [],
-    url: "works/foodjang/?v=20261017d",
+    url: "works/foodjang/?v=20261101a",
     summary:
       "이용자 니즈와 불만족도 조사를 바탕으로 홈, 검색 필터, 카테고리, 주요 서비스 페이지, 로그인, PC 메인까지 다시 설계했습니다. 단순히 고기를 사는 앱이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록, 기획자들과 의견을 맞추며 UI/UX를 개선했습니다.",
+  },
+  {
+    id: "beauty-promotion",
+    title: "뷰티 프로모션 비주얼 시스템",
+    subtitle: "Web · App · SNS Design",
+    category: ["uxui"],
+    year: "",
+    role: "Promotion Visual, Banner System, App · SNS Design",
+    tools: "Photoshop, Figma",
+    images: shots("beauty-promotion", 8),
+    summary:
+      "중소기업유통센터(동반성장몰·동행세일)의 뷰티 카테고리와 화장품 수출기업 지한아이씨에서 진행한 뷰티 프로모션 비주얼입니다. 기획전 메인 배너를 기준으로 카테고리 배너, 띠배너, 앱 타일, SNS 소재까지 하나의 시스템으로 확장해 운영했습니다.",
   },
   {
     id: "ui-bx-flow",
