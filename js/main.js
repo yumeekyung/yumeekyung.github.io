@@ -124,6 +124,10 @@
   );
   targets.forEach((el) => {
     el.classList.add("rv");
-    io.observe(el);
+    // lazy 이미지는 로드 전 높이가 0이라 전부 한꺼번에 보이는 것으로 잡히므로, 로드 후에 관찰합니다.
+    if (el.tagName === "IMG" && !el.complete) {
+      el.addEventListener("load", () => io.observe(el), { once: true });
+      el.addEventListener("error", () => el.classList.add("in"), { once: true });
+    } else io.observe(el);
   });
 })();
