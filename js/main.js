@@ -90,6 +90,7 @@
     if (!p.year) $("[data-p-year]").parentElement.remove();
     setText("[data-p-role]", p.role);
     setText("[data-p-tools]", p.tools);
+    if (!p.tools) $("[data-p-tools]").parentElement.remove();
     setText("[data-p-summary]", p.summary);
 
     const imgs = p.images.length ? p.images : ["", "", ""];

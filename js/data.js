@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261105a";
+const IMG_VERSION = "20261105b";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -88,6 +88,18 @@ const PROJECTS = [
     url: "works/bucket-museum/",
   },
   {
+    id: "korea-sale",
+    title: "동반성장몰 입점안내 · 대한민국 동행세일",
+    subtitle: "Entry page · Event page UX/UI",
+    category: ["uxui"],
+    year: "2020 — 2022",
+    role: "UX/UI · 운영 디자인 (동반성장몰 전 카테고리)",
+    tools: "",
+    images: shots("korea-sale", 9),
+    summary:
+      "중소기업 상품을 대기업·공공기관 임직원에게 연결하는 폐쇄형 쇼핑몰 동반성장몰에서 입점을 고민하는 기업을 위한 입점안내 페이지와 국가 소비 촉진 행사 '대한민국 동행세일' 이벤트 페이지를 디자인했습니다. 처음 온 사람도 무엇을 해야 하는지 한 화면에서 이해하도록, 절차는 카드로, 조건은 체크리스트로, 혜택은 크기 순으로 정리해 진입과 참여의 허들을 낮췄습니다.",
+  },
+  {
     id: "beauty-promotion",
     title: "뷰티 프로모션 비주얼 시스템",
     subtitle: "Web · App · SNS Design",
@@ -98,27 +110,6 @@ const PROJECTS = [
     images: shots("beauty-promotion", 8),
     summary:
       "중소기업유통센터(동반성장몰·동행세일)의 뷰티 카테고리와 화장품 수출기업 지한아이씨에서 진행한 뷰티 프로모션 비주얼입니다. 기획전 메인 배너를 기준으로 카테고리 배너, 띠배너, 앱 타일, SNS 소재까지 하나의 시스템으로 확장해 운영했습니다.",
-  },
-  {
-    id: "ui-bx-flow",
-    title: "동반성장몰 소개",
-    subtitle: "입점안내 이벤트 페이지",
-    category: ["flow"],
-    thumb: "assets/works/ui-bx-flow/cover.jpg",
-    thumbFit: "contain",
-    color: "#2463eb",
-    images: [],
-    url: "works/dongban.html",
-  },
-  {
-    id: "donghaeng",
-    title: "대한민국 동행세일 리디자인",
-    subtitle: "이벤트 페이지 UI/UX 리디자인",
-    category: ["flow"],
-    thumb: `assets/works/donghaeng/cover.jpg?v=${IMG_VERSION}`,
-    color: "#1E2A78",
-    images: [],
-    url: "works/donghaeng/",
   },
   {
     id: "drline",
@@ -156,30 +147,6 @@ const PROJECTS = [
     images: shots("siminsanghoe", 7),
     summary:
       "동네 상회의 친근함과 시민이 함께 만드는 열린 공간의 이미지를 하나의 브랜드로 정리했습니다. 옛 간판의 둥근 형태에 눈과 손발을 더한 캐릭터 '시민이'를 중심으로 로고, 컬러, 일러스트 시스템을 만들고 매장 외관, 패키지, 굿즈, SNS까지 적용했습니다.",
-  },
-  {
-    id: "emart-package",
-    title: "이마트 남영돈 패키지 디자인",
-    subtitle: "Package design · Visual concept",
-    category: ["pkg"],
-    year: "2025.01 — 2025.02",
-    role: "Package Planning, Visual Concept, Package Design (100%)",
-    tools: "Illustrator, Photoshop",
-    images: shots("emart-package", 2),
-    summary:
-      "남영돈의 40여 년 헤리티지와 프리미엄 돼지고기의 정직한 가치를 선물세트에 담았습니다. 블랙 패키지와 서예적 로고, 절제된 소재 표현으로 신뢰감과 고급감을 강조하고, 보관과 이동까지 고려한 구조로 완성도를 높였습니다.",
-  },
-  {
-    id: "pocheon-package",
-    title: "포천 이동갈비 패키지 리뉴얼",
-    subtitle: "Package design · Graphic design",
-    category: ["pkg"],
-    year: "",
-    role: "Package Planning, Graphic Design (100%)",
-    tools: "Photoshop, Illustrator",
-    images: shots("pocheon-package", 2),
-    summary:
-      "포천 이동갈비의 전통성과 제품별 특징이 명확히 전달되도록 패키지를 리뉴얼했습니다. 어두운 바탕과 절제된 전통 문양, 선명한 음식 이미지로 브랜드의 신뢰감과 상품성을 강화했습니다.",
   },
   {
     id: "anaconda-detail",
