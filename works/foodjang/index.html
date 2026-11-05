@@ -1,1048 +1,875 @@
-<!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><title>FOODJANG 앱 리뉴얼 — 유미경</title></head><body>
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<style>
+.pf-back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));z-index:50;display:inline-flex;align-items:center;gap:6px;font:700 13px/1.2 "Pretendard Variable","Noto Sans KR","Apple SD Gothic Neo",sans-serif;letter-spacing:-.01em;color:#191F28;background:rgba(255,255,255,.92);border-radius:999px;padding:8px 15px 8px 11px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.22)}
+.pf-back:hover{background:#fff}
+.pf-back svg{width:16px;height:16px}
+@media (max-width:760px){.pf-back{top:auto;bottom:calc(16px + env(safe-area-inset-bottom,0px))}}
+</style>
+<a class="pf-back" href="../../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>포트폴리오</a>
 
+<title>FOODJANG UX/UI · 패키지 리뉴얼 — 유미경</title>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+KR:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Albert+Sans:wght@300;400;500;700&family=IBM+Plex+Sans+KR:wght@400;600;700&family=Noto+Sans+KR:wght@400;600;700&display=swap">
 <style>
-/* Layout: dark long-scroll case study (research → definition → features → system → result).
-   Page is a committed dark look; phone UIs are light, Toss-style (sentence titles, 20px gutters, 56px CTAs, one red).
-   One typeface throughout: IBM Plex Sans KR (the project's own brand face). */
 :root{
-  --bg:#0F0D0E; --bg-2:#171415; --card:#1E1A1B; --card-2:#262122; --stroke:rgba(255,255,255,.08); --stroke-2:rgba(255,255,255,.14);
-  --tx:#F5F2F2; --tx-2:rgba(245,242,242,.68); --tx-3:rgba(245,242,242,.44);
-  --brand:#A3121A; --red:#E5343C; --red-2:#FF5A5F; --pink:#F4A6A0; --lpink:#FBE3E0; --yellow:#F7C548; --coral:#F7866A;
-  --ink:#191F28; --ink-2:#4E5968; --ink-3:#8B95A1; --line:#E5E8EB; --fill:#F2F4F6; --paper:#FFFFFF; --rtint:#FFF0EF;
-  --section-space:clamp(96px,12vw,170px); --content-space:clamp(40px,5vw,56px); --card-gap:24px; --card-padding:clamp(24px,2.5vw,32px);
-  --font:'IBM Plex Sans KR','Apple SD Gothic Neo','Malgun Gothic',sans-serif;
-  color-scheme:dark;
+  --bg:#FFFFFF; --ink:#000000; --mute:#8A8A8A; --line:#E3E3E3; --soft:#F4F4F4; --grid:#EDEDED;
+  --red:#E5343B; --red-deep:#A3121A; --pink:#F4A6A0; --pink-l:#FBE3E0; --yellow:#F7C548;
+  --dark:#111111; --dark-2:#1C1C1C; --on-dark:#F2F2F2; --on-dark-mute:#8E8E8E;
+  --f-en:"Albert Sans","Helvetica Neue",Arial,sans-serif;
+  --f-kr:"Pretendard Variable","Pretendard","Noto Sans KR","Apple SD Gothic Neo",sans-serif;
+  --gut:max(16px, env(safe-area-inset-left, 0px));
+  --gutR:max(16px, env(safe-area-inset-right, 0px));
+  color-scheme:light;
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:var(--tx);font-family:var(--font);font-size:16px;line-height:1.7;word-break:keep-all;overflow-x:hidden;-webkit-font-smoothing:antialiased;letter-spacing:-.01em}
-img,svg{max-width:100%}
-.wrap{max-width:1200px;margin:0 auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
-section{position:relative}
-.band{padding-block:var(--section-space)}
-.eyebrow{display:inline-flex;align-items:center;gap:8px;font-weight:600;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--coral)}
-.eyebrow:before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red-2);box-shadow:0 0 12px var(--red-2)}
-.ttl{font-weight:700;font-size:clamp(28px,4.2vw,48px);line-height:1.3;letter-spacing:-.035em;margin:16px 0 18px;text-wrap:balance}
-.ttl em{font-style:normal;color:var(--coral)}
-.lead{color:var(--tx-2);font-size:17px;max-width:62ch;margin:0}
-.center{text-align:center}.center .lead{margin-inline:auto}
-.glass{background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));border:1px solid var(--stroke);border-radius:24px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-kr);font-size:14.4px;line-height:1.6;letter-spacing:-.025em;
+  -webkit-font-smoothing:antialiased;word-break:keep-all;overflow-wrap:break-word;overflow-x:hidden}
+img{display:block;max-width:100%;height:auto}
+p{margin:0}
+.lbl{font-family:var(--f-en);font-weight:700;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.3}
+.en{font-family:var(--f-en)}
 
-/* ================= PHONE + APP UI (light, Toss-style) ================= */
-.dev{width:100%;max-width:300px;aspect-ratio:9/19.3;border-radius:46px;background:#0A0A0B;padding:9px;box-shadow:0 50px 90px -20px rgba(0,0,0,.7),0 0 0 1px rgba(255,255,255,.12),inset 0 0 0 1.5px rgba(255,255,255,.08);flex:none;position:relative}
-.dev:before{content:'';position:absolute;top:17px;left:50%;transform:translateX(-50%);width:28%;height:20px;border-radius:12px;background:#0A0A0B;z-index:3}
-.scr{height:100%;border-radius:38px;overflow:hidden;background:#fff;position:relative;container-type:inline-size}
-.app{position:absolute;inset:0;display:flex;flex-direction:column;font-size:calc(100cqw / 22.5);color:var(--ink);letter-spacing:-.02em;line-height:1.45;font-family:var(--font)}
-.app *{box-sizing:border-box}
-.sb{display:flex;justify-content:space-between;align-items:center;height:2.9em;padding:0 1.6em;font-size:.8125em;font-weight:600;flex:none}
-.sb .dots{display:flex;gap:.3em;align-items:center}
-.sb .dots i{width:1.05em;height:.6em;border-radius:.16em;background:var(--ink);display:block}
-.sb .dots i:first-child{width:.9em;height:.7em;border-radius:.1em;clip-path:polygon(0 100%,100% 0,100% 100%)}
-.nav{display:flex;align-items:center;justify-content:space-between;height:3.25em;padding:0 1.25em;flex:none;gap:.75em}
-.nav b{font-size:1.0625em;font-weight:700;white-space:nowrap}
-.nav .ic{display:flex;gap:.9em}
-.nav svg,.ico-s{width:1.5em;height:1.5em;stroke:var(--ink);fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;flex:none}
-.logo{display:flex;align-items:center;gap:.35em;font-weight:700;font-size:1.1875em;color:var(--ink);white-space:nowrap;letter-spacing:-.04em}
-.logo b{color:var(--red);font-weight:700}
-.logo .mk{width:1.9em;height:1.4em;flex:none}
-.body{flex:1;overflow:hidden;padding:0 1.25em;min-height:0}
-.h1{font-size:1.5em;font-weight:700;line-height:1.38;letter-spacing:-.035em;margin:.5em 0 .4em}
-.h1 em{font-style:normal;color:var(--red)}
-.sub{font-size:.9375em;color:var(--ink-2);margin:0}
-.sec-t{display:flex;justify-content:space-between;align-items:baseline;margin:1.25em 0 .65em;gap:.5em}
-.sec-t b{font-size:1.0625em;font-weight:700;white-space:nowrap}
-.sec-t b em{font-style:normal;color:var(--red)}
-.sec-t span{font-size:.8125em;color:var(--ink-3);white-space:nowrap}
-.cta{flex:none;padding:.75em 1.25em 1.7em;background:linear-gradient(180deg,rgba(255,255,255,0) 0,#fff 28%)}
-.btn{display:flex;align-items:center;justify-content:center;width:100%;min-height:3.5em;padding:0 1em;border-radius:1em;background:var(--red);color:#fff;font-weight:700;font-size:1.0625em;white-space:nowrap;letter-spacing:-.02em}
-.btn.sub2{background:var(--rtint);color:var(--red)}
-.chip{display:inline-flex;align-items:center;gap:.3em;height:2.2em;padding:0 .9em;border-radius:999px;font-size:.8125em;font-weight:600;white-space:nowrap;background:var(--fill);color:var(--ink-2);flex:none}
-.chip.on{background:var(--ink);color:#fff}
-.chip.r{background:var(--rtint);color:var(--red)}
-.chip svg{width:1.1em;height:1.1em;stroke:currentColor;fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.chips{display:flex;gap:.4em;overflow:hidden}
-.tabs{display:flex;gap:1.15em;border-bottom:1px solid var(--line);padding:0 1.25em;flex:none}
-.tabs span{font-size:.9375em;font-weight:600;color:var(--ink-3);padding:.55em 0 .65em;white-space:nowrap;position:relative}
-.tabs span.on{color:var(--ink)}
-.tabs span.on:after{content:'';position:absolute;left:0;right:0;bottom:-1px;height:2px;background:var(--ink);border-radius:2px}
-.tabbar{flex:none;display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid var(--line);padding:.55em .4em 1.5em;background:#fff}
-.tabbar div{display:flex;flex-direction:column;align-items:center;gap:.2em;font-size:.6875em;color:var(--ink-3);font-weight:500;white-space:nowrap}
-.tabbar div.on{color:var(--ink);font-weight:700}
-.tabbar svg{width:2.1em;height:2.1em;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.banner{border-radius:1.25em;background:linear-gradient(135deg,#FFE7E3,#FFD3CC);padding:1.15em 1.15em 1.1em;position:relative;overflow:hidden;margin-top:.9em}
-.banner small{font-size:.75em;font-weight:600;color:var(--red)}
-.banner b{display:block;font-size:1.25em;line-height:1.35;font-weight:700;margin-top:.2em;letter-spacing:-.03em}
-.banner .pg{position:absolute;right:.9em;bottom:.8em;font-size:.6875em;background:rgba(25,31,40,.35);color:#fff;border-radius:999px;padding:.1em .6em}
-.banner .ill{position:absolute;right:.7em;top:.8em;width:4.6em;height:4.6em;border-radius:1.2em;background:#fff;display:grid;place-items:center;box-shadow:0 .5em 1.2em rgba(229,52,60,.18)}
-.banner .ill svg{width:2.6em;height:2.6em;stroke:var(--red);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.quick{display:grid;grid-template-columns:repeat(5,1fr);gap:.2em;margin-top:1em}
-.quick div{display:flex;flex-direction:column;align-items:center;gap:.35em;font-size:.75em;font-weight:500;color:var(--ink-2);white-space:nowrap}
-.quick i{width:3.4em;height:3.4em;border-radius:1em;background:var(--fill);display:grid;place-items:center}
-.quick svg{width:1.7em;height:1.7em;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.deal{display:flex;gap:.8em;align-items:center}
-.deal .th{width:4.6em;height:4.6em;border-radius:.9em;overflow:hidden;flex:none;background:var(--fill)}
-.th img{width:100%;height:100%;object-fit:cover;display:block}
-.deal .t{min-width:0;flex:1}
-.nm{font-size:.875em;color:var(--ink);line-height:1.4;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
-.pr{font-size:.9375em;font-weight:700;margin-top:.15em;white-space:nowrap}
-.pr em{font-style:normal;color:var(--red);margin-right:.25em}
-.rv{font-size:.6875em;color:var(--ink-3);margin-top:.1em;white-space:nowrap}
-.timer{font-variant-numeric:tabular-nums;color:var(--red);font-weight:700}
-.grid2{display:grid;grid-template-columns:1fr 1fr;gap:1.1em .7em}
-.grid2 .th{aspect-ratio:1;border-radius:1em;overflow:hidden;background:var(--fill);position:relative}
-.grid2 .th .cart{position:absolute;right:.45em;bottom:.45em;width:2.1em;height:2.1em;border-radius:50%;background:rgba(255,255,255,.95);display:grid;place-items:center;box-shadow:0 .2em .6em rgba(0,0,0,.12)}
-.grid2 .th .cart svg{width:1.1em;height:1.1em;stroke:var(--ink);fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.grid2 .info{margin-top:.5em}
-.input{margin-top:.9em}
-.input label{display:block;font-size:.8125em;font-weight:600;color:var(--ink-2);margin-bottom:.4em}
-.input div{height:3.4em;border-radius:.9em;background:var(--fill);display:flex;align-items:center;padding:0 1em;font-size:.9375em;color:var(--ink-3);white-space:nowrap}
-.input div.on{background:#fff;box-shadow:inset 0 0 0 1.5px var(--ink);color:var(--ink)}
-.links{display:flex;justify-content:center;gap:1em;font-size:.8125em;color:var(--ink-3);margin-top:1em;white-space:nowrap}
-.sns{display:flex;justify-content:center;gap:.9em;margin-top:.7em}
-.sns i{width:3em;height:3em;border-radius:50%;display:grid;place-items:center;font-style:normal;font-weight:700;font-size:.875em}
-.mascot{display:flex;justify-content:center;margin:1.8em auto .7em}
-.mascot svg{width:6.6em;height:4.9em}
-.lgw{font-size:1.75em;font-weight:700;letter-spacing:-.05em;color:var(--ink)}
-.lgw b{color:var(--red);font-weight:700}
-.steps3{display:flex;flex-direction:column;gap:.15em;margin-top:1em}
-.steps3>div{display:flex;gap:.8em;align-items:center;padding:.6em 0}
-.steps3 i{width:1.9em;height:1.9em;border-radius:50%;background:var(--rtint);color:var(--red);font-style:normal;font-weight:700;font-size:.8125em;display:grid;place-items:center;flex:none}
-.steps3 b{display:block;font-size:.9375em;font-weight:600}
-.steps3 span{display:block;font-size:.75em;color:var(--ink-3)}
-.giftbox{border-radius:1.25em;overflow:hidden;margin-top:.8em;aspect-ratio:16/10;background:var(--fill)}
-.giftbox img{width:100%;height:100%;object-fit:cover;display:block}
-.seg{display:flex;background:var(--fill);border-radius:.9em;padding:.25em;margin-top:1em}
-.seg span{flex:1;text-align:center;height:2.5em;display:grid;place-items:center;border-radius:.7em;font-size:.875em;font-weight:600;color:var(--ink-3);white-space:nowrap}
-.seg span.on{background:#fff;color:var(--ink);box-shadow:0 .1em .4em rgba(0,0,0,.08)}
-.cmp{margin-top:1em;border-radius:1.1em;border:1px solid var(--line);overflow:hidden}
-.cmp div{display:grid;grid-template-columns:5.4em 1fr 1fr;font-size:.8125em;border-top:1px solid var(--line)}
-.cmp div:first-child{border-top:0;background:var(--fill);font-weight:600;color:var(--ink-2)}
-.cmp span{padding:.75em .7em;white-space:nowrap}
-.cmp span:first-child{color:var(--ink-3)}
-.cmp .hl{color:var(--red);font-weight:700}
-.dlv{margin-top:1em;border-radius:1.1em;background:linear-gradient(135deg,#FFF6E0,#FFE9B8);padding:1em 1.1em;display:flex;gap:.8em;align-items:center}
-.dlv .ic{width:3em;height:3em;border-radius:.9em;background:#fff;display:grid;place-items:center;flex:none}
-.dlv .ic svg{width:1.7em;height:1.7em;stroke:#C98A00;fill:none;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
-.dlv b{display:block;font-size:.9375em}
-.dlv span{font-size:.75em;color:var(--ink-2)}
-.badge{position:absolute;left:.45em;top:.45em;font-size:.6875em;font-weight:700;padding:.15em .5em;border-radius:.4em;background:var(--red);color:#fff}
-/* old (AS-IS) app look */
-.old .app{filter:saturate(.75)}
-.oldbar{height:2.6em;background:#E8E8E8;display:flex;align-items:center;padding:0 .9em;gap:.5em;font-size:.75em;color:#666;flex:none}
-.oldbar b{color:#B4131B}
-.oldmenu{display:flex;gap:.6em;padding:.5em .9em;font-size:.6875em;color:#777;background:#F4F4F4;flex:none;white-space:nowrap;overflow:hidden}
-.oldb{margin:.45em .7em 0;border-radius:.25em;display:grid;place-items:center;font-size:.6875em;font-weight:700;color:#fff;text-align:center;line-height:1.3;padding:.4em}
-.oldg{display:grid;grid-template-columns:repeat(3,1fr);gap:.3em;margin:.45em .7em 0}
-.oldg div{aspect-ratio:1;background:#DADADA;border-radius:.2em;overflow:hidden}
-.oldg img{width:100%;height:100%;object-fit:cover;filter:grayscale(.2) contrast(.9)}
-.oldt{margin:.45em .7em 0;font-size:.625em;color:#888;line-height:1.5}
+/* ---------- hero : kaola-style shape cover ---------- */
+.hero{position:relative;background:#fff;overflow:hidden;padding-top:clamp(40px,5.3vw,92px)}
+.hero .ttl{display:flex;justify-content:space-between;align-items:flex-start;margin-left:18.6%;margin-right:18.5%}
+.hero h1{margin:0;font-family:var(--f-en);font-weight:300;font-size:clamp(22px,2.15vw,38px);line-height:1.22;letter-spacing:-.01em;color:#1a1a1a}
+.hero h1 b{font-weight:600;display:block}
+.hero .mark{width:clamp(110px,14.5vw,250px);height:auto;margin-top:-6px}
+.hero .mark *{fill:none;stroke:#333;stroke-width:1.3;vector-effect:non-scaling-stroke}
+.hero .shapes{display:block;width:100%;height:auto;margin-top:clamp(70px,9vw,150px)}
+.hero .cred{display:grid;grid-template-columns:auto auto 1fr;gap:clamp(24px,5vw,90px);margin:clamp(90px,11vw,190px) 18.5% 0 18.6%;padding-bottom:clamp(70px,8vw,130px);font-family:var(--f-en);font-size:clamp(11px,.78vw,13px);line-height:1.65;color:#777;letter-spacing:0}
+.hero .cred b{font-weight:600;color:#222}
+.hero .cred .h{color:#222;margin-bottom:2px}
+.hero .cred .r{align-self:end;justify-self:end;color:#999}
+/* ---------- common sections ---------- */
+.wrap{width:min(75vw,1240px);margin:0 auto}
+@media (max-width:900px){.wrap{width:auto;margin:0;padding-left:var(--gut);padding-right:var(--gutR)}}
+.sec{padding-block:clamp(110px,13vw,220px)}
+.row{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px}
+.row > .txt{max-width:640px}
+.row > .txt p+p{margin-top:1em}
+.facts{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px;margin-top:72px;padding-top:18px;border-top:1px solid var(--ink)}
+.facts dt{color:var(--mute)}
+.facts dd{margin:8px 0 0;font-size:13px;line-height:1.55}
+@media (max-width:760px){.row{grid-template-columns:1fr;gap:14px}.facts{grid-template-columns:1fr 1fr;row-gap:28px}}
 
-/* ================= HERO ================= */
-.hero{position:relative;min-height:max(780px,100vh);overflow:hidden;background:radial-gradient(45% 55% at 58% 60%,rgba(229,52,60,.30),rgba(229,52,60,0) 70%),var(--bg)}
-.hero:before,.hero:after{content:'';position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,.05)}
-.hero:before{left:max(20px,calc((100vw - 1200px)/2 + 20px))}.hero:after{right:max(20px,calc((100vw - 1200px)/2 + 20px))}
-.htop{position:relative;z-index:4;display:flex;justify-content:space-between;gap:32px;padding-block:clamp(48px,7vh,80px) 0;flex-wrap:wrap}
-.pills{display:flex;align-items:center;gap:8px}
-.pills span{height:44px;padding:0 20px;border-radius:999px;border:1px solid var(--stroke-2);display:inline-flex;align-items:center;font-size:14px;font-weight:500;letter-spacing:.02em;white-space:nowrap}
-.pills span.w{background:#fff;color:#111;border-color:#fff}
-.hmeta{display:grid;grid-template-columns:auto 1fr;gap:4px 44px;margin-top:64px;font-size:15px;color:var(--tx-2);letter-spacing:.02em}
-.hmeta .n{font-size:26px;font-weight:500;color:var(--tx);line-height:1}
-.hmeta b{font-weight:600;color:var(--tx);display:block;font-size:17px;letter-spacing:.04em}
-.hmeta i{display:block;width:16px;height:1px;background:var(--tx-3);margin:12px 0}
-.hr{text-align:right;font-size:clamp(20px,2vw,28px);line-height:1.4;font-weight:500;letter-spacing:-.02em}
-.hr em{font-style:normal;color:var(--coral);display:block}
-.hr small{display:block;margin-top:clamp(40px,10vw,150px);font-size:14px;line-height:1.6;letter-spacing:.04em;color:var(--tx-3);font-weight:500}
-.hr small b{color:var(--tx);font-weight:600}
-.hstage{position:absolute;inset:0;z-index:2;pointer-events:none}
-.word{position:absolute;left:0;right:0;bottom:clamp(40px,7vh,72px);margin:0;text-align:center;font-weight:700;font-size:clamp(64px,13.6vw,210px);line-height:.8;letter-spacing:-.05em;color:#F4F1F1;z-index:1;white-space:nowrap}
-.hstage .dev{position:absolute;z-index:2;width:clamp(190px,15.5vw,236px);max-width:none}
-.hstage .p1{left:36%;bottom:9%;transform:rotate(-14deg)}
-.hstage .p2{left:51%;bottom:21%;transform:rotate(13deg)}
-.hcirc{position:absolute;right:max(20px,calc((100vw - 1200px)/2 + 20px));bottom:31%;width:clamp(96px,9vw,130px);aspect-ratio:1;border-radius:50%;background:var(--red);display:grid;place-items:center;z-index:3}
-.hcirc svg{width:42%;height:42%;stroke:#fff;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.bub{position:absolute;z-index:4;font-size:14px;font-weight:600;line-height:1.45;padding:12px 16px;border-radius:16px;background:rgba(30,26,27,.82);border:1px solid var(--stroke-2);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);white-space:nowrap;box-shadow:0 20px 40px rgba(0,0,0,.35)}
-.bub em{font-style:normal;color:var(--coral)}
-.bub.sol{background:linear-gradient(135deg,#FF6A5C,#E5343C);border-color:transparent;display:flex;align-items:center;gap:10px}
-.bub.sol i{width:26px;height:26px;border-radius:8px;background:#fff;display:grid;place-items:center}
-.bub.sol i svg{width:22px;height:16px}
-.b1{left:21%;top:49%}.b4{left:66%;top:60%}
+/* keyword grid */
+.kwgrid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(70px,8vw,130px);border-top:1px solid var(--ink)}
+.kwi{display:grid;gap:10px;padding:22px 20px 34px 0;border-bottom:1px solid var(--line)}
+.kwi b{font-family:var(--f-en);font-weight:300;font-size:clamp(30px,3.3vw,56px);line-height:1;letter-spacing:-.02em}
+.kwi:nth-child(4n+1) b,.kwi:nth-child(4n+3) b{color:var(--red)}
+.kwi .d{font-size:12.5px;color:var(--mute)}
+@media (max-width:760px){.kwgrid{grid-template-columns:1fr 1fr}}
+/* keyword scatter */
+.scatter{position:relative;height:clamp(560px,48vw,880px);margin-top:clamp(40px,6vw,100px)}
+.kw{position:absolute;display:flex;align-items:center;gap:10px}
+.kw::before{content:"";width:8px;height:8px;background:var(--ink)}
+.sc-img{position:absolute;overflow:hidden;background:var(--soft)}
+.sc-img img{width:100%;height:100%;object-fit:cover}
 
-/* ================= OVERVIEW ================= */
-.ov{background:linear-gradient(180deg,var(--bg),var(--bg-2))}
-.ov .q{display:flex;justify-content:center;gap:12px;flex-wrap:wrap;margin-top:var(--content-space)}
-.ov .q span{font-size:14px;font-weight:600;padding:10px 16px;border-radius:999px;background:var(--card);border:1px solid var(--stroke);color:var(--tx-2)}
-.ov .q span em{font-style:normal;color:var(--coral)}
+/* full-bleed strategy band */
+.band{position:relative;background:var(--red);color:#fff;overflow:hidden;min-height:clamp(560px,52vw,960px)}
+.band .vlines{position:absolute;inset:0;display:grid;grid-template-columns:repeat(4,1fr);width:min(75vw,1240px);margin:0 auto;pointer-events:none}
+.band .vlines i{border-left:1px solid rgba(255,255,255,.28)}
+.band .vlines i:last-child{border-right:1px solid rgba(255,255,255,.28)}
+.band .inner{position:relative;padding-top:64px}
+.band .row .txt{color:rgba(255,255,255,.92)}
+.band .row .txt b{color:#fff}
+.band .mark{position:absolute;right:max(5vw,var(--gutR));top:26%;width:clamp(140px,17vw,300px);mix-blend-mode:normal}
+.band .kw2{position:absolute;left:12.5vw;top:40%;font-family:var(--f-en);font-weight:500;font-size:12px}
+.spaced{position:absolute;left:0;right:0;bottom:4%;display:flex;justify-content:space-between;width:min(75vw,1240px);margin:0 auto;
+  font-family:var(--f-en);font-weight:300;font-size:clamp(56px,9.6vw,180px);line-height:1;color:#fff}
+@media (max-width:900px){.band .vlines,.spaced{width:auto;left:var(--gut);right:var(--gutR)}.band .kw2{left:var(--gut)}}
 
-/* ================= RESEARCH ================= */
-.rs-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) minmax(0,1.25fr);gap:var(--card-gap);margin-top:var(--content-space)}
-.tg{padding:var(--card-padding);display:flex;flex-direction:column;gap:20px;min-width:0}
-.tg .n{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral)}
-.tg .av{width:48px;height:48px;border-radius:16px;background:rgba(247,134,106,.12);display:grid;place-items:center}
-.tg .av svg{width:26px;height:26px;stroke:var(--coral);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.tg h3{font-size:20px;line-height:1.4;font-weight:700;margin:0;letter-spacing:-.03em}
-.tg p{margin:0;font-size:14.5px;color:var(--tx-2);line-height:1.7}
-.chart{padding:var(--card-padding);background:#F8F6F6;color:var(--ink);border-radius:24px;min-width:0}
-.chart h4{margin:0 0 8px;font-size:16px;font-weight:700}
-.chart .s{font-size:13px;color:var(--ink-3);margin:0 0 24px}
-.bars{display:flex;flex-direction:column;gap:16px}
-.bars div{display:grid;grid-template-columns:40px minmax(0,1fr) 44px;align-items:center;gap:12px;font-size:14px}
-.bars .tr{height:12px;border-radius:9px;background:#ECE7E7;overflow:hidden}
-.bars .tr i{display:block;height:100%;border-radius:9px;background:var(--coral)}
-.bars div:first-child .tr i{background:var(--red)}
-.bars b{text-align:right;font-weight:700}
-.kw{display:flex;flex-wrap:wrap;gap:8px;margin-top:24px}
-.kw span{font-size:13px;font-weight:600;padding:6px 12px;border-radius:999px;background:#FFE3E0;color:var(--red)}
-.kw span.n{background:#ECEEF1;color:var(--ink-2)}
+/* direction */
+.voices{margin-top:72px;border-top:1px solid var(--line)}
+.voices li{list-style:none;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.voices ol{margin:0;padding:0}
+.voices .n{font-family:var(--f-en);font-size:11px;color:var(--mute)}
+.principles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:96px}
+.principles figure{margin:0}
+.paper{aspect-ratio:4/3;background-color:#F6F6F6;
+  background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);
+  background-size:12px 12px;display:grid;place-items:center}
+.paper svg{width:52%;height:auto;overflow:visible}
+.paper svg *{fill:none;stroke:#222;stroke-width:1.2;vector-effect:non-scaling-stroke}
+.paper svg .f{fill:var(--red);stroke:none}
+.principles figcaption{margin-top:14px;display:grid;gap:6px}
+.principles figcaption b{font-weight:600;font-size:13.5px}
+.principles figcaption span{font-size:12.5px;color:var(--mute)}
+@media (max-width:760px){.principles{grid-template-columns:1fr}.voices li{grid-template-columns:1fr;gap:4px}}
 
-/* ================= PROCESS ================= */
-.proc{background:var(--bg-2)}
-.pc-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space);position:relative}
-.pc-row:before{content:'';position:absolute;left:24px;right:24px;top:27px;height:2px;background:linear-gradient(90deg,var(--red),rgba(229,52,60,.15))}
-.pcs{position:relative;min-width:0}
-.pcs .dot{width:56px;height:56px;border-radius:50%;display:grid;place-items:center;font-weight:700;font-size:15px;background:var(--card-2);border:1px solid var(--stroke-2);position:relative;z-index:1}
-.pcs:first-child .dot{background:var(--red);border-color:transparent;box-shadow:0 0 0 8px rgba(229,52,60,.18)}
-.pcs h3{font-size:20px;font-weight:700;margin:22px 0 12px;letter-spacing:-.02em}
-.pcs h3 small{display:block;font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--tx-3);text-transform:uppercase;margin-bottom:4px}
-.pcs ul{margin:0;padding:0;list-style:none;display:flex;flex-direction:column;gap:8px}
-.pcs li{font-size:14.5px;color:var(--tx-2);padding-left:14px;position:relative}
-.pcs li:before{content:'';position:absolute;left:0;top:.75em;width:5px;height:5px;border-radius:50%;background:var(--coral)}
-.goal{margin-top:var(--content-space);display:flex;align-items:center;gap:18px;padding:22px 26px;flex-wrap:wrap}
-.goal span{font-size:12px;font-weight:700;letter-spacing:.14em;color:#fff;background:var(--red);border-radius:999px;padding:6px 12px}
-.goal b{font-size:clamp(17px,2vw,22px);font-weight:700;letter-spacing:-.02em}
+/* research */
+.research{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;margin-top:120px}
+.targets{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.targets div{border-top:1px solid var(--ink);padding-top:14px}
+.targets b{display:block;font-weight:600;font-size:13.5px;margin:8px 0 6px}
+.targets span{font-size:12.5px;color:#555}
+.bars{margin-top:56px;display:grid;gap:12px}
+.bar{display:grid;grid-template-columns:56px minmax(0,1fr) 44px;align-items:center;gap:14px;font-size:12.5px}
+.bar i{height:2px;background:var(--line);position:relative}
+.bar i::after{content:"";position:absolute;left:0;top:-3px;height:8px;width:calc(var(--v) / 39 * 100%);background:var(--ink)}
+.bar.hl i::after{background:var(--red)}
+.bar em{font-style:normal;font-family:var(--f-en);font-weight:500;text-align:right}
+.note{margin-top:20px;font-size:12.5px;color:#555}
+@media (max-width:760px){.research{grid-template-columns:1fr}.targets{grid-template-columns:1fr}}
 
-/* ================= PAIN → SOLUTION ================= */
-.pp-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
-.pp{display:flex;flex-direction:column;gap:12px;min-width:0}
-.pp .a{padding:26px 24px}
-.pp .a small,.pp .b small{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.pp .a small{color:var(--tx-3)}
-.pp .a h3,.pp .b h3{margin:10px 0 0;font-size:19px;line-height:1.45;font-weight:700;letter-spacing:-.025em}
-.pp .ar{align-self:center;width:36px;height:36px;border-radius:50%;background:var(--card-2);display:grid;place-items:center;border:1px solid var(--stroke)}
-.pp .ar svg{width:18px;height:18px;stroke:var(--coral);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.pp .b{flex:1;padding:26px 24px;border-radius:24px;background:linear-gradient(140deg,#FF8A72,#E5343C);color:#fff;box-shadow:0 24px 48px -18px rgba(229,52,60,.55)}
-.pp .b small{color:rgba(255,255,255,.8)}
-.pp .b p{margin:8px 0 0;font-size:14.5px;line-height:1.7;color:rgba(255,255,255,.88)}
+/* problem / solution table */
+.ps{margin-top:72px;border-top:1px solid var(--ink)}
+.ps .h,.ps .r{display:grid;grid-template-columns:72px minmax(0,1fr) minmax(0,1fr);gap:24px;padding:14px 0;border-bottom:1px solid var(--line)}
+.ps .h{color:var(--mute)}
+.ps .r b{font-weight:600}
+.ps .r .to{color:var(--ink)}
+.ps .r .to::before{content:"→ ";color:var(--red)}
+@media (max-width:760px){.ps .h{display:none}.ps .r{grid-template-columns:40px minmax(0,1fr);row-gap:4px}.ps .r .to{grid-column:2}}
 
-.ps{margin-top:72px;display:flex;flex-direction:column;gap:10px}
-.ps-h{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:12px;font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--tx-3);padding:0 6px 4px}
-.ps-r{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr);gap:12px;align-items:center}
-.ps-r .p{display:flex;align-items:center;gap:14px;padding:18px 22px;border-radius:18px;background:var(--card);border:1px solid var(--stroke);color:var(--tx-2);font-size:15.5px;min-width:0}
-.ps-r .p i{font-style:normal;font-size:13px;font-weight:700;color:var(--tx-3);flex:none}
-.ps-r .ar{width:36px;height:36px;margin:auto;border-radius:50%;display:grid;place-items:center;background:rgba(229,52,60,.14)}
-.ps-r .ar svg{width:16px;height:16px;stroke:var(--red-2);fill:none;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
-.ps-r .s{padding:18px 22px;border-radius:18px;border:1.5px solid rgba(247,134,106,.55);background:rgba(247,134,106,.06);font-size:15.5px;font-weight:600;min-width:0}
+/* ui elements */
+.tl{position:relative;margin-top:96px;display:grid;grid-template-columns:2fr 1fr .8fr .6fr}
+.tl::before{content:"";position:absolute;left:0;right:0;top:4px;height:1px;background:var(--ink)}
+.tl div{position:relative;padding-top:22px}
+.tl div::before{content:"";position:absolute;left:0;top:0;width:9px;height:9px;border:1px solid var(--ink);background:#fff}
+.tl div:last-child{text-align:right}
+.tl div:last-child::before{left:auto;right:0;background:var(--ink)}
+.sw{display:grid;grid-template-columns:2fr 1fr .8fr .6fr;gap:8px;margin-top:40px}
+.sw div{aspect-ratio:auto;height:clamp(140px,13vw,240px)}
+.sw .stack{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;height:clamp(140px,13vw,240px)}
+.sw-cap{display:grid;grid-template-columns:2fr 1fr .8fr .6fr;gap:8px;margin-top:12px}
+.sw-cap p{font-family:var(--f-en);font-weight:700;font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;line-height:1.45}
+.type{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:24px;margin-top:140px}
+.type .big{font-size:clamp(30px,3.2vw,52px);line-height:1.08;margin-top:10px;letter-spacing:-.02em}
+.type .plex{font-family:"IBM Plex Sans KR",var(--f-kr);font-weight:600}
+.trows{margin-top:64px;border-top:1px solid var(--line)}
+.trow{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:baseline;padding:16px 0;border-bottom:1px solid var(--line);font-family:"IBM Plex Sans KR",var(--f-kr)}
+.trow .lbl{font-family:var(--f-en)}
+.trow .spec{font-size:12px;color:var(--mute);font-family:var(--f-en)}
+@media (max-width:760px){.tl,.sw,.sw-cap{grid-template-columns:1fr 1fr}.tl div:nth-child(n+3),.sw-cap p:nth-child(n+3){margin-top:18px}.sw > div:nth-child(n+3){margin-top:0}.type{grid-template-columns:1fr}.trow{grid-template-columns:1fr 1fr}.trow .sample{grid-column:1/-1}}
 
-/* ================= CONCEPT ================= */
-.cc{background:var(--bg-2)}
-.cc-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
-.ccc{padding:var(--card-padding);border-radius:28px;min-width:0;position:relative;overflow:hidden;min-height:280px;display:flex;flex-direction:column}
-.ccc:nth-child(1){background:linear-gradient(150deg,#FFB39E,#F7866A)}
-.ccc:nth-child(2){background:linear-gradient(150deg,#FF8E7A,#E5343C)}
-.ccc:nth-child(3){background:linear-gradient(150deg,#D63A3F,#8E0F17)}
-.ccc .no{font-size:13px;font-weight:600;color:rgba(255,255,255,.75)}
-.ccc h3{margin:auto 0 0;font-size:clamp(32px,3.4vw,44px);font-weight:700;letter-spacing:-.04em;line-height:1.15;color:#fff}
-.ccc h3 small{display:block;font-size:14px;font-weight:500;letter-spacing:.06em;color:rgba(255,255,255,.75);margin-top:6px}
-.ccc p{margin:14px 0 0;color:rgba(255,255,255,.9);font-size:15px;line-height:1.7}
-.ccc svg.bg{position:absolute;right:-20px;top:-20px;width:150px;height:150px;stroke:rgba(255,255,255,.22);fill:none;stroke-width:1.2}
+/* showcases */
+.show{background:#EDEDED;padding-block:clamp(80px,9vw,160px)}
+.show.light{background:#F6F6F6}
+.show figure{margin:0}
+.show figure.shot{margin:0 auto}
+.shot{width:min(75vw,1240px);margin:0 auto}
+.cap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;width:min(75vw,1240px);margin:0 auto 40px}
+.cap h3{margin:0;font-weight:600;font-size:15px;letter-spacing:-.02em}
+.cap .txt{max-width:640px}
+.cap .txt p{margin-top:8px}
+.duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;align-items:start;width:min(75vw,1240px);margin:0 auto}
+.duo figure{background:#111;display:grid;align-content:start}
+.duo figure img{width:100%}
+.duo figcaption{padding:20px 22px 24px;background:#fff;display:grid;gap:6px}
+.duo figcaption b{font-weight:600;font-size:14px}
+.duo figcaption span{font-size:12.5px;color:#555}
+@media (max-width:900px){.shot,.cap,.duo{width:auto;margin-left:var(--gut);margin-right:var(--gutR)}}
+@media (max-width:760px){.cap,.duo{grid-template-columns:1fr}}
 
-/* ================= FEATURE SECTIONS ================= */
-.ft{overflow:hidden}
-.ft .lay{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:clamp(32px,5vw,80px);align-items:center}
-.ft .lay.rev{grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr)}
-.ft .lay.rev .txt{order:2}
-.pts{list-style:none;margin:28px 0 0;padding:0;display:flex;flex-direction:column;gap:14px}
-.pts li{display:flex;gap:14px;align-items:flex-start;font-size:16px;color:var(--tx-2)}
-.pts li i{font-style:normal;width:26px;height:26px;border-radius:50%;flex:none;background:rgba(229,52,60,.16);color:var(--red-2);font-size:12px;font-weight:700;display:grid;place-items:center;margin-top:1px}
-.pts li b{display:block;color:var(--tx);font-weight:600;font-size:16px}
-.cmpstage{position:relative;display:flex;align-items:flex-end;justify-content:center;gap:clamp(18px,3vw,44px);padding-right:clamp(0px,10vw,150px)}
-.tagl{position:absolute;top:-38px;left:50%;transform:translateX(-50%);font-size:12px;font-weight:700;letter-spacing:.1em;padding:6px 12px;border-radius:999px;white-space:nowrap}
-.tagl.x{background:var(--card-2);color:var(--tx-3)}
-.tagl.o{background:var(--red);color:#fff}
-.wrapdev{position:relative;flex:1 1 0;min-width:0;max-width:290px}
-.wrapdev.o{max-width:230px}
-.wrapdev .dev{max-width:none}
-.cmpstage .old{opacity:.8}
-.cmpstage .arr{align-self:center;width:52px;height:52px;border-radius:50%;background:var(--card-2);border:1px solid var(--stroke-2);display:grid;place-items:center;flex:none}
-.cmpstage .arr svg{width:22px;height:22px;stroke:var(--coral);fill:none;stroke-width:2.2;stroke-linecap:round;stroke-linejoin:round}
-.note{position:absolute;z-index:3;font-size:13px;line-height:1.45;font-weight:600;padding:9px 13px;border-radius:12px;background:rgba(30,26,27,.88);border:1px solid var(--stroke-2);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);white-space:nowrap;display:flex;gap:8px;align-items:center}
-.note i{font-style:normal;width:20px;height:20px;border-radius:50%;background:var(--red);color:#fff;font-size:11px;font-weight:700;display:grid;place-items:center;flex:none}
-.sheet{position:absolute;z-index:3;width:clamp(180px,17vw,220px);border-radius:20px;background:#fff;color:var(--ink);padding:16px 14px;box-shadow:0 30px 60px -10px rgba(0,0,0,.55);font-size:14px}
-.sheet .h{font-size:12px;font-weight:600;color:var(--red);margin-bottom:8px}
-.sheet div{display:flex;justify-content:space-between;align-items:center;padding:9px 6px;border-radius:10px;font-weight:600}
-.sheet div.on{background:var(--rtint);color:var(--red)}
-.sheet div span{font-size:12px;color:var(--ink-3);font-weight:500}
-.sheet div.subl{padding:2px 6px 6px 18px;display:flex;align-items:stretch;flex-direction:column;gap:2px;font-size:13px;color:var(--ink-2);font-weight:500}
-.sheet .subl div{padding:5px 0;font-weight:500;justify-content:flex-start;display:block}
-.fstage{position:relative;display:flex;justify-content:center;padding-right:clamp(0px,6vw,90px)}
-.mini2{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:28px}
-.mini2 div{padding:20px;border-radius:20px;background:var(--card);border:1px solid var(--stroke)}
-.mini2 b{display:block;font-size:16px;margin-bottom:6px}
-.mini2 p{margin:0;font-size:14px;color:var(--tx-2);line-height:1.65}
+/* ---------- rebuilt UI components (HTML, not screenshots) ---------- */
+.ui-lbl{font-family:var(--f-en);font-weight:700;font-size:clamp(15px,1.5vw,22px);letter-spacing:.14em;text-transform:uppercase;margin:0}
+.ui-intro{display:grid;gap:22px;max-width:620px}
+.ui-intro p{font-size:clamp(14px,1.15vw,16.5px);line-height:1.75}
+.stage{position:relative;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,80px);margin-top:clamp(56px,6vw,96px);align-items:start}
+.stage > *:nth-child(2n){margin-top:clamp(80px,10vw,180px)}
+.stage > *{justify-self:center;width:100%;max-width:340px}
+@media (max-width:640px){.stage{grid-template-columns:1fr}.stage > *:nth-child(2n){margin-top:0}}
 
-.svc{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(18px,3vw,40px);margin-top:var(--content-space);justify-items:center}
-.svc .col{display:flex;flex-direction:column;align-items:center;gap:22px;width:100%;min-width:0}
-.svc .pill{font-size:13px;font-weight:700;padding:7px 14px;border-radius:999px;background:rgba(229,52,60,.16);color:var(--red-2);white-space:nowrap}
-.svc .dev{max-width:270px}
-.svc .cap2{text-align:center;max-width:280px}
-.svc .cap2 b{display:block;font-size:17px;margin-bottom:6px}
-.svc .cap2 span{font-size:14.5px;color:var(--tx-2)}
+/* phone screen (frameless, like reference cards) */
+.ph{--r:var(--red);background:#fff;border:1px solid #E6E6E6;border-radius:22px;overflow:hidden;font-family:var(--f-kr);letter-spacing:-.02em;color:#111;
+  box-shadow:0 30px 60px -40px rgba(0,0,0,.35)}
+.ph .sb{display:flex;justify-content:space-between;align-items:center;padding:10px 18px 4px;font-family:var(--f-en);font-weight:600;font-size:11px}
+.ph .sb i{display:inline-block;width:18px;height:8px;border:1.4px solid #111;border-radius:3px;position:relative}
+.ph .sb i::after{content:"";position:absolute;inset:1px 4px 1px 1px;background:#111;border-radius:1px}
+.ph .hd{display:flex;align-items:center;justify-content:space-between;padding:8px 16px}
+.ph .hd img{height:24px;width:auto}
+.ph .hd .ic{display:flex;gap:12px}
+.ph .hd svg{width:19px;height:19px;stroke:#111;fill:none;stroke-width:1.7}
+.ph .tabs{display:flex;gap:16px;padding:4px 16px 0;font-size:12.5px;color:#9a9a9a;border-bottom:1px solid #F0F0F0}
+.ph .tabs span{padding:8px 0 9px;white-space:nowrap}
+.ph .tabs .on{color:#111;font-weight:700;box-shadow:inset 0 -2px 0 #111}
+.ph .promo{margin:12px 14px 0;border-radius:14px;background:var(--pink-l);padding:16px 16px 14px;display:grid;grid-template-columns:1fr 64px;align-items:center;position:relative}
+.ph .promo small{color:var(--r);font-size:10px;font-weight:700}
+.ph .promo b{display:block;font-size:16px;line-height:1.3;margin-top:4px}
+.ph .promo img{width:64px;height:64px;border-radius:12px}
+.ph .promo em{position:absolute;right:12px;bottom:8px;font-style:normal;font-family:var(--f-en);font-size:9.5px;background:rgba(0,0,0,.35);color:#fff;border-radius:10px;padding:1px 7px}
+.ph .quick{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;padding:14px 12px 4px;text-align:center;font-size:10px;color:#555}
+.ph .quick img{width:34px;height:34px;margin:0 auto 5px;border-radius:10px}
+.ph .sec-h{display:flex;justify-content:space-between;align-items:baseline;padding:16px 16px 8px}
+.ph .sec-h b{font-size:14px}
+.ph .sec-h b em{font-style:normal;color:var(--r);font-family:var(--f-en);font-weight:600;font-size:12px;margin-left:6px}
+.ph .sec-h span{font-size:10.5px;color:#9a9a9a}
+.ph .deal{display:grid;grid-template-columns:64px 1fr;gap:12px;align-items:center;padding:0 16px}
+.ph .deal img{width:64px;height:64px;border-radius:8px;object-fit:cover}
+.ph .nm{font-size:11.5px;line-height:1.4;color:#222}
+.ph .pr{font-size:12.5px;font-weight:700;margin-top:2px}
+.ph .pr em{font-style:normal;color:var(--r);margin-right:4px}
+.ph .rt{font-size:10px;color:#9a9a9a;margin-top:2px}
+.ph .g2{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 16px 14px}
+.ph .g2 figure{margin:0}
+.ph .g2 .im{position:relative;aspect-ratio:1;border-radius:8px;overflow:hidden;background:#f3f3f3}
+.ph .g2 .im img{width:100%;height:100%;object-fit:cover}
+.ph .g2 .im .cart{position:absolute;right:6px;bottom:6px;width:24px;height:24px;border-radius:50%;background:#fff;display:grid;place-items:center;box-shadow:0 2px 6px rgba(0,0,0,.15)}
+.ph .g2 .im .cart svg{width:13px;height:13px;stroke:#111;fill:none;stroke-width:1.8}
+.ph .g2 .badge{position:absolute;left:6px;top:6px;background:var(--r);color:#fff;font-family:var(--f-en);font-weight:700;font-size:8.5px;padding:2px 5px;border-radius:3px}
+.ph .g2 figcaption{padding-top:6px}
+.ph .nav{display:grid;grid-template-columns:repeat(5,1fr);border-top:1px solid #F0F0F0;padding:8px 6px 14px;text-align:center;font-size:9.5px;color:#9a9a9a}
+.ph .nav svg{display:block;width:18px;height:18px;margin:0 auto 3px;stroke:currentColor;fill:none;stroke-width:1.7}
+.ph .nav .on{color:#111}
+.ph .srch{display:flex;align-items:center;gap:10px;padding:8px 16px}
+.ph .srch svg{width:18px;height:18px;stroke:#111;fill:none;stroke-width:1.8}
+.ph .srch b{font-size:14px;flex:1;text-align:center}
+.ph .chips{display:flex;gap:6px;padding:10px 16px 6px;overflow:hidden}
+.ph .chips span{flex:none;font-size:11px;border:1px solid #E3E3E3;border-radius:20px;padding:5px 11px;color:#444}
+.ph .chips .on{background:#111;color:#fff;border-color:#111;font-weight:600}
+.ph .cnt{padding:6px 16px 10px;font-size:10.5px;color:#9a9a9a;display:flex;justify-content:space-between}
+.ph .flag{margin:0 16px 10px;font-size:10.5px;color:var(--r);display:flex;align-items:center;gap:6px}
+.ph .flag i{font-style:normal;background:var(--r);color:#fff;border-radius:50%;width:16px;height:16px;display:grid;place-items:center;font-size:9px;font-family:var(--f-en);font-weight:700}
 
-.lg{background:radial-gradient(45% 55% at 72% 50%,rgba(229,52,60,.28),transparent 70%),var(--bg)}
-.lg .ring{position:absolute;width:min(560px,80vw);aspect-ratio:1;border-radius:50%;border:1px solid rgba(247,134,106,.18);left:50%;top:50%;transform:translate(-50%,-50%)}
-.lg .ring.r2{width:min(420px,62vw);border-color:rgba(247,134,106,.28)}
-.lg .devwrap{position:relative;display:flex;justify-content:center;padding-block:40px}
+/* content card (reference "STYLE LIBRARY" card) */
+.mc{background:#fff;border:1px solid #E6E6E6;border-radius:14px;overflow:hidden;font-family:var(--f-kr);letter-spacing:-.02em;color:#111}
+.mc .h{display:flex;justify-content:space-between;align-items:center;padding:14px 16px}
+.mc .h b{font-family:var(--f-en);font-weight:700;font-size:10px;letter-spacing:.06em;text-transform:uppercase}
+.mc .h span{font-size:10px;color:#777}
+.mc .v{position:relative;aspect-ratio:1/1.06;overflow:hidden;background:#111}
+.mc .v img{width:100%;height:100%;object-fit:cover}
+.mc .v .ov{position:absolute;inset:0;display:grid;place-content:center;text-align:center;color:#fff;background:linear-gradient(180deg,rgba(0,0,0,.05),rgba(0,0,0,.35))}
+.mc .v .ov b{font-family:var(--f-en);font-weight:800;font-size:40px;letter-spacing:-.01em;line-height:.9;text-transform:uppercase}
+.mc .v .ov span{font-family:var(--f-en);font-weight:600;font-size:11px;letter-spacing:.42em;margin-top:6px;text-transform:uppercase}
+.mc .v .timer{position:absolute;left:14px;bottom:14px;display:flex;gap:4px;font-family:var(--f-en);font-weight:600;font-size:13px}
+.mc .v .timer i{font-style:normal;background:rgba(255,255,255,.92);color:#111;border-radius:4px;padding:3px 6px}
+.mc .b{padding:16px 16px 6px}
+.mc .b b{font-size:13px;font-weight:700}
+.mc .b p{font-size:11px;line-height:1.6;color:#666;margin-top:6px}
+.mc .tip{margin:8px 16px 0;font-size:10px;color:var(--red);display:flex;align-items:center;gap:6px}
+.mc .tip i{font-style:normal;background:var(--red);color:#fff;font-family:var(--f-en);font-weight:700;font-size:8.5px;padding:1px 5px;border-radius:2px}
+.mc .row3{display:grid;grid-template-columns:repeat(3,112px);gap:8px;padding:14px 0 16px 16px;overflow:hidden}
+.mc .row3 img{width:112px;height:112px;object-fit:cover;border-radius:4px;background:#f2f2f2}
+.mc .row3 small{display:block;margin-top:8px;font-size:9.5px;color:#999;font-family:var(--f-en)}
+.mc .row3 b{display:block;font-size:10.5px;font-weight:600;line-height:1.35;margin-top:2px}
+.mc .row3 b em{font-style:normal;color:var(--red)}
+.mc .opts{display:grid;gap:8px;padding:12px 16px 16px}
+.mc .opt{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:center;border:1px solid #EDEDED;border-radius:10px;padding:10px 12px;font-size:11px}
+.mc .opt b{font-weight:600}
+.mc .opt span{color:#888;font-size:10px}
+.mc .opt i{font-style:normal;width:16px;height:16px;border-radius:50%;border:1.5px solid #ccc}
+.mc .opt.on{border-color:#111}.mc .opt.on i{border:5px solid var(--red)}
+.mc .btn{margin:0 16px 16px;background:var(--red);color:#fff;text-align:center;border-radius:12px;padding:12px;font-size:13px;font-weight:700}
 
-/* PC */
-.pcw{margin-top:var(--content-space);display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:28px;align-items:start}
-.browser{border-radius:18px;overflow:hidden;background:#fff;box-shadow:0 50px 100px -30px rgba(0,0,0,.8),0 0 0 1px rgba(255,255,255,.1)}
-.browser .bar{height:38px;background:#2A2526;display:flex;align-items:center;gap:7px;padding:0 14px;position:relative}
-.browser .bar i{width:11px;height:11px;border-radius:50%;background:#4A4344;display:block}
-.browser .bar span{position:absolute;left:50%;transform:translateX(-50%);font-size:12px;color:var(--tx-3);background:#1C1819;border-radius:8px;padding:3px 70px;white-space:nowrap}
-.pcs-c{container-type:inline-size}
-.pca{font-size:calc(100cqw / 80);color:var(--ink);line-height:1.45;letter-spacing:-.02em;font-family:var(--font)}
-.pca *{box-sizing:border-box}
-.pca .promo{background:var(--red);color:#fff;text-align:center;font-size:.8125em;font-weight:600;padding:.55em 0}
-.pca .hd{display:flex;align-items:center;gap:2em;padding:1.2em 3em}
-.pca .hd .logo{font-size:1.5em}
-.pca .srch{flex:1;max-width:30em;height:2.8em;border-radius:999px;background:var(--fill);display:flex;align-items:center;padding:0 1.2em;font-size:.875em;color:var(--ink-3);gap:.6em}
-.pca .srch svg{width:1.3em;height:1.3em;stroke:var(--ink-3);fill:none;stroke-width:2}
-.pca .hd .ic{margin-left:auto;display:flex;gap:1.4em}
-.pca .hd .ic svg{width:1.6em;height:1.6em;stroke:var(--ink);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.pca .mn{display:flex;gap:2em;padding:0 3em .9em;font-size:.9375em;font-weight:600;color:var(--ink-2);border-bottom:1px solid var(--line);white-space:nowrap}
-.pca .mn .on{color:var(--red)}
-.pca .mn .r{margin-left:auto;font-size:.8125em;color:var(--ink-3);font-weight:500}
-.pca .hb{margin:1.6em 3em 0;border-radius:1.5em;background:linear-gradient(120deg,#FFE7E3,#FFC9C0);padding:2.6em 3em;display:flex;align-items:center;justify-content:space-between;position:relative;overflow:hidden}
-.pca .hb small{font-size:.875em;font-weight:600;color:var(--red)}
-.pca .hb h5{margin:.4em 0 1em;font-size:2em;line-height:1.3;font-weight:700;letter-spacing:-.035em}
-.pca .hb .b{display:inline-flex;height:3em;padding:0 1.4em;align-items:center;border-radius:.8em;background:var(--red);color:#fff;font-weight:700;font-size:.9375em;white-space:nowrap}
-.pca .cp{width:15em;border-radius:1.2em;background:#fff;padding:1.3em 1.5em;box-shadow:0 1.2em 2.4em rgba(229,52,60,.2);transform:rotate(-6deg);margin-right:3em}
-.pca .cp small{font-size:.75em;font-weight:700;letter-spacing:.1em;color:var(--red)}
-.pca .cp b{display:block;font-size:2.4em;font-weight:700;letter-spacing:-.04em;line-height:1.1;margin:.15em 0}
-.pca .cp span{font-size:.75em;color:var(--ink-3)}
-.pca .qk{display:grid;grid-template-columns:repeat(6,1fr);margin:1.8em 3em 0;gap:1em}
-.pca .qk div{display:flex;flex-direction:column;align-items:center;gap:.5em;font-size:.8125em;color:var(--ink-2);font-weight:500;white-space:nowrap}
-.pca .qk i{width:3.8em;height:3.8em;border-radius:1.1em;background:var(--fill);display:grid;place-items:center}
-.pca .qk svg{width:1.8em;height:1.8em;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
-.pca .bt{display:flex;justify-content:space-between;align-items:baseline;margin:2.2em 3em .9em}
-.pca .bt b{font-size:1.375em;font-weight:700}
-.pca .bt b em{font-style:normal;color:var(--red)}
-.pca .bt span{font-size:.8125em;color:var(--ink-3)}
-.pca .pl{display:grid;grid-template-columns:repeat(4,1fr);gap:1.2em;margin:0 3em 2.4em}
-.pca .pl .th{aspect-ratio:1;border-radius:1em;overflow:hidden;background:var(--fill)}
-.pca .pl .nm{margin-top:.6em;font-size:.9375em}
-.pca .pl .pr{font-size:1em}
-.pcnotes{display:flex;flex-direction:column;gap:12px}
-.pcnotes div{padding:20px 22px}
-.pcnotes small{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral);text-transform:uppercase}
-.pcnotes p{margin:6px 0 0;font-size:15px;line-height:1.65}
-.sw5{display:flex;gap:8px;padding:6px 4px}
-.sw5 i{width:30px;height:30px;border-radius:9px;display:block}
+/* wireframe card */
+.wire{position:relative;width:100%;max-width:340px;aspect-ratio:340/560;margin:0 auto;background:#fff;border:1px solid #D9D9D9;overflow:hidden;
+  background-image:linear-gradient(90deg,transparent calc(20% - 1px),#E2E2E2 calc(20% - 1px),#E2E2E2 20%,transparent 20%,transparent calc(37% - 1px),#E2E2E2 calc(37% - 1px),#E2E2E2 37%,transparent 37%,transparent calc(38.5% - 1px),#E2E2E2 calc(38.5% - 1px),#E2E2E2 38.5%,transparent 38.5%,transparent calc(61.5% - 1px),#E2E2E2 calc(61.5% - 1px),#E2E2E2 61.5%,transparent 61.5%,transparent calc(63% - 1px),#E2E2E2 calc(63% - 1px),#E2E2E2 63%,transparent 63%,transparent calc(80% - 1px),#E2E2E2 calc(80% - 1px),#E2E2E2 80%,transparent 80%)}
+.wire .hl{position:absolute;left:0;right:0;height:1px;background:#E2E2E2}
+.wire .gh{position:absolute;left:0;right:0;top:19%;text-align:center;color:#BDBDBD}
+.wire .gh b{display:block;font-family:var(--f-en);font-weight:800;font-size:clamp(26px,3vw,40px);line-height:.9}
+.wire .gh span{font-family:var(--f-en);font-weight:600;font-size:10px;letter-spacing:.42em}
+.wire .sp{position:absolute;left:37%;width:44%;font-family:var(--f-en);font-weight:700;font-size:8px;color:#C4C4C4;letter-spacing:.04em}
+.wire .sp i{display:flex;justify-content:space-between;font-style:normal;font-weight:400;border-bottom:1px solid #E2E2E2;padding:2px 0 3px;margin-top:2px}
+.wire .dim{position:absolute;font-family:var(--f-en);font-size:9px;color:var(--spec, #1A73FF)}
+.pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(20px,4vw,80px);align-items:center;max-width:820px;margin:0 auto}
+.pair > *{width:100%;max-width:340px;justify-self:center}
+.pair-cap{display:flex;justify-content:space-between;max-width:820px;margin:28px auto 0;gap:16px}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
 
-/* ================= DESIGN SYSTEM ================= */
-.ds{background:var(--bg-2)}
-.lg-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
-.lgc{position:relative;border-radius:24px;aspect-ratio:1/1;display:grid;place-items:center;overflow:hidden;border:1px solid var(--stroke)}
-.lgc img{width:78%;max-width:100%}
-.lgc img.ic{width:48%;border-radius:22%;box-shadow:0 24px 48px -16px rgba(0,0,0,.45)}
-.lgc span{position:absolute;left:20px;bottom:16px;font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase}
-.lgc.w{background:#fff}.lgc.w span{color:#8B95A1}
-.lgc.d{background:#141112}.lgc.d span{color:var(--tx-3)}
-.lgc.r{background:var(--red)}.lgc.r span{color:rgba(255,255,255,.8)}
-.ds-grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(0,1fr);gap:var(--card-gap);margin-top:var(--content-space)}
-.ds-card{padding:var(--card-padding)}
-.ds-card h4{margin:0 0 20px;font-size:15px;font-weight:600;color:var(--tx-2);display:flex;justify-content:space-between;gap:12px}
-.ds-card h4 em{font-style:normal;color:var(--coral)}
-.sws{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}
-.sws div{aspect-ratio:1/1.05;border-radius:18px;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;font-size:13px;font-weight:600;min-width:0}
-.sws div span{font-size:11.5px;font-weight:500;opacity:.8;margin-top:2px}
-.ty div{display:grid;grid-template-columns:96px minmax(0,1fr);align-items:baseline;padding:12px 0;border-top:1px solid var(--stroke);gap:12px}
-.ty div:first-child{border-top:0;padding-top:0}
-.ty span{font-size:12.5px;color:var(--tx-3)}
-.cmps{margin-top:var(--card-gap);display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap)}
-.cmps .ds-card{display:flex;flex-direction:column;gap:12px;align-items:flex-start}
-.cbtn{display:inline-flex;align-items:center;justify-content:center;height:56px;padding:0 28px;border-radius:16px;font-size:17px;font-weight:700;white-space:nowrap;width:100%}
-.cbtn.p{background:var(--red);color:#fff}.cbtn.s{background:rgba(229,52,60,.14);color:var(--red-2)}
-.cchips{display:flex;flex-wrap:wrap;gap:8px}
-.cchips span{height:36px;padding:0 14px;border-radius:999px;display:inline-flex;align-items:center;font-size:14px;font-weight:600;background:var(--card-2);color:var(--tx-2);white-space:nowrap}
-.cchips span.on{background:#fff;color:var(--ink)}
-.cinput{width:100%;height:54px;border-radius:14px;background:var(--card-2);display:flex;align-items:center;padding:0 16px;font-size:15px;color:var(--tx-3)}
-.cinput.on{box-shadow:inset 0 0 0 1.5px #fff;color:var(--tx)}
-.spec{font-size:12.5px;color:var(--tx-3)}
+/* category tiles */
+.cats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;margin-top:56px}
+.cats figure{margin:0}
+.cats .im{aspect-ratio:1/1;overflow:hidden;border-radius:6px;background:#f3f3f3}
+.cats img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
+.cats figure:hover img{transform:scale(1.04)}
+.cats figcaption{display:flex;justify-content:space-between;align-items:baseline;margin-top:10px;font-size:12.5px}
+.cats figcaption span{font-family:var(--f-en);font-size:10px;color:var(--mute)}
+@media (max-width:760px){.cats{grid-template-columns:repeat(2,minmax(0,1fr))}}
 
-/* ================= STORY (why / problem / decision / role) ================= */
-.st-why{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,1fr);gap:var(--card-gap);margin-top:var(--content-space)}
-.voice{padding:var(--card-padding)}
-.voice .row{display:grid;grid-template-columns:92px minmax(0,1fr);gap:14px;padding:14px 0;border-top:1px solid var(--stroke)}
-.voice .row:first-of-type{border-top:0}
-.voice .row span{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--coral);padding-top:4px}
-.voice .row b{display:block;font-size:18px;font-weight:600}
-.voice .row p{margin:4px 0 0;font-size:14.5px;color:var(--tx-2);line-height:1.65}
-.lbl2{font-size:12px;font-weight:600;letter-spacing:.12em;color:var(--tx-3);text-transform:uppercase}
-.biz{padding:var(--card-padding)}
-.biz p{margin:12px 0 0;font-size:17px;line-height:1.7}
-.goalc{padding:var(--card-padding);border-radius:24px;background:linear-gradient(140deg,#FF8A72,#E5343C);color:#fff;margin-top:var(--card-gap);box-shadow:0 24px 48px -18px rgba(229,52,60,.55)}
-.goalc .lbl2{color:rgba(255,255,255,.8)}
-.goalc p{margin:10px 0 0;font-size:clamp(19px,2vw,23px);font-weight:700;line-height:1.45}
-.scn-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
-.scn{padding:var(--card-padding);display:flex;flex-direction:column;gap:16px;min-width:0}
-.scn .hd{display:flex;justify-content:space-between;align-items:center;gap:10px}
-.scn .hd b{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral)}
-.scn .hd span{font-size:12px;font-weight:600;padding:5px 10px;border-radius:999px;background:rgba(255,255,255,.08);color:var(--tx-2)}
-.scn h4{margin:6px 0 0;font-size:18px;font-weight:600;line-height:1.5}
-.scn .w{margin:4px 0 0;font-size:14px;color:var(--tx-2)}
-.scn hr{border:0;height:1px;background:var(--stroke);margin:0}
-.scn p{margin:6px 0 0;font-size:15px;line-height:1.7}
-.scn .why{color:#FFB4A8}
-.scn .lbl2.r{color:var(--red-2)}
-.dec-list{display:flex;flex-direction:column;gap:var(--card-gap);margin-top:var(--content-space)}
-.dec{display:grid;grid-template-columns:120px minmax(0,1fr) minmax(0,1fr) minmax(0,1.25fr);gap:20px;align-items:center;padding:var(--card-padding)}
-.dec .ar{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral)}
-.dec .op{padding:16px 18px;border-radius:14px;min-width:0}
-.dec .op.a{background:rgba(255,255,255,.04);border:1px dashed rgba(255,255,255,.18);color:var(--tx-2)}
-.dec .op.b{background:rgba(229,52,60,.12);border:1.5px solid rgba(255,106,100,.7);font-weight:600}
-.dec .op.b .lbl2{color:#FF8A84}
-.dec .op p{margin:6px 0 0;font-size:15px;line-height:1.55}
-.dec .rs{margin:0;font-size:14.5px;line-height:1.75;color:var(--tx-2)}
-.role-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.35fr);gap:var(--card-gap);margin-top:var(--content-space)}
-.role{padding:var(--card-padding)}
-.role .it{margin-top:18px}
-.role .it b{display:block;font-size:17px;font-weight:600}
-.role .it p{margin:4px 0 0;font-size:14.5px;color:var(--tx-2);line-height:1.65}
-.iter{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:18px}
-.iter div{padding:18px;border-radius:16px;background:rgba(255,255,255,.04);position:relative}
-.iter div.fin{background:rgba(229,52,60,.14);border:1px solid rgba(255,106,100,.5)}
-.iter span{font-size:12px;font-weight:600;color:var(--coral)}
-.iter div.fin span{color:#FF8A84}
-.iter p{margin:8px 0 0;font-size:14.5px;line-height:1.65}
-.lesson{margin-top:22px;padding-top:20px;border-top:1px solid var(--stroke)}
-.lesson p{margin:8px 0 0;font-size:15px;line-height:1.75;color:var(--tx-2)}
+/* PC browser */
+.browser{width:min(75vw,1240px);margin:0 auto;background:#fff;border-radius:12px;overflow:hidden;box-shadow:0 40px 80px -50px rgba(0,0,0,.4);font-family:var(--f-kr);letter-spacing:-.02em;color:#111}
+@media (max-width:900px){.browser{width:auto;margin-left:var(--gut);margin-right:var(--gutR)}}
+.browser .bar{display:flex;align-items:center;gap:6px;padding:10px 14px;background:#F1F1F1}
+.browser .bar i{width:9px;height:9px;border-radius:50%;background:#D0D0D0}
+.browser .bar span{margin:0 auto;font-family:var(--f-en);font-size:11px;color:#888;background:#fff;border-radius:6px;padding:3px 40px}
+.browser .notice{background:var(--red);color:#fff;text-align:center;font-size:11px;padding:6px}
+.browser .gnb{display:flex;align-items:center;gap:28px;padding:16px 4%;border-bottom:1px solid #F0F0F0}
+.browser .gnb img{height:28px;width:auto}
+.browser .gnb .q{flex:1;max-width:340px;display:flex;align-items:center;gap:8px;background:#F4F4F4;border-radius:20px;padding:8px 14px;font-size:12px;color:#999}
+.browser .gnb .q svg,.browser .gnb .ic svg{width:16px;height:16px;stroke:#111;fill:none;stroke-width:1.8}
+.browser .gnb .ic{margin-left:auto;display:flex;gap:16px}
+.browser .menu{display:flex;gap:26px;padding:12px 4%;font-size:12.5px;font-weight:600;border-bottom:1px solid #F0F0F0;overflow:hidden;white-space:nowrap}
+.browser .menu .on{color:var(--red)}
+.browser .menu .r{margin-left:auto;font-weight:400;color:#999;font-size:11px}
+.browser .hero2{display:grid;grid-template-columns:1.1fr 1fr;margin:22px 4% 0;border-radius:14px;overflow:hidden;background:var(--pink-l)}
+.browser .hero2 .t{padding:clamp(22px,3vw,48px);display:grid;align-content:center;gap:10px}
+.browser .hero2 small{font-family:var(--f-en);font-weight:700;font-size:11px;color:var(--red);letter-spacing:.06em}
+.browser .hero2 b{font-size:clamp(18px,2vw,30px);line-height:1.3}
+.browser .hero2 .cp{display:inline-flex;align-items:center;gap:10px;margin-top:6px}
+.browser .hero2 .cp span{background:var(--red);color:#fff;font-size:12px;font-weight:700;border-radius:8px;padding:9px 16px}
+.browser .hero2 .cp em{font-style:normal;font-size:11px;color:#666}
+.browser .hero2 .im{position:relative;min-height:220px}
+.browser .hero2 .im img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+.browser .hero2 .coupon{position:absolute;left:-24px;bottom:22px;background:#fff;border-radius:10px;padding:12px 16px;box-shadow:0 10px 24px rgba(0,0,0,.18);transform:rotate(-4deg)}
+.browser .hero2 .coupon small{display:block;font-size:9px;color:var(--red);font-family:var(--f-en);letter-spacing:.08em}
+.browser .hero2 .coupon b{font-size:20px}
+.browser .hero2 .im.glass{min-height:250px;overflow:hidden;background:linear-gradient(135deg,#FCE7E5,#F9D3D0)}
+.browser .hero2 .glass i{position:absolute;border-radius:50%;filter:blur(2px)}
+.browser .hero2 .glass .b1{width:46%;aspect-ratio:1;left:14%;top:-14%;background:radial-gradient(circle at 35% 35%,#FF7A7F,#E5343B 70%)}
+.browser .hero2 .glass .b2{width:30%;aspect-ratio:1;right:6%;bottom:-6%;background:radial-gradient(circle at 35% 35%,#FFC1B8,#F4A6A0 70%)}
+.browser .hero2 .glass .b3{width:16%;aspect-ratio:1;right:22%;top:10%;background:radial-gradient(circle at 35% 35%,#FFE08A,#F7C548 70%)}
+.browser .hero2 .glass .coupon{left:50%;top:50%;bottom:auto;transform:translate(-50%,-50%) rotate(-6deg);width:64%;padding:22px 26px 24px;border-radius:18px;
+  background:linear-gradient(135deg,rgba(255,255,255,.55),rgba(255,255,255,.18));-webkit-backdrop-filter:blur(18px) saturate(1.4);backdrop-filter:blur(18px) saturate(1.4);
+  border:1px solid rgba(255,255,255,.7);box-shadow:0 20px 40px -18px rgba(160,20,30,.45),inset 0 1px 0 rgba(255,255,255,.8);color:#111}
+.browser .hero2 .glass .coupon small{color:#B3121A;letter-spacing:.14em;font-weight:700}
+.browser .hero2 .glass .coupon b{display:block;font-family:var(--f-en);font-weight:700;font-size:clamp(26px,2.6vw,42px);letter-spacing:-.02em;margin-top:4px;line-height:1.1}
+.browser .hero2 .glass .coupon b em{font-style:normal;font-size:.5em;margin-left:2px}
+.browser .hero2 .glass .coupon span{display:block;font-size:11px;color:#5a3a3a;margin-top:6px}
+.browser .hero2 .glass .coupon u{position:absolute;right:18px;top:18px;width:30px;height:30px;border-radius:50%;background:rgba(229,52,59,.9);box-shadow:0 0 0 6px rgba(255,255,255,.35)}
+.browser .qi{display:grid;grid-template-columns:repeat(6,1fr);gap:10px;padding:22px 4% 6px;text-align:center;font-size:11.5px;color:#444}
+.browser .qi img{width:44px;height:44px;margin:0 auto 6px;border-radius:12px}
+.browser .best{padding:18px 4% 30px}
+.browser .best .t{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px}
+.browser .best .t b{font-size:16px}.browser .best .t b em{font-style:normal;color:var(--red)}
+.browser .best .t span{font-size:11px;color:#999}
+.browser .g4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.browser .g4 .im{aspect-ratio:1;border-radius:8px;overflow:hidden;background:#f3f3f3}
+.browser .g4 img{width:100%;height:100%;object-fit:cover}
+.browser .g4 .nm{font-size:12px;margin-top:8px;color:#333}
+.browser .g4 .pr{font-size:13px;font-weight:700;margin-top:2px}
+.browser .g4 .pr em{font-style:normal;color:var(--red);margin-right:4px}
+@media (max-width:760px){.browser .hero2{grid-template-columns:1fr}.browser .hero2 .coupon{left:12px}.browser .qi{grid-template-columns:repeat(3,1fr)}.browser .g4{grid-template-columns:repeat(2,1fr)}.browser .gnb .q{display:none}.browser .gnb{gap:12px}}
 
-/* ================= RESULT ================= */
-.rl{margin-top:var(--content-space);border-top:1px solid var(--stroke)}
-.rl div{display:grid;grid-template-columns:120px minmax(0,1fr);gap:20px;padding:20px 4px;border-bottom:1px solid var(--stroke);align-items:center}
-.rl span{font-size:13px;font-weight:600;letter-spacing:.1em;color:var(--coral);text-transform:uppercase}
-.rl b{font-size:17px;font-weight:600}
-.qa{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:var(--card-gap);margin-top:var(--content-space)}
-.qa .glass{padding:var(--card-padding)}
-.qa h4{margin:0 0 12px;font-size:18px;font-weight:700}
-.qa h4 em{font-style:normal;color:var(--coral);margin-right:6px}
-.qa p{margin:0;color:var(--tx-2);font-size:15.5px;line-height:1.8}
-.end{margin-top:120px;text-align:center}
-.end .w{font-size:clamp(56px,11vw,150px);font-weight:700;letter-spacing:-.055em;line-height:1;background:linear-gradient(180deg,rgba(255,255,255,.9),rgba(255,255,255,.12));-webkit-background-clip:text;background-clip:text;color:transparent}
-.end p{color:var(--tx-3);font-size:14px;margin:18px 0 0}
+/* GNB mega menu on dark */
+.gnb-sec{background:#fff;padding-block:clamp(90px,10vw,170px);color:var(--ink)}
+.gnb-sec .cap .txt{color:#333}.gnb-sec .cap h3{color:var(--ink)}
+.gnb-sec .mega{border:1px solid var(--line);box-shadow:0 30px 60px -40px rgba(0,0,0,.25)}
+.mega{width:min(75vw,1240px);margin:0 auto;background:#fff;color:#111;border-radius:12px;overflow:hidden;font-family:var(--f-kr);letter-spacing:-.02em;display:grid;grid-template-columns:minmax(0,1.6fr) minmax(0,1fr)}
+@media (max-width:900px){.mega{width:auto;margin-left:var(--gut);margin-right:var(--gutR)}}
+.mega .top{grid-column:1/-1;display:flex;align-items:center;gap:26px;padding:16px 26px;border-bottom:1px solid #EFEFEF;font-size:12px;color:#B5B5B5;white-space:nowrap;overflow:hidden}
+.mega .top img{height:24px;width:auto;margin-right:18px}
+.mega .top .on{color:#111;font-weight:700}
+.mega .top .x{margin-left:auto;color:#111;font-size:16px}
+.mega .cols{display:grid;grid-template-columns:110px 1fr;gap:20px;padding:26px}
+.mega .cols b{font-size:13px}
+.mega .cols ul{list-style:none;margin:0;padding:0;display:grid;gap:10px;font-size:12.5px;color:#444}
+.mega .cols li:first-child{color:var(--red);font-weight:600}
+.mega .promos{grid-column:1;display:grid;grid-template-columns:1fr 1fr;gap:12px;padding:0 26px 26px 156px}
+.mega .promos figure{margin:0}
+.mega .promos .im{position:relative;aspect-ratio:4/3;border-radius:6px;overflow:hidden}
+.mega .promos img{width:100%;height:100%;object-fit:cover}
+.mega .promos .im b{position:absolute;inset:0;display:grid;place-content:center;color:#fff;font-family:var(--f-en);font-weight:800;font-size:26px;letter-spacing:.02em;background:rgba(0,0,0,.25);text-transform:uppercase}
+.mega .promos figcaption{font-size:11.5px;margin-top:8px;color:#333}
+.mega .side{grid-column:2;grid-row:2/4;position:relative;min-height:320px}
+.mega .side img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+@media (max-width:760px){.mega{grid-template-columns:1fr}.mega .side{grid-column:1;grid-row:auto;min-height:220px}.mega .promos{padding:0 20px 20px}.mega .cols{grid-template-columns:1fr}}
+.rebuilt-note{margin-top:20px;font-size:11.5px;color:var(--mute)}
 
-/* ================= RESPONSIVE ================= */
-@media (max-width:1180px){
-  .rs-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media (max-width:1080px){
-  .pcw{grid-template-columns:minmax(0,1fr)}
-  .pcnotes{display:grid;grid-template-columns:repeat(3,minmax(0,1fr))}
-}
-@media (max-width:900px){
-  .ft .lay,.ft .lay.rev{grid-template-columns:minmax(0,1fr)}
-  .ft .lay.rev .txt{order:0}
-  .pc-row{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:40px}
-  .pc-row:before{display:none}
-  .st-why,.scn-grid,.role-grid,.pp-grid,.cc-grid,.svc,.qa,.ds-grid,.cmps,.lg-grid{grid-template-columns:minmax(0,1fr)}
-  .svc{gap:64px}
-  .pcnotes{grid-template-columns:minmax(0,1fr)}
-  .bub,.bub.sol{display:none}
-  .fstage{flex-direction:column;align-items:center;padding-right:0}
-  .note{display:none}
-  .hero{min-height:0}
-  .hero:before,.hero:after{display:none}
-  .hr{text-align:left}.hr small{margin-top:20px}
-  .hstage{position:relative;inset:auto;height:600px;margin-top:20px}
-  .hstage .dev{width:180px}
-  .hstage .p1{left:calc(50% - 165px);bottom:70px}
-  .hstage .p2{left:calc(50% - 5px);bottom:140px}
-  .hcirc{display:none}
-  .sheet{position:relative;inset:auto!important;margin:20px auto 0;width:100%;max-width:300px}
-  .cmpstage{padding-right:0}
-  .cmpstage .wrapdev.o{display:none}.cmpstage .arr{display:none}
-  .ccc{min-height:220px}
-}
-@media (max-width:560px){
-  .rs-grid{grid-template-columns:minmax(0,1fr)}
-  .pc-row{grid-template-columns:minmax(0,1fr)}
-  .ps-h{display:none}
-  .ps-r{grid-template-columns:minmax(0,1fr)}
-  .ps-r .ar{transform:rotate(90deg)}
-  .mini2{grid-template-columns:minmax(0,1fr)}
-  :root{--card-gap:20px}
-  .dec{grid-template-columns:minmax(0,1fr);gap:12px}
-  .iter{grid-template-columns:minmax(0,1fr)}
-  .voice .row{grid-template-columns:minmax(0,1fr);gap:4px}
-  .sws{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .rl div{grid-template-columns:minmax(0,1fr);gap:4px}
-  .meta{font-size:11px}
+/* package (dark) */
+.pkg{background:#fff;color:var(--ink);padding-block:clamp(110px,12vw,200px)}
+.pkg2{background:#CACACA;color:var(--ink);padding-block:clamp(80px,8vw,140px)}
+.pkg3{background:#fff;padding-block:clamp(70px,7vw,120px) clamp(110px,12vw,200px)}
+.pkg2 .lbl,.pkg3 .lbl{color:var(--ink)}
+.pkg2 .info dt{color:#555}.pkg2 .pk-hero{margin-top:0}
+.pkg .row .txt{color:#333}
+.pkg .lbl{color:var(--ink)}
+.pkg .info dt{color:var(--mute)}
+.pk-hero{position:relative;margin-top:96px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2fr);gap:24px;align-items:end}
+.pk-hero .info{display:grid;gap:22px;padding-bottom:6px}
+.pk-hero .info h3{margin:0;font-size:clamp(22px,2vw,30px);font-weight:600;line-height:1.3;letter-spacing:-.03em}
+.pk-hero .info dl{margin:0;display:grid;gap:12px}
+.pk-hero .info dt{color:var(--on-dark-mute)}
+.pk-hero .info dd{margin:4px 0 0;font-size:13px}
+.pk-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:12px}
+.pk-pair img,.pk-hero img{width:100%}
+.pk-sep{height:1px;background:#2b2b2b;margin:120px 0 0}
+@media (max-width:760px){.pk-hero{grid-template-columns:1fr}.pk-hero .media{order:-1}.pk-pair{grid-template-columns:1fr}}
+
+/* impact */
+.impact{margin-top:72px}
+.igroup + .igroup{margin-top:72px}
+.igroup > .lbl{display:flex;justify-content:space-between;gap:16px;padding-bottom:14px;border-bottom:1px solid var(--ink)}
+.igroup > .lbl span:last-child{color:var(--mute);font-weight:500;text-transform:none;letter-spacing:0;font-family:var(--f-kr);font-size:12px}
+.nums{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.nums div{padding:26px 20px 30px 0;border-right:1px solid var(--line)}
+.nums div+div{padding-left:20px}
+.nums div:last-child{border-right:0}
+.nums b{display:block;font-family:var(--f-en);font-weight:400;font-size:clamp(40px,4.4vw,76px);line-height:1;letter-spacing:-.03em}
+.nums span{display:block;margin-top:12px;font-size:12.5px;color:#555}
+.nums.three{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media (max-width:760px){.nums,.nums.three{grid-template-columns:1fr 1fr}.nums div{padding-left:0!important;border-right:0;border-bottom:1px solid var(--line)}}
+
+/* ending stack */
+.stack-sec{padding-block:clamp(110px,12vw,200px)}
+.books{display:grid;gap:10px;max-width:760px}
+.book{display:grid;grid-template-columns:minmax(0,2.4fr) minmax(0,.9fr) 1px 46px 1px minmax(0,.9fr);align-items:start;gap:12px;
+  background:linear-gradient(#FBFBFB,#ECECEC);padding:12px 14px;box-shadow:0 6px 0 -3px #DADADA,0 10px 14px -10px rgba(0,0,0,.25)}
+.book .t{font-family:var(--f-en);font-weight:400;font-size:clamp(26px,3vw,48px);line-height:1;letter-spacing:-.02em}
+.book .s{font-family:var(--f-en);font-size:10px;font-weight:600;line-height:1.25}
+.book .v{width:1px;align-self:stretch;background:#bbb}
+.book .i{font-family:var(--f-en);font-size:10px;font-weight:600}
+.credits{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:12px 24px;margin-top:72px;margin-left:min(36%,320px);max-width:520px;font-family:var(--f-en);font-size:12px}
+.credits b{font-weight:700}
+.credits span{color:#333}
+footer{display:flex;justify-content:space-between;gap:16px;padding:28px var(--gutR) 40px var(--gut)}
+@media (max-width:760px){.book{grid-template-columns:minmax(0,1fr) 46px minmax(0,1fr)}.book .s:first-of-type,.book .v{display:none}.credits{margin-left:0}}
+
+/* reveal */
+.rv{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s cubic-bezier(.2,.7,.2,1)}
+.rv.in{opacity:1;transform:none}
+@media (prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}html{scroll-behavior:auto}}
+
+/* phone-width hero */
+@media (max-width:760px){.hero .ttl{margin:0 var(--gutR) 0 var(--gut)}.hero .mark{width:90px}.hero .cred{grid-template-columns:1fr 1fr;margin:60px var(--gutR) 0 var(--gut)}.hero .cred .r{grid-column:1/-1;justify-self:start}
+  .scatter{height:auto;display:grid;grid-template-columns:1fr 1fr;gap:18px 12px}
+  .scatter .kw,.scatter .sc-img{position:static;width:auto!important;height:auto!important}
+  .scatter .sc-img{aspect-ratio:1}
+  .band{min-height:620px}
+  .band .mark{top:auto;bottom:24%;right:var(--gutR)}
+  .band .kw2{top:auto;bottom:40%}
 }
 </style>
 
-<!-- ============ ICONS ============ -->
+<!-- ============ HERO ============ -->
+<header class="hero" aria-labelledby="hl">
+  <div class="ttl">
+    <h1 id="hl"><b>Foodjang</b>UX/UI · Package<br>Design Renewal</h1>
+    <svg class="mark" viewBox="0 0 250 120" aria-hidden="true"><path d="M0 60H120M60 0V120"/><circle cx="190" cy="60" r="59"/></svg>
+  </div>
+  <svg class="shapes" viewBox="0 0 1600 260" role="img" aria-label="푸드장 레드 그래픽 모티프">
+    <defs>
+      <linearGradient id="g1" gradientUnits="userSpaceOnUse" x1="-73" y1="0" x2="149" y2="0"><stop offset="0" stop-color="#D81F28"/><stop offset=".55" stop-color="#E5343B"/><stop offset="1" stop-color="#F1596A"/></linearGradient><linearGradient id="g2" gradientUnits="userSpaceOnUse" x1="449" y1="0" x2="671" y2="0"><stop offset="0" stop-color="#D81F28"/><stop offset=".55" stop-color="#E5343B"/><stop offset="1" stop-color="#F1596A"/></linearGradient><linearGradient id="g3" gradientUnits="userSpaceOnUse" x1="870" y1="0" x2="1316" y2="0"><stop offset="0" stop-color="#D81F28"/><stop offset=".55" stop-color="#E5343B"/><stop offset="1" stop-color="#F1596A"/></linearGradient>
+      <clipPath id="hc"><circle cx="1554" cy="130" r="111"/></clipPath>
+      <pattern id="hl1" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(-8)"><path d="M0 3.5H7" stroke="#E5343B" stroke-width="1.1"/></pattern>
+      <pattern id="hl2" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(52)"><path d="M0 3.5H7" stroke="#E5343B" stroke-width="1.1"/></pattern>
+    </defs>
+    <circle cx="38" cy="130" r="111" fill="url(#g1)"/>
+    <g fill="none" stroke="#E5343B" stroke-width="1.1" opacity=".9"><circle cx="392" cy="130" r="6.0"/><circle cx="392" cy="130" r="11.5"/><circle cx="392" cy="130" r="17.0"/><circle cx="392" cy="130" r="22.5"/><circle cx="392" cy="130" r="28.0"/><circle cx="392" cy="130" r="33.5"/><circle cx="392" cy="130" r="39.0"/><circle cx="392" cy="130" r="44.5"/><circle cx="392" cy="130" r="50.0"/><circle cx="392" cy="130" r="55.5"/><circle cx="392" cy="130" r="61.0"/><circle cx="392" cy="130" r="66.5"/><circle cx="392" cy="130" r="72.0"/><circle cx="392" cy="130" r="77.5"/><circle cx="392" cy="130" r="83.0"/><circle cx="392" cy="130" r="88.5"/><circle cx="392" cy="130" r="94.0"/><circle cx="392" cy="130" r="99.5"/><circle cx="392" cy="130" r="105.0"/><circle cx="392" cy="130" r="110.5"/></g>
+    <circle cx="560" cy="130" r="111" fill="url(#g2)"/>
+    <g fill="url(#g3)"><circle cx="981" cy="130" r="111"/><circle cx="1205" cy="130" r="111"/><path d="M1036.5 33.9Q1093 64 1149.5 33.9L1149.5 226.1Q1093 196 1036.5 226.1Z"/></g>
+    <g clip-path="url(#hc)"><rect x="1440" y="15" width="230" height="230" fill="url(#hl1)"/><path d="M1490 245L1560 120L1670 140V245Z" fill="#fff"/><path d="M1490 245L1560 120L1670 140V245Z" fill="url(#hl2)"/></g>
+  </svg>
+  <div class="cred">
+    <div><p class="h">Yu Meekyung</p><p>Research · UX/UI : <b>Yu Meekyung</b></p><p>Package Design : <b>Yu Meekyung</b></p><p>Contribution : <b>100%</b></p></div>
+    <div><p class="h">Foodjang</p><p>Team : <b>New Commerce</b></p><p>Period : <b>2022.11 – 2026</b></p><p>Scope : <b>App · PC Web · Package</b></p></div>
+    <p class="r">© 2026 Yu Meekyung. All Rights Reserved</p>
+  </div>
+</header>
+
+<!-- ============ OVERVIEW ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="row rv">
+      <p class="lbl">Overview</p>
+      <div class="txt">
+        <p>푸드장은 ‘내가 찾던 신선함의 기준’을 내건 축산·식품 커머스 브랜드입니다. 자사 앱과 PC 웹, 네이버·쿠팡·카카오 선물하기 같은 외부 채널, 그리고 매대에 놓이는 패키지까지 고객이 푸드장을 만나는 모든 지점을 한 명의 디자이너가 맡았습니다.</p>
+        <p>2023년 하반기 이용자 조사에서 반복된 불만은 ‘상품이 나빠서’가 아니라 <b>‘원하는 상품까지 가는 길이 멀어서’</b>였습니다. 그래서 이 프로젝트의 목표를 새 기능을 더하는 것이 아니라, 앱에서도 매대에서도 <b>고객이 원하는 고기까지 가는 길을 짧게</b> 만드는 것으로 정했습니다.</p>
+      </div>
+    </div>
+    <dl class="facts rv">
+      <div><dt class="lbl">Client</dt><dd>㈜푸드장 뉴커머스사업팀</dd></div>
+      <div><dt class="lbl">Period</dt><dd>2022.11 – 현재<br>앱 리뉴얼 2023.10 – 11</dd></div>
+      <div><dt class="lbl">Scope</dt><dd>App · PC Web UX/UI<br>Package · Gift set</dd></div>
+      <div><dt class="lbl">Role</dt><dd>리서치 정리 · 문제 정의 · UI · 패키지<br>디자인 기여도 100%</dd></div>
+    </dl>
+
+    <div class="kwgrid rv" aria-label="프로젝트 키워드"><div class="kwi"><span class="lbl">01</span><b>Fresh</b><span class="d">신선함의 기준</span></div><div class="kwi"><span class="lbl">02</span><b>Fast</b><span class="d">짧아진 탐색</span></div><div class="kwi"><span class="lbl">03</span><b>Fair</b><span class="d">합리적인 가격</span></div><div class="kwi"><span class="lbl">04</span><b>Dinner</b><span class="d">저녁 39%</span></div><div class="kwi"><span class="lbl">05</span><b>Camping</b><span class="d">캠핑 · 주말</span></div><div class="kwi"><span class="lbl">06</span><b>Gift</b><span class="d">선물하기</span></div><div class="kwi"><span class="lbl">07</span><b>App · Web</b><span class="d">같은 시스템</span></div><div class="kwi"><span class="lbl">08</span><b>Package</b><span class="d">매대 앞 3초</span></div></div>
+
+  </div>
+</section>
+
+<!-- ============ STRATEGY BAND ============ -->
+<section class="band" aria-labelledby="st">
+  <div class="vlines" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+  <div class="inner wrap">
+    <div class="row">
+      <p class="lbl" id="st">Strategy</p>
+      <p class="txt">목적이 분명한 저녁·주말 구매자에게 탐색은 곧 이탈입니다. 앱은 추천과 필터를 앞으로 꺼내고, 패키지는 매대 앞 3초 안에 제품명과 맛을 읽히게 — 화면과 박스에 같은 원칙을 적용했습니다.</p>
+    </div>
+    <div class="row" style="margin-top:40px">
+      <p class="lbl">Direction</p>
+      <p class="txt">이용자 니즈·불만족도 조사에서 반복된 목소리를 네 영역으로 묶고, 무엇을 고칠지보다 <b>왜 막히는지</b>를 먼저 정리했습니다. 이를 바탕으로 모든 화면에 적용할 세 가지 디자인 원칙을 세웠습니다.</p>
+    </div>
+  </div>
+  <span class="kw2">Fresh · Fast · Fair</span>
+  <img class="mark" src="img/foodjang_appicon.svg" alt="" width="512" height="512" style="filter:drop-shadow(0 24px 40px rgba(120,0,0,.35));border-radius:22%">
+  <div class="spaced" aria-hidden="true"><span>F</span><span>O</span><span>O</span><span>D</span><span>J</span><span>A</span><span>N</span><span>G</span></div>
+</section>
+
+<!-- ============ DIRECTION / RESEARCH ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="voices rv" style="margin-top:0"><ol>
+      <li><span class="n">01 · Home</span><span>“메인이 너무 길어요. 관심 상품은 스크롤 한참 아래에 있어요.”</span></li>
+      <li><span class="n">02 · Search</span><span>“필터가 어디 있죠?” — 접힌 메뉴 안에 있어 존재 자체를 모름</span></li>
+      <li><span class="n">03 · Category</span><span>“카테고리가 헷갈려요.” — 축종·부위 같은 내부 분류 기준</span></li>
+      <li><span class="n">04 · Order</span><span>“지난 주문을 못 찾겠어요.” — 이미지·검색이 없어 재구매가 번거로움</span></li>
+    </ol></div>
+
+    <div class="principles">
+      <figure class="rv">
+        <div class="paper"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="10" y="10" width="100" height="70"/><rect class="f" x="18" y="18" width="28" height="8"/><line x1="18" y1="36" x2="102" y2="36"/><line x1="18" y1="46" x2="80" y2="46"/><line x1="18" y1="56" x2="90" y2="56"/></svg></div>
+        <figcaption><b>직관적인</b><span class="lbl" style="color:var(--mute)">Intuitive</span><span>명확한 인터페이스와 내비게이션으로 고민 없이 다음 단계로</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="paper"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="10" y="10" width="100" height="70"/><rect x="10" y="10" width="62" height="70"/><rect x="10" y="10" width="62" height="24"/><rect x="10" y="34" width="30" height="46"/><rect class="f" x="10" y="74" width="6" height="6"/></svg></div>
+        <figcaption><b>나를 위한</b><span class="lbl" style="color:var(--mute)">Personalize</span><span>맞춤 추천으로 ‘지은님을 위한 추천’처럼 내 상품이 먼저</span></figcaption>
+      </figure>
+      <figure class="rv">
+        <div class="paper"><svg viewBox="0 0 120 90" aria-hidden="true"><rect x="10" y="10" width="100" height="70"/><line x1="64" y1="10" x2="64" y2="80"/><line x1="18" y1="22" x2="56" y2="22"/><line x1="18" y1="30" x2="56" y2="30"/><line x1="18" y1="38" x2="48" y2="38"/><rect x="18" y="52" width="12" height="12"/><line x1="36" y1="56" x2="56" y2="56"/><line x1="36" y1="62" x2="52" y2="62"/><rect class="f" x="72" y="66" width="30" height="8"/></svg></div>
+        <figcaption><b>편리한</b><span class="lbl" style="color:var(--mute)">Convenient</span><span>간편 로그인 · 선물하기 · 모닝배송까지 짧은 흐름으로</span></figcaption>
+      </figure>
+    </div>
+
+    <div class="research rv">
+      <p class="lbl">Research</p>
+      <div>
+        <div class="targets">
+          <div><span class="lbl">Target 01</span><b>주말 저녁, 집에서 맛집처럼</b><span>가족·친구와 근사한 한 끼를 즐기려는 사람들</span></div>
+          <div><span class="lbl">Target 02</span><b>캠핑을 좋아하는 사람들</b><span>캠핑·요리용 고기를 간편하게 준비하려는 사람들</span></div>
+          <div><span class="lbl">Target 03</span><b>집에서 요리하는 1~3인 가구</b><span>직접 요리하는 소가구, 다이어트 식단 고객</span></div>
+        </div>
+        <div class="bars" role="img" aria-label="푸드장이 떠오르는 시간대: 저녁 39%, 주말 18%, 점심 13%, 아침 8%">
+          <p class="lbl" style="color:var(--mute);margin-bottom:6px">푸드장이 떠오르는 시간대 · 브랜드 이미지 조사</p>
+          <div class="bar hl" style="--v:39"><span>저녁</span><i></i><em>39%</em></div>
+          <div class="bar" style="--v:18"><span>주말</span><i></i><em>18%</em></div>
+          <div class="bar" style="--v:13"><span>점심</span><i></i><em>13%</em></div>
+          <div class="bar" style="--v:8"><span>아침</span><i></i><em>8%</em></div>
+        </div>
+        <p class="note">→ 목적이 분명한 ‘저녁·주말’ 구매자가 핵심. 탐색이 길어지면 바로 이탈로 이어진다고 판단했습니다.</p>
+      </div>
+    </div>
+
+    <div class="research rv" style="margin-top:120px">
+      <p class="lbl">Problem → Solution</p>
+      <div class="ps" style="margin-top:0">
+        <div class="h lbl"><span>No.</span><span>Problem</span><span>Solution</span></div>
+        <div class="r"><span class="en">01</span><b>메인페이지의 긴 스크롤과 콘텐츠 구성</b><span class="to">홈 최상단 맞춤 추천 · 알뜰쇼핑 모듈</span></div>
+        <div class="r"><span class="en">02</span><b>검색 필터의 낮은 인지도</b><span class="to">결과 상단에 항상 보이는 칩형 필터</span></div>
+        <div class="r"><span class="en">03</span><b>내부 분류 기준의 카테고리</b><span class="to">용도 · 많이 찾는 순서로 재구성</span></div>
+        <div class="r"><span class="en">04</span><b>후기를 한눈에 보기 어려움</b><span class="to">후기 키워드와 별점 요약</span></div>
+        <div class="r"><span class="en">05</span><b>이전 주문을 다시 찾기 어려움</b><span class="to">주문 내역에 상품 이미지와 검색 추가</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UI ELEMENTS ============ -->
+<section class="sec" style="padding-top:0">
+  <div class="wrap">
+    <div class="row rv">
+      <p class="lbl">UI Elements</p>
+      <p class="txt">브랜드 레드는 ‘선물 보내기’, ‘장바구니’처럼 가장 중요한 행동에만 쓰고 나머지는 무채색으로 비웠습니다. 마블링 캐릭터와 핑크 톤으로 친근함을 더하고, 컬러 · 타이포 · 버튼 규칙을 하나로 정리해 앱과 PC를 같은 시스템으로 묶었습니다.</p>
+    </div>
+    <div class="tl lbl rv" aria-hidden="true"><div>Basic</div><div>Brand<br>Red</div><div>Pink<br>Tone</div><div>Point</div></div>
+    <div class="sw rv" aria-hidden="true">
+      <div style="background:#fff;border:1px solid var(--line)"></div>
+      <div class="stack"><div style="background:var(--red);height:100%"></div><div style="background:var(--red-deep);height:100%"></div><div style="background:#111;height:100%"></div></div>
+      <div class="stack" style="grid-template-columns:1fr 1fr"><div style="background:var(--pink);height:100%"></div><div style="background:var(--pink-l);height:100%"></div></div>
+      <div style="background:var(--yellow)"></div>
+    </div>
+    <div class="sw-cap">
+      <p>White<br>#FFFFFF</p><p>Brand Red #E5343B<br>Deep #A3121A · Ink #111</p><p>Pink #F4A6A0<br>Light #FBE3E0</p><p>Yellow<br>#F7C548</p>
+    </div>
+
+    <div class="type rv">
+      <div><p class="lbl">Logo</p><img src="img/foodjang_logo_h.svg" alt="푸드장 가로형 로고" width="697" height="180" style="width:min(100%,340px);margin-top:14px"></div>
+      <div><p class="lbl">KR</p><p class="big plex">IBM Plex<br>Sans KR</p></div>
+    </div>
+    <div class="trows rv">
+      <div class="trow"><span class="lbl">Title</span><span class="spec">24 / Bold</span><span class="sample" style="font-size:24px;font-weight:700">일상이 신선해</span></div>
+      <div class="trow"><span class="lbl">Subtitle</span><span class="spec">17 / SemiBold</span><span class="sample" style="font-size:17px;font-weight:600">일상이 신선해</span></div>
+      <div class="trow"><span class="lbl">Body</span><span class="spec">15 / Regular</span><span class="sample" style="font-size:15px">일상이 신선해</span></div>
+      <div class="trow"><span class="lbl">Button</span><span class="spec">H56 · R16 · 17 Bold</span><span class="sample"><span style="display:inline-block;background:var(--red);color:#fff;font-weight:700;font-size:14px;padding:9px 22px;border-radius:12px">선물 보내기</span></span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ UI · MAIN (rebuilt in HTML) ============ -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-  <symbol id="i-mark" viewBox="-4 -2 248 174"><g><path d="M34 34 C70 4 140 -4 186 16 C226 34 240 78 226 114 C212 150 170 170 120 168 C76 166 36 156 16 128 C4 110 12 96 24 88 C10 76 14 50 34 34 Z" fill="#E5343C"/><clipPath id="cut00100"><path d="M34 34 C70 4 140 -4 186 16 C226 34 240 78 226 114 C212 150 170 170 120 168 C76 166 36 156 16 128 C4 110 12 96 24 88 C10 76 14 50 34 34 Z"/></clipPath><g clip-path="url(#cut00100)" fill="none" stroke="#FFFFFF" stroke-linecap="round" stroke-linejoin="round"><path d="M128 10 C172 12 208 30 224 62 C230 76 232 88 230 98" stroke-width="9"/><path d="M60 22 C78 14 96 12 112 12" stroke-width="4"/><path d="M40 108 C50 100 58 104 64 96" stroke-width="3"/><path d="M168 64 C176 60 186 62 192 56" stroke-width="3"/><path d="M150 22 C170 26 186 36 196 48 M196 48 C204 44 210 46 216 50" stroke-width="4"/><path d="M0 60 C18 52 30 58 44 46 C52 40 60 40 70 34" stroke-width="5"/><path d="M30 56 L38 64 M52 42 C56 34 62 30 70 28" stroke-width="3"/><path d="M244 96 C226 98 214 108 208 120" stroke-width="5"/><path d="M-4 136 C20 126 40 134 58 140 C70 144 80 140 88 146" stroke-width="5.5"/><path d="M18 150 C34 146 46 152 60 160" stroke-width="3"/><path d="M128 150 C146 132 160 132 172 138 C186 126 204 120 240 130" stroke-width="5.5"/><path d="M150 160 C168 152 190 156 206 150" stroke-width="3"/></g><path d="M180 133 L180 116 L191 106 L202 116 L202 131 Z" fill="#FFFFFF"/><path d="M187 132 L187 122 L195 122 L195 131 Z" fill="#E5343C"/><path d="M187 122 L195 131 M195 122 L187 131" stroke="#FFFFFF" stroke-width="1.6"/><rect x="62" y="48" width="96" height="11" rx="5.5" fill="#191919"/><circle cx="88" cy="84" r="20" fill="#FFFFFF"/><circle cx="134" cy="84" r="20" fill="#FFFFFF"/><circle cx="93" cy="86" r="10" fill="#191919"/><circle cx="139" cy="86" r="10" fill="#191919"/><path d="M100 116 Q111 124 122 116" fill="none" stroke="#191919" stroke-width="4.2" stroke-linecap="round"/></g></symbol>
-  <symbol id="i-face" viewBox="0 0 40 40"><circle cx="20" cy="22" r="13" fill="#fff"/><circle cx="9" cy="11" r="5" fill="#fff"/><circle cx="31" cy="11" r="5" fill="#fff"/><circle cx="15" cy="21" r="2" fill="#E5343C"/><circle cx="25" cy="21" r="2" fill="#E5343C"/><ellipse cx="20" cy="27" rx="4.5" ry="3" fill="#FFB3AE"/></symbol>
+  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></symbol>
+  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2l2.2 11h11l2-8H6.4"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></symbol>
+  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-7 8 7v9h-5v-6H9v6H4z"/></symbol>
+  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.5"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.5"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.5"/></symbol>
+  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.6"/><path d="M5 20c1.2-3.6 4-5.2 7-5.2s5.8 1.6 7 5.2"/></symbol>
   <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></symbol>
-  <symbol id="i-search" viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></symbol>
-  <symbol id="i-cart" viewBox="0 0 24 24"><path d="M3 4h2.2l2 11h10.6l2-8H6.4"/><circle cx="9" cy="19.5" r="1.3"/><circle cx="17" cy="19.5" r="1.3"/></symbol>
-  <symbol id="i-bell" viewBox="0 0 24 24"><path d="M6 16V11a6 6 0 0112 0v5l1.5 2h-15z"/><path d="M10 20.5h4"/></symbol>
-  <symbol id="i-home" viewBox="0 0 24 24"><path d="M4 11l8-6.5 8 6.5V20H14.5v-5h-5v5H4z"/></symbol>
-  <symbol id="i-grid" viewBox="0 0 24 24"><rect x="4" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="4" width="6.5" height="6.5" rx="1.6"/><rect x="4" y="13.5" width="6.5" height="6.5" rx="1.6"/><rect x="13.5" y="13.5" width="6.5" height="6.5" rx="1.6"/></symbol>
-  <symbol id="i-heart" viewBox="0 0 24 24"><path d="M12 20s-7.5-4.4-7.5-10A4.3 4.3 0 0112 7.6 4.3 4.3 0 0119.5 10c0 5.6-7.5 10-7.5 10z"/></symbol>
-  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8.5" r="3.8"/><path d="M4.5 20c1.2-3.8 4-5.6 7.5-5.6s6.3 1.8 7.5 5.6"/></symbol>
-  <symbol id="i-gift" viewBox="0 0 24 24"><rect x="3.5" y="9" width="17" height="11.5" rx="2"/><path d="M3.5 13h17M12 9v11.5"/><path d="M12 9c-1.5-3.8-6-4.4-6-1.6C6 9 9 9 12 9zm0 0c1.5-3.8 6-4.4 6-1.6C18 9 15 9 12 9z"/></symbol>
-  <symbol id="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6L7 7M17 17l1.4 1.4M5.6 18.4L7 17M17 7l1.4-1.4"/></symbol>
-  <symbol id="i-star" viewBox="0 0 24 24"><path d="M12 3.8l2.5 5.2 5.6.7-4.1 3.9 1 5.6L12 16.5l-5 2.7 1-5.6-4.1-3.9 5.6-.7z"/></symbol>
-  <symbol id="i-tag" viewBox="0 0 24 24"><path d="M3.8 12.5V4.5h8l8.4 8.4-7.9 7.9z"/><circle cx="8.3" cy="8.8" r="1.5"/></symbol>
-  <symbol id="i-cal" viewBox="0 0 24 24"><rect x="4" y="5.5" width="16" height="14.5" rx="2.5"/><path d="M4 10h16M8.5 3.5v4M15.5 3.5v4"/></symbol>
-  <symbol id="i-truck" viewBox="0 0 24 24"><path d="M2.5 6.5h11v10h-11zM13.5 10h4l3 3.4v3.1h-7"/><circle cx="7" cy="17.5" r="1.8"/><circle cx="17" cy="17.5" r="1.8"/></symbol>
-  <symbol id="i-chev" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></symbol>
-  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"/></symbol>
-  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></symbol>
-  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></symbol>
-  <symbol id="i-sparkle" viewBox="0 0 24 24"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8z"/><path d="M19 16l.7 1.8 1.8.7-1.8.7L19 21l-.7-1.8-1.8-.7 1.8-.7z"/></symbol>
-  <symbol id="i-people" viewBox="0 0 24 24"><circle cx="8.5" cy="9" r="3"/><circle cx="16.5" cy="9.5" r="2.5"/><path d="M3 19c.8-3 3-4.6 5.5-4.6S13.2 16 14 19M14.5 14.8c2.6-.5 5 .8 6 4.2"/></symbol>
-  <symbol id="i-tent" viewBox="0 0 24 24"><path d="M12 4L3 20h18z"/><path d="M12 4v16M9 20l3-6 3 6"/></symbol>
-  <symbol id="i-pan" viewBox="0 0 24 24"><circle cx="10" cy="13" r="6.5"/><path d="M16.2 11.5H21.5"/><circle cx="10" cy="13" r="2.5"/></symbol>
-  <symbol id="i-bolt" viewBox="0 0 24 24"><path d="M13 3L5 13.5h6L10 21l8-10.5h-6z"/></symbol>
-  <symbol id="i-target" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="4"/><circle cx="12" cy="12" r=".8"/></symbol>
-  <symbol id="i-hand" viewBox="0 0 24 24"><path d="M8 12V5.5a1.5 1.5 0 013 0V11m0-1.5V4a1.5 1.5 0 013 0v6m0-4.5a1.5 1.5 0 013 0V13c0 4-2.5 7-6.5 7S6 18 4.5 15.2L3 12.5a1.4 1.4 0 012.3-1.5L8 13.5"/></symbol>
 </svg>
 
-<!-- ============ SCREEN TEMPLATES ============ -->
-<template id="t-login">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="body" style="display:flex;flex-direction:column">
-      <div class="mascot"><svg><use href="#i-mark"/></svg></div>
-      <div style="text-align:center"><span class="lgw"><b>푸드</b>장</span><p class="sub" style="margin-top:.2em">내가 찾던 신선함의 기준</p></div>
-      <div style="margin-top:1.4em">
-        <div class="input"><label>아이디</label><div class="on">foodjang_jieun</div></div>
-        <div class="input"><label>비밀번호</label><div>비밀번호를 입력해 주세요</div></div>
-      </div>
-      <div class="links"><span>회원가입</span><span style="color:var(--line)">|</span><span>아이디·비밀번호 찾기</span></div>
-      <div style="margin-top:auto;text-align:center;padding-bottom:.4em">
-        <span style="font-size:.75em;color:var(--ink-3)">간편 로그인</span>
-        <div class="sns"><i style="background:#FEE500;color:#191919">K</i><i style="background:#03C75A;color:#fff">N</i><i style="background:#191F28;color:#fff">A</i></div>
-      </div>
-    </div>
-    <div class="cta"><div class="btn">로그인</div></div>
-  </div>
-</template>
-
-<template id="t-home">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="nav"><span class="logo"><svg class="mk"><use href="#i-mark"/></svg><span><b>푸드</b>장</span></span><span class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-cart"/></svg></span></div>
-    <div class="tabs"><span class="on">추천</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>선물</span></div>
-    <div class="body">
-      <div class="banner"><small>이번 주 특가</small><b>캠핑 시즌<br>최대 30% 할인</b><span class="ill"><svg><use href="#i-tent"/></svg></span><span class="pg">1 / 5</span></div>
-      <div class="quick">
-        <div><i><svg stroke="#E5343C"><use href="#i-gift"/></svg></i>선물하기</div>
-        <div><i><svg stroke="#E0A100"><use href="#i-sun"/></svg></i>모닝배송</div>
-        <div><i><svg stroke="#E5343C"><use href="#i-sparkle"/></svg></i>신상품</div>
-        <div><i><svg stroke="#4E5968"><use href="#i-tag"/></svg></i>알뜰쇼핑</div>
-        <div><i><svg stroke="#4E5968"><use href="#i-cal"/></svg></i>이벤트</div>
-      </div>
-      <div class="sec-t"><b>알뜰쇼핑 <span class="timer" data-cd>08:37:15</span></b><span>더보기</span></div>
-      <div class="deal"><div class="th"><img src="img/p_la.jpg" alt=""></div><div class="t"><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr"><em>22%</em>14,900원</div><div class="rv">★ 4.9 · 후기 1,204</div></div></div>
-      <div class="sec-t"><b>지은님을 위한 추천</b><span>전체보기</span></div>
-      <div class="grid2">
-        <div><div class="th"><img src="img/p_samgye.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr"><em>12%</em>24,900원</div></div></div>
-        <div><div class="th"><img src="img/p_pork.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">한돈 삼겹살 구이용 500g</div><div class="pr"><em>10%</em>15,900원</div></div></div>
-      </div>
-    </div>
-    <div class="tabbar"><div class="on"><svg><use href="#i-home"/></svg>홈</div><div><svg><use href="#i-grid"/></svg>카테고리</div><div><svg><use href="#i-heart"/></svg>찜</div><div><svg><use href="#i-cart"/></svg>장바구니</div><div><svg><use href="#i-user"/></svg>마이</div></div>
-  </div>
-</template>
-
-<template id="t-old">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="oldbar"><b>FOOD JANG</b><span style="margin-left:auto">로그인 · 회원가입 · 고객센터 · 주문조회</span></div>
-    <div class="oldmenu"><span>전체</span><span>소고기</span><span>돼지고기</span><span>양고기</span><span>간편식</span><span>양념</span><span>베이커리</span></div>
-    <div class="oldb" style="height:5.5em;background:linear-gradient(90deg,#5B4BC4,#8E5BD6)">원 오브 원 기획전<br>가정의 달 최대 50% 할인</div>
-    <div class="oldb" style="height:2.2em;background:#F2C230;color:#333">★ 회원 등급별 혜택 바로가기 ★</div>
-    <div class="oldb" style="height:2.2em;background:#3DAA6A">무료배송 이벤트 진행중! 5만원 이상</div>
-    <div class="oldt">추천상품 &gt;&gt;</div>
-    <div class="oldg"><div><img src="img/p_la.jpg" alt=""></div><div><img src="img/p_kimchi.jpg" alt=""></div><div><img src="img/p_samgye.jpg" alt=""></div><div><img src="img/p_pork.jpg" alt=""></div><div><img src="img/p_gift.jpg" alt=""></div><div></div></div>
-    <div class="oldt">27,800원 · 19,800원 · 24,900원 · 39,900원<br>※ 상품은 입고 상황에 따라 변경될 수 있습니다</div>
-    <div class="oldb" style="height:2.6em;background:#DDD;color:#888;margin-bottom:.4em">공지사항 · 배송안내 · 교환/반품 · 이벤트</div>
-  </div>
-</template>
-
-<template id="t-cat">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="nav"><svg><use href="#i-back"/></svg><b>고기·간편식</b><svg><use href="#i-search"/></svg></div>
-    <div class="tabs"><span class="on">전체</span><span>소고기</span><span>돼지고기</span><span>간편식</span></div>
-    <div class="body">
-      <div class="chips" style="margin:.9em 0 .4em"><span class="chip on"><svg><use href="#i-check"/></svg>추천순</span><span class="chip">가격대<svg><use href="#i-down"/></svg></span><span class="chip">부위<svg><use href="#i-down"/></svg></span><span class="chip">용량<svg><use href="#i-down"/></svg></span></div>
-      <div style="font-size:.8125em;color:var(--ink-3);margin:.6em 0 .8em">상품 128개</div>
-      <div class="grid2">
-        <div><div class="th"><img src="img/p_la.jpg" alt=""><span class="badge">BEST</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr"><em>22%</em>14,900원</div></div></div>
-        <div><div class="th"><img src="img/p_kimchi.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">남영돈 김치찌개 세트</div><div class="pr"><em>15%</em>12,900원</div></div></div>
-        <div><div class="th"><img src="img/p_pork.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">한돈 삼겹살 구이용 500g</div><div class="pr"><em>10%</em>15,900원</div></div></div>
-        <div><div class="th"><img src="img/p_samgye.jpg" alt=""><span class="badge">NEW</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><div class="info"><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr"><em>12%</em>24,900원</div></div></div>
-      </div>
-    </div>
-    <div class="tabbar"><div><svg><use href="#i-home"/></svg>홈</div><div class="on"><svg><use href="#i-grid"/></svg>카테고리</div><div><svg><use href="#i-heart"/></svg>찜</div><div><svg><use href="#i-cart"/></svg>장바구니</div><div><svg><use href="#i-user"/></svg>마이</div></div>
-  </div>
-</template>
-
-<template id="t-gift">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="nav"><svg><use href="#i-back"/></svg><b>선물하기</b><svg><use href="#i-cart"/></svg></div>
-    <div class="body">
-      <div class="h1">주소 몰라도<br><em>연락처만으로</em> 선물해요</div>
-      <p class="sub">받는 분이 직접 배송지를 입력해요.</p>
-      <div class="giftbox"><img src="img/p_gift.jpg" alt=""></div>
-      <div class="steps3">
-        <div><i>1</i><div><b>선물 고르기</b><span>선물세트 · 모바일 상품권</span></div></div>
-        <div><i>2</i><div><b>연락처로 보내기</b><span>카카오톡 · 문자 중 선택</span></div></div>
-        <div><i>3</i><div><b>받는 분이 주소 입력</b><span>입력 즉시 출고 준비</span></div></div>
-      </div>
-    </div>
-    <div class="cta"><div class="btn">선물 보내기</div></div>
-  </div>
-</template>
-
-<template id="t-morning">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="nav"><svg><use href="#i-back"/></svg><b>배송 안내</b><svg><use href="#i-bell"/></svg></div>
-    <div class="body">
-      <div class="h1">모닝배송과 택배배송,<br><em>한눈에</em> 비교해요</div>
-      <div class="seg"><span class="on">모닝배송</span><span>택배배송</span><span>배송지역</span></div>
-      <div class="cmp">
-        <div><span>구분</span><span>모닝</span><span>택배</span></div>
-        <div><span>주문마감</span><span class="hl">밤 11시</span><span>오후 3시</span></div>
-        <div><span>도착</span><span class="hl">다음날 7시</span><span>1–2일</span></div>
-        <div><span>지역</span><span>수도권</span><span>전국</span></div>
-      </div>
-      <div class="dlv"><span class="ic"><svg><use href="#i-sun"/></svg></span><div><b>지금 주문하면 내일 아침 7시</b><span>마감까지 <span class="timer" data-cd2>02:22:45</span></span></div></div>
-    </div>
-    <div class="cta"><div class="btn">모닝배송 상품 보기</div></div>
-  </div>
-</template>
-
-<template id="t-new">
-  <div class="app">
-    <div class="sb"><span>9:41</span><span class="dots"><i></i><i></i></span></div>
-    <div class="nav"><svg><use href="#i-back"/></svg><b>신상품</b><svg><use href="#i-search"/></svg></div>
-    <div class="body">
-      <div class="h1">이번 주<br><em>MD가 고른</em> 신상품</div>
-      <div class="chips" style="margin:.4em 0 1em"><span class="chip on">전체</span><span class="chip">소고기</span><span class="chip">간편식</span><span class="chip">선물세트</span></div>
-      <div class="grid2">
-        <div><div class="th"><img src="img/p_samgye.jpg" alt=""><span class="badge">NEW</span></div><div class="info"><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr">24,900원</div></div></div>
-        <div><div class="th"><img src="img/p_gift.jpg" alt=""><span class="badge">NEW</span></div><div class="info"><div class="nm">블랙비프 프리미엄 선물세트</div><div class="pr">89,000원</div></div></div>
-        <div><div class="th"><img src="img/p_kimchi.jpg" alt=""></div><div class="info"><div class="nm">남영돈 김치찌개 세트</div><div class="pr">12,900원</div></div></div>
-        <div><div class="th"><img src="img/p_la.jpg" alt=""></div><div class="info"><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr">14,900원</div></div></div>
-      </div>
-    </div>
-    <div class="tabbar"><div><svg><use href="#i-home"/></svg>홈</div><div class="on"><svg><use href="#i-grid"/></svg>카테고리</div><div><svg><use href="#i-heart"/></svg>찜</div><div><svg><use href="#i-cart"/></svg>장바구니</div><div><svg><use href="#i-user"/></svg>마이</div></div>
-  </div>
-</template>
-
-<!-- ================= HERO ================= -->
-<style>
-.pf-back{position:fixed;left:max(16px,env(safe-area-inset-left,0px));top:calc(14px + env(safe-area-inset-top,0px));z-index:50;display:inline-flex;align-items:center;gap:6px;font:700 13px 'IBM Plex Sans KR',sans-serif;color:#191F28;background:rgba(255,255,255,.92);border-radius:999px;padding:8px 15px 8px 11px;text-decoration:none;box-shadow:0 8px 20px rgba(0,0,0,.35)}
-.pf-back:hover{background:#fff}
-.pf-back svg{width:16px;height:16px}
-</style>
-<a class="pf-back" href="../../#work"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"/></svg>포트폴리오</a>
-<section class="hero" id="top">
-  <div class="wrap htop">
-    <div class="hl h-in">
-      <div class="pills"><span>UX UI PROJECT</span><span class="w">APP RENEWAL</span></div>
-      <div class="hmeta"><span class="n">/01</span><div><b>MOBILE APP · PC WEB</b><i></i>UX/UI RENEWAL DESIGN<br>CONTRIBUTION 100%<br>2023.10 – 2023.11 · FIGMA, PHOTOSHOP</div></div>
-    </div>
-    <div class="hr h-in">내가 찾던 신선함의 기준,<br>저렴하고 빠르고 신선하게<em>FOODJANG</em><small>LOGIN TO <b>FRESH</b><br>FROM HOME TO TABLE</small></div>
-  </div>
-  <div class="hstage">
-    <h1 class="word">FOODJANG</h1>
-    <div class="dev p1"><div class="scr" data-t="t-login"></div></div>
-    <div class="dev p2"><div class="scr" data-t="t-home"></div></div>
-    <div class="bub b1">로그인 화면이<br>너무 <em>복잡해요</em></div>
-    <div class="bub sol b4"><i><svg viewBox="-4 -2 248 174"><use href="#i-mark"/></svg></i>푸드장이 한 번에 해결!</div>
-  </div>
-</section>
-
-<!-- ================= OVERVIEW ================= -->
-<section class="ov band">
-  <div class="wrap center">
-    <span class="eyebrow">Overview</span>
-    <h2 class="ttl">단순히 고기를 사는 앱이 아니라,<br><em>저렴하고 빠르고 신선하게</em></h2>
-    <p class="lead">푸드장을 이용하는 사람들의 니즈와 불만족도 조사 결과를 반영해, 데이터 기반 통계로 진행한 이벤트 및 애플리케이션 기획입니다. 단순히 육류를 구매하는 것이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록 기획자들과 의견을 취합하고, 마케팅 방향에 맞춰 UI/UX 디자인을 진행했습니다.</p>
-    <div class="q"><span>“메인이 <em>너무 길어요</em>”</span><span>“필터가 <em>어디 있죠?</em>”</span><span>“카테고리가 <em>헷갈려요</em>”</span><span>“지난 주문을 <em>못 찾겠어요</em>”</span></div>
-  </div>
-</section>
-
-<!-- ================= RESEARCH ================= -->
-<section class="rs band" id="target-brand">
+<section class="sec" aria-labelledby="ui-main">
   <div class="wrap">
-    <span class="eyebrow">Target &amp; Brand</span>
-    <h2 class="ttl">누가, 언제 푸드장을 찾을까요?</h2>
-    <p class="lead">주 이용 고객을 세 그룹으로 나누고, 브랜드 이미지 조사로 푸드장이 떠오르는 순간을 확인했습니다.</p>
-    <div class="rs-grid">
-      <div class="tg glass"><span class="n">TARGET 01</span><span class="av"><svg><use href="#i-people"/></svg></span><h3>주말 저녁,<br>집에서 맛집처럼</h3><p>가족·친구와 함께 집에서 근사한 한 끼를 즐기려는 사람들</p></div>
-      <div class="tg glass"><span class="n">TARGET 02</span><span class="av"><svg><use href="#i-tent"/></svg></span><h3>캠핑을<br>좋아하는 사람들</h3><p>캠핑이나 요리에 쓸 고기를 간편하게 준비하려는 사람들</p></div>
-      <div class="tg glass"><span class="n">TARGET 03</span><span class="av"><svg><use href="#i-pan"/></svg></span><h3>집에서 요리하는<br>1~3인 가구</h3><p>직접 요리하는 소가구, 다이어트를 하는 사람들</p></div>
-      <div class="chart">
-        <h4>푸드장 브랜드 이미지 분포도</h4>
-        <p class="s">푸드장이 떠오르는 시간대</p>
-        <div class="bars">
-          <div><span>저녁</span><span class="tr"><i style="width:100%"></i></span><b>39%</b></div>
-          <div><span>주말</span><span class="tr"><i style="width:46%"></i></span><b>18%</b></div>
-          <div><span>점심</span><span class="tr"><i style="width:33%"></i></span><b>13%</b></div>
-          <div><span>아침</span><span class="tr"><i style="width:21%"></i></span><b>8%</b></div>
+    <div class="ui-intro rv">
+      <h2 class="ui-lbl" id="ui-main">Main Page</h2>
+      <p>모두에게 같던 배너·공지 순서를 걷어내고, 첫 화면에서 <b>‘나를 위한 추천’과 오늘의 알뜰쇼핑</b>이 먼저 보이도록 홈을 다시 짰습니다. 검색 결과에서는 숨어 있던 필터를 칩으로 꺼내 한 번에 좁힐 수 있게 했습니다.</p>
+    </div>
+
+    <div class="stage">
+      <!-- HOME -->
+      <div class="ph rv" role="img" aria-label="리뉴얼한 푸드장 앱 홈 화면">
+        <div class="sb"><span>9:41</span><i></i></div>
+        <div class="hd"><img src="img/foodjang_logo_h.svg" alt="" width="697" height="180" style="height:24px"><span class="ic"><svg><use href="#i-search"/></svg><svg><use href="#i-cart"/></svg></span></div>
+        <div class="tabs"><span class="on">추천</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>선물</span></div>
+        <div class="promo"><div><small>이번 주 특가</small><b>캠핑 시즌<br>최대 30% 할인</b></div><img src="img/skewer.svg" alt=""><em>1 / 5</em></div>
+        <div class="quick"><div><img src="img/gift.svg" alt="">선물하기</div><div><img src="img/truck.svg" alt="">모닝배송</div><div><img src="img/steak.svg" alt="">신상품</div><div><img src="img/coupon.svg" alt="">알뜰쇼핑</div><div><img src="img/basket.svg" alt="">이벤트</div></div>
+        <div class="sec-h"><b>알뜰쇼핑<em>08:37:11</em></b><span>더보기 ›</span></div>
+        <div class="deal"><img src="img/ph-dongalbi.jpg" alt=""><div><p class="nm">포천이동 돈LA갈비 500g</p><p class="pr"><em>22%</em>14,900원</p><p class="rt">★ 4.9 · 후기 1,204</p></div></div>
+        <div class="sec-h"><b>지은님을 위한 추천</b><span>전체보기 ›</span></div>
+        <div class="g2">
+          <figure><div class="im"><img src="img/ph-galbi.jpg" alt=""><span class="badge">BEST</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><figcaption><p class="nm">포천이동 한입 LA갈비 500g</p><p class="pr"><em>12%</em>24,900원</p></figcaption></figure>
+          <figure><div class="im"><img src="img/ph-belly.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><figcaption><p class="nm">한돈 삼겹살 구이용 500g</p><p class="pr"><em>10%</em>15,900원</p></figcaption></figure>
         </div>
-        <div class="kw"><span>맛있다</span><span>캠핑</span><span>신뢰</span><span class="n">비싸다</span></div>
+        <div class="nav"><span class="on"><svg><use href="#i-home"/></svg>홈</span><span><svg><use href="#i-grid"/></svg>카테고리</span><span><svg><use href="#i-heart"/></svg>찜</span><span><svg><use href="#i-cart"/></svg>장바구니</span><span><svg><use href="#i-user"/></svg>마이</span></div>
+      </div>
+
+      <!-- SEARCH RESULT -->
+      <div class="ph rv" role="img" aria-label="칩형 필터가 적용된 검색 결과 화면">
+        <div class="sb"><span>9:41</span><i></i></div>
+        <div class="srch"><svg><use href="#i-back"/></svg><b>고기 · 간편식</b><svg><use href="#i-search"/></svg></div>
+        <div class="tabs"><span class="on">전체</span><span>소고기</span><span>돼지고기</span><span>양고기</span><span>간편식</span></div>
+        <div class="chips"><span class="on">✓ 추천순</span><span>가격대</span><span>부위</span><span>용량</span><span>배송</span></div>
+        <div class="flag"><i>1</i>칩으로 바로 보이는 필터</div>
+        <div class="cnt"><span>상품 128개</span><span>추천순 ▾</span></div>
+        <div class="g2">
+          <figure><div class="im"><img src="img/ph-dongalbi.jpg" alt=""><span class="badge">BEST</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><figcaption><p class="nm">포천이동 돈LA갈비 500g</p><p class="pr"><em>22%</em>14,900원</p></figcaption></figure>
+          <figure><div class="im"><img src="img/ph-gopchang.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><figcaption><p class="nm">소곱창전골 1kg</p><p class="pr"><em>15%</em>12,900원</p></figcaption></figure>
+          <figure><div class="im"><img src="img/ph-belly.jpg" alt=""><span class="cart"><svg><use href="#i-cart"/></svg></span></div><figcaption><p class="nm">한돈 삼겹살 구이용 500g</p><p class="pr"><em>10%</em>15,900원</p></figcaption></figure>
+          <figure><div class="im"><img src="img/ph-wudae.jpg" alt=""><span class="badge">NEW</span><span class="cart"><svg><use href="#i-cart"/></svg></span></div><figcaption><p class="nm">포천이동 우대갈비 800g</p><p class="pr"><em>18%</em>39,900원</p></figcaption></figure>
+        </div>
+        <div class="nav"><span><svg><use href="#i-home"/></svg>홈</span><span class="on"><svg><use href="#i-grid"/></svg>카테고리</span><span><svg><use href="#i-heart"/></svg>찜</span><span><svg><use href="#i-cart"/></svg>장바구니</span><span><svg><use href="#i-user"/></svg>마이</span></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= WHY ================= -->
-<section class="band" style="background:var(--bg-2)">
+<!-- ============ UI · SOLUTION CONTENTS ============ -->
+<section class="sec" style="padding-top:0" aria-labelledby="ui-sc">
   <div class="wrap">
-    <span class="eyebrow">Why · 프로젝트 배경</span>
-    <h2 class="ttl">“고기를 사러 들어왔다가,<br><em>찾다가 나가는</em> 앱”이었습니다</h2>
-    <p class="lead">2023년 하반기, 앱 개편 전 이용자 니즈·불만족도 조사를 진행했습니다. 응답에서 반복된 불만은 ‘상품이 나빠서’가 아니라 ‘원하는 상품까지 가는 길이 멀어서’였습니다. 그래서 이번 개편의 목표를 새로운 기능 추가가 아니라 <b style="color:var(--tx)">탐색 단계를 줄이는 것</b>으로 정했습니다.</p>
-    <div class="st-why">
-      <div class="voice glass"><div class="lbl2" style="margin-bottom:6px">조사에서 반복된 목소리</div><div class="row"><span>HOME</span><div><b>“메인이 너무 길어요”</b><p>모든 고객에게 같은 배너·공지 순서가 노출돼, 관심 상품은 스크롤 아래에 있었습니다.</p></div></div><div class="row"><span>SEARCH</span><div><b>“필터가 어디 있죠?”</b><p>필터가 접힌 메뉴 안에 있어 존재 자체를 모르는 사용자가 많았습니다.</p></div></div><div class="row"><span>CATEGORY</span><div><b>“카테고리가 헷갈려요”</b><p>축종·부위 같은 내부 분류 기준이라 ‘구이용’, ‘캠핑용’처럼 용도로 찾기 어려웠습니다.</p></div></div><div class="row"><span>ORDER</span><div><b>“지난 주문을 못 찾겠어요”</b><p>재구매하려 해도 주문 내역에 이미지와 검색이 없어 상품을 다시 찾아야 했습니다.</p></div></div></div>
-      <div><div class="biz glass"><div class="lbl2">비즈니스 관점</div><p>푸드장의 주 고객은 <b>주말 저녁·캠핑처럼 목적이 분명한 구매자</b>입니다. 목적이 분명한 사용자에게 탐색이 길어지면 이탈로 이어진다고 판단했고, 이것이 개편의 출발점이었습니다.</p></div>
-      <div class="goalc"><div class="lbl2">개편 목표</div><p>원하는 고기까지 가는 단계를 줄여,<br>목적 구매를 끝까지 완료하게 만들기</p></div></div>
+    <div class="ui-intro rv">
+      <h2 class="ui-lbl" id="ui-sc">Solution Contents</h2>
+      <p>상품을 나열하는 대신, <b>고기가 필요한 순간</b>에서 출발한 콘텐츠로 묶었습니다. 저녁 한 끼, 캠핑, 선물처럼 목적이 분명한 상황을 큰 이미지로 보여 주고, 바로 아래에서 상품과 연결해 구매까지의 거리를 줄였습니다.</p>
+    </div>
+    <div class="stage">
+      <article class="mc rv">
+        <div class="h"><b>For You</b><span>전체보기 ›</span></div>
+        <div class="v"><img src="img/ph-galbi.jpg" alt="양념 LA갈비" loading="lazy"><div class="ov"><b>Tonight</b><span>Dinner Pick</span></div></div>
+        <div class="b"><b>오늘 저녁, 집에서 맛집처럼</b><p>주말 저녁 가장 많이 찾은 구이·양념육을<br>지은님의 구매 이력에 맞춰 골랐어요.</p></div>
+        <div class="row3">
+          <div><img src="img/ph-dongalbi.jpg" alt="" loading="lazy"><small>#저녁 1위</small><b>포천이동 돈LA갈비</b></div>
+          <div><img src="img/ph-yangnyeom.jpg" alt="" loading="lazy"><small>#재구매</small><b>포천이동 양념갈비</b></div>
+          <div><img src="img/ph-belly.jpg" alt="" loading="lazy"><small>#구이용</small><b>한돈 삼겹살</b></div>
+        </div>
+      </article>
+      <article class="mc rv">
+        <div class="h"><b>Time Deal</b><span>전체보기 ›</span></div>
+        <div class="v"><img src="img/ph-grill.jpg" alt="숯불 위 대창 구이" loading="lazy"><div class="timer"><i>08</i><i>37</i><i>11</i></div></div>
+        <div class="b"><b>캠핑 가기 전, 오늘만 이 가격</b><p>남은 시간을 함께 보여 줘 결정을 미루지 않게 하고,<br>캠핑에 맞는 용량부터 먼저 보여 줍니다.</p></div>
+        <p class="tip"><i>Tip</i>2~3인 캠핑에는 800g 구성을 가장 많이 골랐어요.</p>
+        <div class="row3">
+          <div><img src="img/ph-wudae.jpg" alt="" loading="lazy"><small>800g</small><b><em>18%</em> 우대갈비</b></div>
+          <div><img src="img/ph-grill.jpg" alt="" loading="lazy"><small>300g</small><b><em>20%</em> 한우 대창</b></div>
+          <div><img src="img/ph-lamb.jpg" alt="" loading="lazy"><small>400g</small><b><em>15%</em> 양갈비</b></div>
+        </div>
+      </article>
+      <article class="mc rv">
+        <div class="h"><b>Gift</b><span>전체보기 ›</span></div>
+        <div class="v" style="aspect-ratio:1/.9"><img src="img/ph-giftset.jpg" alt="남영돈 선물세트" loading="lazy"><div class="ov"><b>Gift</b><span>For your people</span></div></div>
+        <div class="b"><b>주소를 몰라도, 카톡으로 선물하기</b><p>받는 분이 직접 주소를 입력해요. 가격대별로<br>고르고 메시지 카드까지 한 화면에서.</p></div>
+        <div class="opts">
+          <div class="opt on"><i></i><b>남영돈 프리미엄 4구 세트</b><span>129,000원</span></div>
+          <div class="opt"><i></i><b>포천이동 갈비 3종 세트</b><span>89,000원</span></div>
+        </div>
+        <div class="btn">선물 보내기</div>
+      </article>
+      <article class="mc rv">
+        <div class="h"><b>Category</b><span>전체보기 ›</span></div>
+        <div class="v" style="aspect-ratio:1/.8"><img src="img/ph-lamb.jpg" alt="프렌치랙 양갈비" loading="lazy"><div class="ov"><b>By Use</b><span>Grill · Stew · Camp</span></div></div>
+        <div class="b"><b>부위보다 ‘어떻게 먹을지’로 찾기</b><p>축종·부위 같은 내부 분류 대신 구이·찜·캠핑처럼<br>용도와 많이 찾는 순서로 카테고리를 다시 짰어요.</p></div>
+        <div class="row3">
+          <div><img src="img/ph-belly.jpg" alt="" loading="lazy"><small>Grill</small><b>구이</b></div>
+          <div><img src="img/ph-gopchang.jpg" alt="" loading="lazy"><small>Stew</small><b>찌개 · 전골</b></div>
+          <div><img src="img/ph-wudae.jpg" alt="" loading="lazy"><small>Camp</small><b>캠핑</b></div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- ================= PROBLEM ================= -->
-<section class="band">
-  <div class="wrap">
-    <span class="eyebrow">Problem · 문제 정의</span>
-    <h2 class="ttl">‘불편한 UI’가 아니라,<br><em>누가 어디서 멈췄는지</em>로 정의했습니다</h2>
-    <p class="lead">조사 응답과 타깃 세 그룹을 겹쳐, 각 불만이 실제로 일어나는 장면을 하나씩 재구성했습니다. 장면을 기준으로 보니 원인은 기능 부족이 아니라 <b style="color:var(--tx)">정보의 순서와 분류 기준</b>에 있었습니다.</p>
-    <div class="scn-grid"><div class="scn glass"><div class="hd"><b>PROBLEM 01</b><span>HOME</span></div><div><div class="lbl2">누가 · 언제</div><h4>캠핑을 준비하는 30대</h4><p class="w">금요일 퇴근길, 내일 쓸 고기를 급하게 고를 때</p></div><hr><div><div class="lbl2">무슨 일이</div><p>홈에 들어오면 기획전 배너와 공지가 먼저 나오고, 평소 사던 상품은 여러 번 스크롤해야 보였습니다.</p></div><div><div class="lbl2 r">왜</div><p class="why">고객 행동과 무관하게 모든 사람에게 같은 순서로 콘텐츠가 노출되는 구조</p></div></div><div class="scn glass"><div class="hd"><b>PROBLEM 02</b><span>SEARCH</span></div><div><div class="lbl2">누가 · 언제</div><h4>집에서 요리하는 1~2인 가구</h4><p class="w">300g 소용량 고기만 골라 보고 싶을 때</p></div><hr><div><div class="lbl2">무슨 일이</div><p>검색 결과에서 용량으로 좁힐 방법을 찾지 못해, 결과 전체를 눈으로 훑어야 했습니다.</p></div><div><div class="lbl2 r">왜</div><p class="why">필터가 드롭다운 안에 접혀 있고, 기준도 가격·정렬 위주로 용량·부위가 없었음</p></div></div><div class="scn glass"><div class="hd"><b>PROBLEM 03</b><span>CATEGORY</span></div><div><div class="lbl2">누가 · 언제</div><h4>주말 저녁을 준비하는 가족</h4><p class="w">‘구이용 소고기’를 바로 찾고 싶을 때</p></div><hr><div><div class="lbl2">무슨 일이</div><p>육류 → 소고기 → 부위 순서로 세 번 들어가야 했고, 중간에 검색으로 빠지는 경우가 많았습니다.</p></div><div><div class="lbl2 r">왜</div><p class="why">카테고리가 사용 목적이 아닌 내부 상품 분류(축종) 기준으로 짜여 있었음</p></div></div></div>
-  </div>
-</section>
-
-<!-- ================= DECISION ================= -->
-<section class="band" style="background:var(--bg-2)">
-  <div class="wrap">
-    <span class="eyebrow">Decision · 대안 비교</span>
-    <h2 class="ttl">왜 이 해결책이었나,<br><em>함께 고민한 다른 안</em></h2>
-    <p class="lead">각 문제마다 두 가지 이상의 방향을 놓고, ‘문제의 원인을 직접 해결하는가’와 ‘개발·운영 부담’ 두 기준으로 비교했습니다.</p>
-    <div class="dec-list"><div class="dec glass"><span class="ar">HOME</span><div class="op a"><div class="lbl2">검토안 A</div><p>‘추천’ 탭을 따로 만들어 개인화 상품을 분리</p></div><div class="op b"><div class="lbl2">선택 · B</div><p>홈 최상단에 맞춤 추천·알뜰쇼핑 모듈 배치</p></div><p class="rs">탭을 하나 더 만들면 ‘찾으러 가야 하는’ 구조가 그대로 남습니다. 첫 화면에서 바로 보이게 해야 스크롤 문제를 직접 줄일 수 있었습니다.</p></div><div class="dec glass"><span class="ar">SEARCH</span><div class="op a"><div class="lbl2">검토안 A</div><p>필터 버튼을 눌러 여는 하단 시트 필터</p></div><div class="op b"><div class="lbl2">선택 · B</div><p>결과 상단에 항상 보이는 칩형 필터</p></div><p class="rs">문제의 원인이 ‘기능이 없음’이 아니라 ‘있는 줄 모름’이었기 때문에, 숨기지 않고 보이게 하는 쪽을 택했습니다. 상세 조건만 시트로 남겼습니다.</p></div><div class="dec glass"><span class="ar">CATEGORY</span><div class="op a"><div class="lbl2">검토안 A</div><p>기존 분류 유지 + 검색 자동완성 강화</p></div><div class="op b"><div class="lbl2">선택 · B</div><p>소비자가 많이 찾는 순서·용도 기준으로 재구성</p></div><p class="rs">검색 강화는 검색하는 사람만 돕습니다. 둘러보는 사용자까지 돕기 위해 분류 기준 자체를 사용 목적 중심으로 바꿨습니다.</p></div></div>
-  </div>
-</section>
-
-<!-- ================= PROCESS ================= -->
-<section class="proc band">
-  <div class="wrap">
-    <span class="eyebrow">Design Process</span>
-    <h2 class="ttl">데이터에서 출발한 <em>4단계</em> 개선 프로세스</h2>
-    <p class="lead">이용자 조사와 통계를 근거로 문제를 정의하고, 기획자들과 의견을 맞추며 디자인까지 진행했습니다.</p>
-    <div class="pc-row">
-      <div class="pcs"><span class="dot">01</span><h3><small>Research</small>데이터 분석</h3><ul><li>이용자 니즈·불만족도 조사</li><li>이용 통계 분석</li><li>브랜드 이미지 분석</li><li>타깃 정의</li></ul></div>
-      <div class="pcs"><span class="dot">02</span><h3><small>Define</small>문제 정의</h3><ul><li>핵심 페인포인트 도출</li><li>Problem 5가지 정리</li><li>기획자 의견 취합</li></ul></div>
-      <div class="pcs"><span class="dot">03</span><h3><small>Concept</small>UX 컨셉</h3><ul><li>직관적 · 나를 위한 · 편리한</li><li>컬러 · 톤앤매너 정리</li><li>정보 구조 재설계</li></ul></div>
-      <div class="pcs"><span class="dot">04</span><h3><small>Design</small>UI 디자인</h3><ul><li>홈 · 필터 · 카테고리 개선</li><li>선물하기 · 모닝배송 · 신상품</li><li>로그인 간소화</li><li>PC 메인페이지</li></ul></div>
+<!-- ============ GRID SYSTEM (wire vs real) ============ -->
+<section class="show light" aria-label="콘텐츠 카드 그리드">
+  <div class="pair">
+    <div class="wire rv" aria-hidden="true">
+      <span class="hl" style="top:8%"></span><span class="hl" style="top:16%"></span><span class="hl" style="top:19.5%"></span><span class="hl" style="top:31%"></span>
+      <span class="hl" style="top:62%"></span><span class="hl" style="top:69%"></span><span class="hl" style="top:75%"></span><span class="hl" style="top:81%"></span><span class="hl" style="top:94%"></span>
+      <div class="gh"><b>TONIGHT</b><span>DINNER PICK</span></div>
+      <div class="sp" style="top:69.5%">HEADER<i><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></i></div>
+      <div class="sp" style="top:75.5%">IMAGE<i><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></i></div>
+      <div class="sp" style="top:81.5%">ITEMS<i><span>0</span><span>1</span><span>2</span><span>3</span><span>4</span></i></div>
     </div>
-    <div class="goal glass"><span>GOAL</span><b>직관적이고, 나를 위한, 편리한 신선식품 쇼핑 경험</b></div>
-  </div>
-</section>
-
-<!-- ================= PAIN POINT ================= -->
-<section class="pain band">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">Pain Point</span>
-      <h2 class="ttl">기존 앱에서 발견한 세 가지 불편함</h2>
-    </div>
-    <div class="pp-grid">
-      <div class="pp"><div class="a glass"><small>Pain point 01</small><h3>데이터 기반 추천 모듈 부재</h3></div><span class="ar"><svg><use href="#i-down"/></svg></span><div class="b"><small>Solution</small><h3>홈 화면 콘텐츠 재구성</h3><p>이용자 데이터 기반 추천 모듈과 알뜰쇼핑 최상위 노출로 전체 스크롤을 단축</p></div></div>
-      <div class="pp"><div class="a glass"><small>Pain point 02</small><h3>검색 필터 인지도 및 기준 부족</h3></div><span class="ar"><svg><use href="#i-down"/></svg></span><div class="b"><small>Solution</small><h3>필터 옵션 다양화, 노출형 모듈</h3><p>필터 기능을 더 잘 인지하도록 레이아웃을 바꾸고 더 노출되게 변경</p></div></div>
-      <div class="pp"><div class="a glass"><small>Pain point 03</small><h3>복잡한 카테고리 구성</h3></div><span class="ar"><svg><use href="#i-down"/></svg></span><div class="b"><small>Solution</small><h3>명확한 카테고리 구성</h3><p>한눈에 잘 보이도록 소비자 기준으로 카테고리 구성 변경</p></div></div>
-    </div>
-
-    <div class="ps">
-      <div class="ps-h"><span>Problem</span><span></span><span>Solution</span></div>
-      <div class="ps-r"><div class="p"><i>01</i>메인페이지의 복잡한 스크롤과 콘텐츠 구성</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">메인페이지 스크롤 단축과 콘텐츠 재구성</div></div>
-      <div class="ps-r"><div class="p"><i>02</i>검색 필터의 낮은 인지도와 필터링 기준 부족</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">다양한 필터링 기준 추가 및 레이아웃 노출</div></div>
-      <div class="ps-r"><div class="p"><i>03</i>인지도 낮은 카테고리 구성</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">보기 쉬운 카테고리 구성</div></div>
-      <div class="ps-r"><div class="p"><i>04</i>상품별 후기를 한눈에 확인하기 어려움</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">상품별 후기에 키워드와 별점제 도입</div></div>
-      <div class="ps-r"><div class="p"><i>05</i>이전 주문 내역을 한눈에 확인하기 어려움</div><span class="ar"><svg><use href="#i-arrow"/></svg></span><div class="s">이전 주문 내역에 상품 이미지 및 검색 기능 추가</div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= UX CONCEPT ================= -->
-<section class="cc band">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">UX Concept</span>
-      <h2 class="ttl">모든 화면은 세 가지 기준으로 설계했어요</h2>
-    </div>
-    <div class="cc-grid">
-      <div class="ccc"><svg class="bg" viewBox="0 0 24 24"><use href="#i-target"/></svg><span class="no">01</span><h3>직관적인<small>Intuitive</small></h3><p>명확하고 직관적인 인터페이스와 유용한 내비게이션으로 만족스러운 사용자 경험을 제공합니다.</p></div>
-      <div class="ccc"><svg class="bg" viewBox="0 0 24 24"><use href="#i-heart"/></svg><span class="no">02</span><h3>나를 위한<small>Personalize</small></h3><p>맞춤형 추천과 다양한 제품을 통해 개인의 취향을 고려한 쇼핑 경험을 제공합니다.</p></div>
-      <div class="ccc"><svg class="bg" viewBox="0 0 24 24"><use href="#i-bolt"/></svg><span class="no">03</span><h3>편리한<small>Convenient</small></h3><p>간편한 주문, 신속한 배송, 사용자 친화적인 인터페이스로 편리한 쇼핑 경험을 제공합니다.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FEATURE 01 HOME ================= -->
-<section class="ft band">
-  <div class="wrap">
-    <div class="lay">
-      <div class="txt">
-        <span class="eyebrow">01 · Home</span>
-        <h2 class="ttl">원하는 상품,<br>아직도 <em>스크롤로</em> 찾고 계신가요?</h2>
-        <p class="lead">이전에는 사용자 데이터를 활용한 맞춤 추천 시스템이 없어 원하는 상품을 찾는 데 어려움이 있었습니다. 홈 화면을 재구성해 맞춤 추천 모듈을 추가하고, 전체 스크롤 길이를 줄여 사용자 경험을 개선했습니다.</p>
-        <ul class="pts">
-          <li><i>1</i><div><b>이용자 데이터 기반 추천</b>‘지은님을 위한 추천’ 모듈로 개인화</div></li>
-          <li><i>2</i><div><b>알뜰쇼핑 최상위 노출</b>남은 시간 타이머로 구매 동기 부여</div></li>
-          <li><i>3</i><div><b>전체 스크롤 길이 단축</b>배너·공지를 줄이고 퀵 메뉴로 정리</div></li>
-        </ul>
+    <article class="mc rv" aria-label="그리드에 맞춘 실제 콘텐츠 카드">
+      <div class="h"><b>For You</b><span>전체보기 ›</span></div>
+      <div class="v"><img src="img/ph-galbi.jpg" alt="" loading="lazy"><div class="ov"><b>Tonight</b><span>Dinner Pick</span></div></div>
+      <div class="b"><b>오늘 저녁, 집에서 맛집처럼</b><p>주말 저녁 가장 많이 찾은 구이·양념육을<br>지은님의 구매 이력에 맞춰 골랐어요.</p></div>
+      <div class="row3">
+        <div><img src="img/ph-dongalbi.jpg" alt="" loading="lazy"><small>#저녁 1위</small><b>포천이동 돈LA갈비</b></div>
+        <div><img src="img/ph-yangnyeom.jpg" alt="" loading="lazy"><small>#재구매</small><b>포천이동 양념갈비</b></div>
+        <div><img src="img/ph-belly.jpg" alt="" loading="lazy"><small>#구이용</small><b>한돈 삼겹살</b></div>
       </div>
-      <div class="cmpstage">
-        <div class="wrapdev o"><span class="tagl x">AS-IS · 맞춤화 X</span><div class="dev old"><div class="scr" data-t="t-old"></div></div></div>
-        <span class="arr"><svg><use href="#i-arrow"/></svg></span>
-        <div class="wrapdev"><span class="tagl o">TO-BE · 맞춤화 O</span><div class="dev"><div class="scr" data-t="t-home"></div></div>
-          <span class="note" style="left:calc(100% + 14px);top:39%"><i>2</i>알뜰쇼핑 타이머</span>
-          <span class="note" style="left:calc(100% + 14px);top:60%"><i>1</i>맞춤 추천</span>
+    </article>
+  </div>
+  <div class="pair-cap lbl"><span>6 Column · 16px Margin</span><span>Header · Image · Items</span></div>
+</section>
+
+<!-- ============ CATEGORY ============ -->
+<section class="sec" aria-labelledby="ui-cat">
+  <div class="wrap">
+    <div class="ui-intro rv">
+      <h2 class="ui-lbl" id="ui-cat">Category</h2>
+      <p>카테고리 진입 화면은 글자 목록 대신 바로 떠올릴 수 있는 대표 이미지를 붙여, 처음 온 고객도 한눈에 원하는 고기를 찾도록 했습니다.</p>
+    </div>
+    <div class="cats rv">
+      <figure><div class="im"><img src="img/ph-giftset.jpg" alt="" loading="lazy"></div><figcaption><b>선물세트</b><span>Gift</span></figcaption></figure>
+      <figure><div class="im"><img src="img/ph-galbi.jpg" alt="" loading="lazy"></div><figcaption><b>소고기</b><span>Beef</span></figcaption></figure>
+      <figure><div class="im"><img src="img/ph-belly.jpg" alt="" loading="lazy"></div><figcaption><b>돼지고기</b><span>Pork</span></figcaption></figure>
+      <figure><div class="im"><img src="img/ph-lamb.jpg" alt="" loading="lazy"></div><figcaption><b>양고기</b><span>Lamb</span></figcaption></figure>
+      <figure><div class="im"><img src="img/ph-grill.jpg" alt="" loading="lazy"></div><figcaption><b>곱창 · 간편식</b><span>Ready</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PC WEB ============ -->
+<section class="show" aria-labelledby="ui-pc">
+  <div class="cap rv"><p class="lbl">PC Web</p><div class="txt"><h3 id="ui-pc">앱과 같은 톤으로, PC에서도 같은 푸드장</h3><p>앱에서 정한 레드 · 무채색 규칙과 컴포넌트를 PC 웹에 그대로 옮겨, 채널이 달라도 같은 브랜드로 보이게 했습니다.</p></div></div>
+  <div class="browser rv" role="img" aria-label="푸드장 PC 웹 메인 화면">
+    <div class="notice">신규회원 첫 구매 무료배송 · 지금 가입하고 10,000원 쿠폰 받기</div>
+    <div class="gnb"><img src="img/foodjang_logo_h.svg" alt="" width="697" height="180" style="height:32px"><div class="q"><svg><use href="#i-search"/></svg>캠핑 고기 세트 찾고 계신가요?</div><div class="ic"><svg><use href="#i-user"/></svg><svg><use href="#i-heart"/></svg><svg><use href="#i-cart"/></svg></div></div>
+    <div class="menu"><span>전체 카테고리</span><span class="on">선물세트</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>모닝배송</span><span>이벤트</span><span class="r">모닝배송 지역 확인</span></div>
+    <div class="hero2">
+      <div class="t"><small>WELCOME</small><b>푸드장이 처음이라면?<br>신규회원 혜택받고 구매하세요</b><div class="cp"><span>혜택받고 구매하기</span><em>첫 구매 시 바로 사용</em></div></div>
+      <div class="im glass"><i class="b1"></i><i class="b2"></i><i class="b3"></i><div class="coupon"><small>WELCOME COUPON</small><b>10,000<em>원</em></b><span>신규회원 첫 구매 시 바로 사용</span><u></u></div></div>
+    </div>
+    <div class="qi"><div><img src="img/gift.svg" alt="">선물하기</div><div><img src="img/truck.svg" alt="">모닝배송</div><div><img src="img/steak.svg" alt="">베스트</div><div><img src="img/coupon.svg" alt="">알뜰쇼핑</div><div><img src="img/beef.svg" alt="">신상품</div><div><img src="img/basket.svg" alt="">이벤트</div></div>
+    <div class="best"><div class="t"><b>이번 주 <em>베스트</em></b><span>전체보기 ›</span></div>
+      <div class="g4">
+        <div><div class="im"><img src="img/ph-galbi.jpg" alt="" loading="lazy"></div><p class="nm">포천이동 한입 LA갈비 500g</p><p class="pr"><em>22%</em>14,900원</p></div>
+        <div><div class="im"><img src="img/ph-gopchang.jpg" alt="" loading="lazy"></div><p class="nm">소곱창전골 1kg</p><p class="pr"><em>15%</em>12,900원</p></div>
+        <div><div class="im"><img src="img/ph-belly.jpg" alt="" loading="lazy"></div><p class="nm">한돈 삼겹살 구이용 500g</p><p class="pr"><em>10%</em>15,900원</p></div>
+        <div><div class="im"><img src="img/ph-giftset.jpg" alt="" loading="lazy"></div><p class="nm">남영돈 프리미엄 선물세트</p><p class="pr"><em>8%</em>129,000원</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ GNB ============ -->
+<section class="gnb-sec" aria-labelledby="ui-gnb">
+  <div class="cap rv"><p class="lbl">GNB</p><div class="txt"><h3 id="ui-gnb">고민 없이 들어가는 전체 메뉴</h3><p>상위 메뉴에 마우스를 올리면 하위 카테고리와 지금 진행 중인 기획전을 함께 보여 줘, 탐색과 구매 동기를 한 화면에서 연결합니다.</p></div></div>
+  <div class="mega rv" role="img" aria-label="PC 웹 전체 메뉴(메가 메뉴)">
+    <div class="top"><img src="img/foodjang_logo_h.svg" alt="" width="697" height="180" style="height:26px"><span class="on">소고기</span><span>돼지고기</span><span>양고기</span><span>곱창·간편식</span><span>선물세트</span><span>알뜰쇼핑</span><span class="x">✕</span></div>
+    <div class="cols"><b>소고기</b><ul><li>전체보기</li><li>구이용</li><li>양념육 · LA갈비</li><li>국 · 찌개용</li><li>캠핑 세트</li><li>프리미엄 한우</li></ul></div>
+    <div class="promos">
+      <figure><div class="im"><img src="img/ph-wudae.jpg" alt="" loading="lazy"><b>Camp</b></div><figcaption>캠핑 시즌 우대갈비 최대 30% 할인</figcaption></figure>
+      <figure><div class="im"><img src="img/ph-giftset.jpg" alt="" loading="lazy"><b>Gift</b></div><figcaption>명절 선물세트 사전 예약</figcaption></figure>
+    </div>
+    <div class="side"><img src="img/ph-galbi.jpg" alt="" loading="lazy"></div>
+  </div>
+  <p class="rebuilt-note wrap" style="color:#999;margin-top:28px">* UI 화면은 실제 시안의 구조와 컬러 시스템을 바탕으로 이 페이지용으로 다시 구성했습니다.</p>
+</section>
+
+<!-- ============ PACKAGE ============ -->
+<section class="pkg" aria-labelledby="pk">
+  <div class="wrap">
+    <div class="row rv">
+      <p class="lbl" id="pk">Package</p>
+      <p class="txt">화면 밖에서도 원칙은 같았습니다. 냉동 매대와 선물 시즌, 고객이 상품 앞에 머무는 시간은 짧습니다. 어두운 바탕으로 고기 이미지를 띄우고, 제품명 → 맛 설명 → 중량·열량 순서로 정보를 정리해 <b>3초 안에 무엇인지 읽히는 패키지</b>를 만들었습니다.</p>
+    </div>
+
+    <div class="pk-hero rv">
+      <div class="info">
+        <span class="lbl" style="color:var(--mute)">Package 01</span>
+        <h3>포천이동 갈비<br>패키지 리뉴얼</h3>
+        <dl>
+          <div><dt class="lbl">Overview</dt><dd>전통 문양과 절제된 블랙, 선명한 음식 사진으로 포천 이동갈비의 전통성과 제품별 특징을 구분했습니다.</dd></div>
+          <div><dt class="lbl">Line-up</dt><dd>우대갈비 · 양념갈비 · 돈LA갈비 · 소곱창전골</dd></div>
+          <div><dt class="lbl">Role</dt><dd>Package Planning, Graphic Design · 100%</dd></div>
+        </dl>
+      </div>
+      <div class="media"><img src="img/p-pocheon.jpg" alt="포천이동 돈LA갈비 · 우대갈비 패키지 사진" loading="lazy" width="1240" height="1300"></div>
+    </div>
+    <div class="pk-pair rv">
+      <img src="img/p-pk-left.jpg" alt="포천이동 우대갈비 · 양념갈비 박스" loading="lazy" width="1089" height="963">
+      <img src="img/p-pk-right.jpg" alt="포천이동 돈LA갈비 박스와 소곱창전골 파우치" loading="lazy" width="1092" height="963">
+    </div>
+
+  </div>
+</section>
+<section class="pkg2"><div class="wrap">
+    <div class="pk-hero rv">
+      <div class="info">
+        <span class="lbl" style="color:#555">Package 02</span>
+        <h3>이마트 남영돈<br>선물세트</h3>
+        <dl>
+          <div><dt class="lbl">Overview</dt><dd>40여 년 헤리티지를 서예적 로고와 블랙 패키지로 표현하고, 보관과 이동까지 고려한 4구 구조로 선물세트의 완성도를 높였습니다.</dd></div>
+          <div><dt class="lbl">Client · Period</dt><dd>이마트 · 2025.01 – 02</dd></div>
+          <div><dt class="lbl">Role</dt><dd>Package Planning, Visual Concept, Application · 100%</dd></div>
+        </dl>
+      </div>
+      <div class="media"><img src="img/p-emart-set.jpg" alt="남영돈 선물세트 블랙 박스와 생고기 구성" loading="lazy" width="1182" height="1113"></div>
+    </div>
+</div></section>
+<section class="pkg3"><div class="wrap">
+    <div class="pk-pair rv" style="grid-template-columns:1fr">
+      <img src="img/p-emart-flat.jpg" alt="남영돈 김치찌개 · 양념돼지갈비 파우치와 4구 선물세트" loading="lazy" width="1800" height="1114">
+    </div>
+</div></section>
+
+<!-- ============ IMPACT ============ -->
+<section class="sec">
+  <div class="wrap">
+    <div class="row rv">
+      <p class="lbl">Impact</p>
+      <p class="txt">앱 리뉴얼과 광고 소재 개선은 실제 지표로, 패키지 리뉴얼은 출시 시점에 세운 목표치로 정리했습니다.</p>
+    </div>
+    <div class="impact">
+      <div class="igroup rv">
+        <p class="lbl"><span>App · Web · Ads</span><span>이력서 기재 성과</span></p>
+        <div class="nums">
+          <div><b>+30%</b><span>웹사이트 리뉴얼 후 CTR</span></div>
+          <div><b>+20%</b><span>A/B 테스트 광고 소재 ROAS</span></div>
+          <div><b>5</b><span>개선한 핵심 사용 흐름<br>홈 · 검색 · 카테고리 · 후기 · 주문</span></div>
+          <div><b>3</b><span>하나의 시스템으로 묶은 채널<br>앱 · PC 웹 · 패키지</span></div>
+        </div>
+      </div>
+      <div class="igroup rv">
+        <p class="lbl"><span>Package</span><span>출시 시점 목표치 (Expected impact)</span></p>
+        <div class="nums three">
+          <div><b>+30%</b><span>매출 성장 목표</span></div>
+          <div><b>300%</b><span>목표 ROAS</span></div>
+          <div><b>+20%</b><span>구매 전환율 개선 목표</span></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ================= FEATURE 02 FILTER ================= -->
-<section class="ft band" style="background:var(--bg-2)">
+<!-- ============ ENDING ============ -->
+<section class="stack-sec" style="padding-top:0">
   <div class="wrap">
-    <div class="lay rev">
-      <div class="txt">
-        <span class="eyebrow">02 · Search &amp; Category</span>
-        <h2 class="ttl">숨어 있던 필터를<br><em>눈앞으로</em> 꺼냈어요</h2>
-        <p class="lead">이전 검색 필터는 원하는 상품을 찾는 데 충분한 도움을 주지 못해 사용률이 낮았습니다. 필터 옵션을 다양화하고 노출형으로 배치했으며, 카테고리는 소비자가 많이 찾는 순서로 재구성해 가시성을 높였습니다.</p>
-        <div class="mini2">
-          <div><b>노출형 필터</b><p>드롭다운 안에 있던 필터를 칩 형태로 상단에 노출</p></div>
-          <div><b>소비자 기준 카테고리</b><p>많이 찾는 순서로, 한눈에 보이는 아코디언 구조</p></div>
-        </div>
-      </div>
-      <div class="fstage">
-        <div class="dev"><div class="scr" data-t="t-cat"></div></div>
-        <span class="note" style="left:-30px;top:12.5%"><i>1</i>칩으로 바로 보이는 필터</span>
-        <div class="sheet" style="right:-24px;top:30%">
-          <div class="h">카테고리</div>
-          <div>선물세트<span>›</span></div>
-          <div class="on">육류<span>⌃</span></div>
-          <div class="subl"><div>소고기</div><div>돼지고기</div><div>양고기</div></div>
-          <div>간편식<span>›</span></div>
-          <div>베이커리·치즈<span>›</span></div>
-          <div>양념·오일<span>›</span></div>
-        </div>
-      </div>
+    <div class="books rv" aria-label="프로젝트 구성">
+      <div class="book"><span class="t">The</span><span class="s">Brand tagline<br>across channels</span><i class="v"></i><span class="i">01</span><i class="v"></i><span class="s">App<br>Home · Search</span></div>
+      <div class="book"><span class="t">Shortest Way</span><span class="s"></span><i class="v"></i><span class="i">02</span><i class="v"></i><span class="s">Key services</span></div>
+      <div class="book"><span class="t">to</span><span class="s"></span><i class="v"></i><span class="i">03</span><i class="v"></i><span class="s">PC web<br>&amp; System</span></div>
+      <div class="book"><span class="t">Fresh</span><span class="s"></span><i class="v"></i><span class="i">04</span><i class="v"></i><span class="s">Package<br>&amp; Gift set</span></div>
+    </div>
+    <div class="credits rv">
+      <b>Designer</b><span>Yu Meekyung (100%)</span>
+      <b>Role</b><span>Research · UX/UI · BX · Package</span>
+      <b>Tools</b><span>Figma, Photoshop, Illustrator</span>
+      <b>Contact</b><span>umeek1027@gmail.com</span>
     </div>
   </div>
 </section>
-
-<!-- ================= FEATURE 03 SERVICES ================= -->
-<section class="ft band">
-  <div class="wrap">
-    <div class="center">
-      <span class="eyebrow">03 · Key Services</span>
-      <h2 class="ttl">선물부터 배송, 신상품까지<br><em>한눈에</em> 이해되도록</h2>
-      <p class="lead">각 서비스 페이지는 첫 줄에서 무엇을 할 수 있는지 문장으로 말하고, 하단 버튼 하나로 다음 행동을 연결했습니다.</p>
-    </div>
-    <div class="svc">
-      <div class="col"><span class="pill">선물하기</span><div class="dev"><div class="scr" data-t="t-gift"></div></div><div class="cap2"><b>연락처만으로 선물</b><span>받는 분이 주소를 입력하는 3단계 흐름</span></div></div>
-      <div class="col"><span class="pill">모닝배송</span><div class="dev"><div class="scr" data-t="t-morning"></div></div><div class="cap2"><b>배송 방식 비교표</b><span>마감·도착·지역을 표 한 장으로</span></div></div>
-      <div class="col"><span class="pill">신상품</span><div class="dev"><div class="scr" data-t="t-new"></div></div><div class="cap2"><b>MD 큐레이션</b><span>NEW 배지와 2열 그리드로 빠른 탐색</span></div></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= FEATURE 04 LOGIN ================= -->
-<section class="ft lg band">
-  <div class="wrap">
-    <div class="lay">
-      <div class="txt">
-        <span class="eyebrow">04 · Login</span>
-        <h2 class="ttl">들어오는 문은<br><em>단순할수록</em> 좋으니까</h2>
-        <p class="lead">꼭 필요한 요소만 남기고, 브랜드 레드는 가장 중요한 행동인 ‘로그인’ 버튼 하나에만 사용했습니다. 처음 들어온 사용자도 무엇을 눌러야 할지 바로 알 수 있도록 정리했습니다.</p>
-        <ul class="pts">
-          <li><i>1</i><div><b>요소 덜어내기</b>배너·부가 링크를 정리해 입력과 버튼에 집중</div></li>
-          <li><i>2</i><div><b>브랜드 컬러는 한 곳에만</b>주요 버튼에만 레드, 나머지는 무채색</div></li>
-          <li><i>3</i><div><b>읽기 쉬운 입력</b>큰 입력 필드, 명확한 라벨, 충분한 터치 영역</div></li>
-        </ul>
-      </div>
-      <div class="devwrap">
-        <span class="ring"></span><span class="ring r2"></span>
-        <div class="dev" style="z-index:1"><div class="scr" data-t="t-login"></div></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= PC ================= -->
-<section class="ft band" style="background:var(--bg-2)">
-  <div class="wrap">
-    <span class="eyebrow">05 · PC Web</span>
-    <h2 class="ttl">앱과 같은 톤으로,<br><em>PC에서도</em> 같은 푸드장</h2>
-    <div class="pcw">
-      <div class="browser">
-        <div class="bar"><i></i><i></i><i></i><span>foodjang.com</span></div>
-        <div class="pcs-c"><div class="pca">
-          <div class="promo">신규회원 첫 구매 무료배송 · 지금 가입하고 10,000원 쿠폰 받기</div>
-          <div class="hd"><span class="logo"><svg class="mk"><use href="#i-mark"/></svg><span><b>푸드</b>장</span></span><span class="srch"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg>캠핑 고기 세트 찾고 계신가요?</span><span class="ic"><svg viewBox="0 0 24 24"><use href="#i-user"/></svg><svg viewBox="0 0 24 24"><use href="#i-heart"/></svg><svg viewBox="0 0 24 24"><use href="#i-cart"/></svg></span></div>
-          <div class="mn"><span>전체 카테고리</span><span class="on">선물세트</span><span>신상품</span><span>베스트</span><span>알뜰쇼핑</span><span>모닝배송</span><span>이벤트</span><span class="r">모닝배송 지역 확인</span></div>
-          <div class="hb"><div><small>WELCOME</small><h5>푸드장이 처음이라면?<br>신규회원 혜택받고 구매하세요</h5><span class="b">혜택받고 구매하기</span></div><div class="cp"><small>WELCOME COUPON</small><b>10,000원</b><span>첫 구매 시 바로 사용</span></div></div>
-          <div class="qk">
-            <div><i><svg stroke="#E5343C" viewBox="0 0 24 24"><use href="#i-gift"/></svg></i>선물하기</div>
-            <div><i><svg stroke="#E0A100" viewBox="0 0 24 24"><use href="#i-sun"/></svg></i>모닝배송</div>
-            <div><i><svg stroke="#E5343C" viewBox="0 0 24 24"><use href="#i-star"/></svg></i>베스트</div>
-            <div><i><svg stroke="#4E5968" viewBox="0 0 24 24"><use href="#i-tag"/></svg></i>알뜰쇼핑</div>
-            <div><i><svg stroke="#E5343C" viewBox="0 0 24 24"><use href="#i-sparkle"/></svg></i>신상품</div>
-            <div><i><svg stroke="#4E5968" viewBox="0 0 24 24"><use href="#i-cal"/></svg></i>이벤트</div>
-          </div>
-          <div class="bt"><b>이번 주 <em>베스트</em></b><span>전체보기</span></div>
-          <div class="pl">
-            <div><div class="th"><img src="img/p_la.jpg" alt=""></div><div class="nm">포천이동 한입 LA갈비 500g</div><div class="pr"><em>22%</em>14,900원</div></div>
-            <div><div class="th"><img src="img/p_kimchi.jpg" alt=""></div><div class="nm">남영돈 김치찌개 세트</div><div class="pr"><em>15%</em>12,900원</div></div>
-            <div><div class="th"><img src="img/p_samgye.jpg" alt=""></div><div class="nm">일품진 오곡 능이 삼계탕</div><div class="pr"><em>12%</em>24,900원</div></div>
-            <div><div class="th"><img src="img/p_gift.jpg" alt=""></div><div class="nm">블랙비프 프리미엄 선물세트</div><div class="pr"><em>8%</em>129,000원</div></div>
-          </div>
-        </div></div>
-      </div>
-      <div class="pcnotes">
-        <div class="glass"><small>01 · Tone &amp; Manner</small><p>앱과 같은 브랜드 레드·핑크 톤으로 전체적인 통일성을 주었어요.</p><div class="sw5" style="margin-top:12px"><i style="background:#A3121A"></i><i style="background:#E5343C"></i><i style="background:#F4A6A0"></i><i style="background:#FBE3E0"></i><i style="background:#F7C548"></i></div></div>
-        <div class="glass"><small>02 · Simple Menu</small><p>소비자들이 자주 찾는 메뉴를 퀵 메뉴로 모아 간결하게 구축했어요.</p></div>
-        <div class="glass"><small>03 · Clear Benefit</small><p>신규회원 혜택을 메인 배너와 쿠폰으로 명확하게 보여줬어요.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= DESIGN SYSTEM ================= -->
-<section class="ds band">
-  <div class="wrap">
-    <span class="eyebrow">Design System</span>
-    <h2 class="ttl">마블링 캐릭터 로고와<br>신선함을 담은 컬러, 하나의 서체</h2>
-    <div class="lg-grid">
-      <div class="lgc w"><img src="img/logo.svg" alt="푸드장 로고"><span>Primary · Light</span></div>
-      <div class="lgc d"><img src="img/logo_dark.svg" alt="푸드장 로고 다크"><span>Primary · Dark</span></div>
-      <div class="lgc r"><img src="img/appicon.svg" alt="푸드장 앱 아이콘" class="ic"><span>App Icon</span></div>
-    </div>
-    <div class="ds-grid">
-      <div class="ds-card glass"><h4>Color</h4>
-        <div class="sws">
-          <div style="background:#A3121A;color:#fff">Brand Red<span>#A3121A</span></div>
-          <div style="background:#F4A6A0;color:#3A1013">Pink<span>#F4A6A0</span></div>
-          <div style="background:#FBE3E0;color:#3A1013">Light Pink<span>#FBE3E0</span></div>
-          <div style="background:#F7C548;color:#3A2A00">Yellow<span>#F7C548</span></div>
-        </div>
-      </div>
-      <div class="ds-card glass"><h4>Typography <em>IBM Plex Sans KR</em></h4>
-        <div class="ty">
-          <div><span>Title · 24 / Bold</span><b style="font-size:24px;font-weight:700">일상이 신선해</b></div>
-          <div><span>Subtitle · 17 / Semi</span><b style="font-size:17px;font-weight:600">일상이 신선해</b></div>
-          <div><span>Body · 15 / Regular</span><span style="font-size:15px;color:var(--tx)">일상이 신선해</span></div>
-          <div><span>Caption · 13 / Regular</span><span style="font-size:13px;color:var(--tx-2)">일상이 신선해</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="cmps">
-      <div class="ds-card glass"><h4>Button</h4><span class="cbtn p">선물 보내기</span><span class="cbtn s">장바구니 담기</span><span class="spec">높이 56 · 라운드 16 · 텍스트 17 Bold</span></div>
-      <div class="ds-card glass"><h4>Chip &amp; Tab</h4><div class="cchips"><span class="on">추천순</span><span>가격대</span><span>부위</span><span>용량</span><span>배송</span></div><span class="spec">높이 36 · 좌우 14 · 선택 시 반전</span></div>
-      <div class="ds-card glass"><h4>Input</h4><span class="cinput on">foodjang_jieun</span><span class="cinput">비밀번호를 입력해 주세요</span><span class="spec">높이 54 · 라운드 14 · 포커스 시 테두리</span></div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= ROLE ================= -->
-<section class="band" style="background:var(--bg-2)">
-  <div class="wrap">
-    <span class="eyebrow">My Role &amp; Iteration</span>
-    <h2 class="ttl">제안에서 끝나지 않고,<br><em>설득하고 고쳐가며</em> 완성했습니다</h2>
-    <div class="role-grid">
-      <div class="role glass"><div class="lbl2">내가 주도한 부분 · 기여도 100%</div>
-        <div class="it"><b>조사 결과 → 문제 5가지로 구조화</b><p>흩어진 불만 응답을 홈·검색·카테고리·후기·주문내역으로 묶어 개편 범위를 정의</p></div>
-        <div class="it"><b>우선순위 제안과 합의</b><p>기획·마케팅 의견을 취합해 ‘탐색 단계 줄이기’를 1순위로 제안</p></div>
-        <div class="it"><b>UX 컨셉 · 전 화면 UI 설계</b><p>직관적 · 나를 위한 · 편리한 3원칙을 세우고 앱·PC 전 화면에 적용</p></div>
-      </div>
-      <div class="role glass"><div class="lbl2">반복 개선 과정</div>
-        <div class="iter"><div><span>V1 · 첫 시안</span><p>홈 상단에 기획전 배너를 유지한 채 추천 모듈을 그 아래 추가</p></div><div><span>피드백</span><p>“결국 첫 화면은 그대로다” — 스크롤 문제가 해결되지 않음</p></div><div class="fin"><span>V2 · 최종</span><p>배너를 1개 캐러셀로 줄이고, 알뜰쇼핑·맞춤 추천을 최상단으로 이동</p></div></div>
-        <div class="lesson"><div class="lbl2">아쉬웠던 점 · 다음에 한다면</div><p>개편 후 정량 지표를 같은 기준으로 다시 측정하지 못해, 효과를 수치로 증명하지 못한 점이 아쉽습니다. 다음에는 개편 전후 탐색 단계 수와 검색 이탈률을 함께 설계하고 시작하겠습니다.</p></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ================= RESULT ================= -->
-<section class="res band">
-  <div class="wrap">
-    <span class="eyebrow">Result</span>
-    <h2 class="ttl">앱부터 PC까지,<br><em>하나의 푸드장 경험</em>으로</h2>
-    <div class="rl">
-      <div><span>Home</span><b>맞춤 추천 모듈 · 알뜰쇼핑 상단 노출 · 스크롤 단축</b></div>
-      <div><span>Search</span><b>노출형 필터 · 소비자 기준 카테고리</b></div>
-      <div><span>Order</span><b>후기 키워드·별점제 · 주문내역 이미지·검색</b></div>
-      <div><span>Service</span><b>선물하기 · 모닝배송 · 신상품 · 로그인</b></div>
-      <div><span>PC</span><b>앱과 통일된 톤의 메인페이지</b></div>
-    </div>
-    <div class="qa">
-      <div class="glass"><h4><em>Q.</em>프로젝트를 통해 배운 점은?</h4><p>데이터와 이용자 조사에서 출발하니 디자인 결정의 근거가 분명해졌습니다. 기획자들과 의견을 맞추는 과정에서 ‘예쁜 화면’보다 ‘빠르게 찾고 사는 화면’이 우선이라는 기준을 세울 수 있었습니다.</p></div>
-      <div class="glass"><h4><em>Q.</em>어려웠던 점과 해결 방법은?</h4><p>홈 화면에 넣고 싶은 콘텐츠가 많았던 점이 가장 어려웠습니다. 이용 데이터로 우선순위를 정해 스크롤을 줄이는 방향으로 합의했습니다.</p></div>
-    </div>
-    <div class="end"><div class="w">FOODJANG</div><p>UI/UX Designer · 유미경</p></div>
-  </div>
-</section>
+<footer class="lbl"><span>Foodjang Renewal</span><span>© 2026 Yu Meekyung</span></footer>
 
 <script>
-document.querySelectorAll('.scr[data-t]').forEach(function(s){
-  var t=document.getElementById(s.getAttribute('data-t'));
-  if(t) s.appendChild(t.content.cloneNode(true));
-});
 (function(){
-  var end=Date.now()+(8*3600+37*60+15)*1000, end2=Date.now()+(2*3600+22*60+45)*1000;
-  function f(ms){var s=Math.max(0,Math.floor(ms/1000));function p(n){return String(n).padStart(2,'0')}return p(Math.floor(s/3600))+':'+p(Math.floor(s%3600/60))+':'+p(s%60)}
-  function tick(){var n=Date.now();document.querySelectorAll('[data-cd]').forEach(function(e){e.textContent=f(end-n)});document.querySelectorAll('[data-cd2]').forEach(function(e){e.textContent=f(end2-n)});}
-  tick();setInterval(tick,1000);
-})();
-</script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
-<script>
-(function(){
-  if(!window.gsap||!window.ScrollTrigger) return;
-  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-  gsap.registerPlugin(ScrollTrigger);
-  gsap.from('.h-in',{y:50,duration:1.1,ease:'power3.out',stagger:.12});
-  gsap.from('.hstage .dev',{y:220,duration:1.3,ease:'power3.out',stagger:.15,delay:.2});
-  gsap.from('.bub',{scale:.85,y:20,duration:.8,ease:'back.out(1.8)',stagger:.12,delay:.8});
-  gsap.to('.bub',{y:'-=10',duration:2.6,repeat:-1,yoyo:true,ease:'sine.inOut',stagger:.3,delay:1.8});
-  gsap.from('.word',{yPercent:60,duration:1.2,ease:'power3.out'});
-  gsap.to('.hstage .p2',{y:-50,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:1}});
-
-  function rise(sel,trig){gsap.utils.toArray(sel).forEach(function(el,i){gsap.from(el,{y:60,ease:'none',scrollTrigger:{trigger:trig||el,start:'top 95%',end:'top 60%',scrub:1}})})}
-  rise('.ttl');rise('.tg');rise('.scn');rise('.dec');rise('.role');rise('.voice');rise('.biz');rise('.chart');rise('.pp');rise('.ps-r');rise('.ccc');rise('.svc .col');rise('.qa .glass');rise('.ds-card');
-  gsap.from('.bars .tr i',{width:0,duration:1.2,stagger:.12,ease:'power2.out',scrollTrigger:{trigger:'.chart',start:'top 75%'}});
-  gsap.from('.pcs',{y:40,stagger:.12,duration:.8,ease:'power3.out',scrollTrigger:{trigger:'.pc-row',start:'top 80%'}});
-  gsap.from('.cmpstage .wrapdev',{y:120,ease:'none',stagger:.2,scrollTrigger:{trigger:'.cmpstage',start:'top 95%',end:'top 40%',scrub:1}});
-  gsap.from('.note',{scale:.6,duration:.6,ease:'back.out(2)',stagger:.15,scrollTrigger:{trigger:'.note',start:'top 85%'}});
-  gsap.from('.sheet',{x:60,rotate:4,ease:'none',scrollTrigger:{trigger:'.sheet',start:'top 95%',end:'top 50%',scrub:1}});
-  gsap.to('.lg .ring',{scale:1.08,duration:3,repeat:-1,yoyo:true,ease:'sine.inOut',stagger:.6});
-  gsap.from('.browser',{y:100,rotateX:8,transformPerspective:1200,ease:'none',scrollTrigger:{trigger:'.browser',start:'top 100%',end:'top 45%',scrub:1}});
-  gsap.from('.end .w',{yPercent:40,ease:'none',scrollTrigger:{trigger:'.end',start:'top 100%',end:'top 50%',scrub:1}});
+  var els=document.querySelectorAll('.rv');
+  if(!('IntersectionObserver' in window)){els.forEach(function(e){e.classList.add('in')});return;}
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{rootMargin:'0px 0px -8% 0px'});
+  els.forEach(function(e){io.observe(e)});
 })();
 </script>
 

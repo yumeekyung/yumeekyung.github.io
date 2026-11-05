@@ -50,36 +50,42 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261101a";
+const IMG_VERSION = "20261105a";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
 const PROJECTS = [
   {
     id: "foodjang-renewal",
-    title: "푸드장 앱 UI/UX 개선",
-    subtitle: "Mobile app · PC web",
-    category: ["uxui"],
+    title: "푸드장 UX/UI · 패키지 리뉴얼",
+    subtitle: "App · PC Web · Package",
+    category: ["uxui", "pkg"],
     year: "2023.10 — 2023.11",
     role: "Data Analysis, UX Concept, UI Design (100%)",
     tools: "Figma, Photoshop",
     thumb: `assets/works/foodjang/cover.jpg?v=${IMG_VERSION}`,
     images: [],
-    url: "works/foodjang/?v=20261101a",
+    url: "works/foodjang/?v=20261105a",
     summary:
       "이용자 니즈와 불만족도 조사를 바탕으로 홈, 검색 필터, 카테고리, 주요 서비스 페이지, 로그인, PC 메인까지 다시 설계했습니다. 단순히 고기를 사는 앱이 아니라 저렴하고 빠르고 신선하게 받아볼 수 있도록, 기획자들과 의견을 맞추며 UI/UX를 개선했습니다.",
   },
   {
-    id: "onimal-package",
-    title: "오니몰 스킨케어 패키지 디자인",
-    subtitle: "Package design · Brand concept · Personal work",
-    category: ["pkg"],
-    year: "",
-    role: "Brand Concept, Illustration, Package Design",
-    tools: "Illustrator, Photoshop",
-    images: shots("onimal-package", 8),
-    summary:
-      "오가닉(Organic)과 애니멀(Animal)을 합친 이름의 스킨케어 브랜드를 구상한 개인 작업입니다. 2014 대한민국 디자인전람회 포장디자인 부문 입선작의 손그림 사슴 일러스트를 중심으로, 필기체 로고와 플로럴 패턴, 블랙·그레이·아이보리 컬러를 묶어 용기와 단상자, 모바일 웹까지 하나의 패밀리룩으로 확장했습니다.",
+    id: "onimal",
+    title: "오니몰 브랜드 웹사이트",
+    subtitle: "Brand website · Detail page · Package",
+    category: ["uxui", "bx"],
+    thumb: `assets/works/onimal/cover.jpg?v=${IMG_VERSION}`,
+    images: [],
+    url: "works/onimal/",
+  },
+  {
+    id: "bucket-museum",
+    title: "버킷 뮤지엄 앱 UX/UI",
+    subtitle: "Personal project · App UX/UI · BX",
+    category: ["uxui"],
+    thumb: `assets/works/bucket-museum/cover.jpg?v=${IMG_VERSION}`,
+    images: [],
+    url: "works/bucket-museum/",
   },
   {
     id: "beauty-promotion",
