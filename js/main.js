@@ -104,4 +104,26 @@
       <a href="project.html#${prev.id}"><small>Prev</small>${prev.title}</a>
       <a href="project.html#${next.id}" class="next"><small>Next</small>${next.title}</a>`;
   }
+
+  // ---------- 모션: 화면에 들어올 때 아래에서 떠오름 ----------
+  const head = $$(".detail-head > *");
+  head.forEach((el, i) => {
+    el.classList.add("rv");
+    el.style.transitionDelay = `${i * 0.08}s`;
+  });
+  const targets = [...head, ...$$(".shots .shot"), ...$$(".grid .card")];
+  if (!("IntersectionObserver" in window)) return;
+  const io = new IntersectionObserver(
+    (entries) =>
+      entries.forEach((e) => {
+        if (!e.isIntersecting) return;
+        e.target.classList.add("in");
+        io.unobserve(e.target);
+      }),
+    { rootMargin: "0px 0px -8% 0px" }
+  );
+  targets.forEach((el) => {
+    el.classList.add("rv");
+    io.observe(el);
+  });
 })();

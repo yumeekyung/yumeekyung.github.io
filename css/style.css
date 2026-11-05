@@ -184,6 +184,15 @@ section h2 { font-size: clamp(24px, 3vw, 32px); letter-spacing: -0.02em; }
 .shots .ph { aspect-ratio: 16 / 10; }
 .shots .ph:nth-child(even) { filter: brightness(0.9); }
 
+/* 스크롤 모션 (main.js가 .rv / .in을 붙임) */
+.rv { opacity: 0; transform: translateY(40px); transition: opacity 0.9s ease, transform 1.1s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.shots .shot.rv { transform: translateY(56px) scale(0.97); }
+.rv.in { opacity: 1; transform: none; }
+.shots .shot.rv.in { transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rv, .shots .shot.rv { opacity: 1; transform: none; transition: none; }
+}
+
 .pager {
   display: grid; grid-template-columns: 1fr 1fr; gap: 24px;
   padding-top: 64px; padding-bottom: 80px;
