@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261109a";
+const IMG_VERSION = "20261109b";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -72,9 +72,12 @@ const PROJECTS = [
     title: "오니몰 브랜드 웹사이트",
     subtitle: "Brand website · Detail page · Package",
     category: ["uxui", "bx"],
-    thumb: `assets/works/onimal/cover.jpg?v=${IMG_VERSION}`,
-    images: [],
-    url: "works/onimal/",
+    year: "Original 2014 · Rebuilt 2026",
+    role: "Brand Identity, UX/UI, Detail Page",
+    tools: "",
+    images: shots("onimal", 7),
+    summary:
+      "2014 디자인전람회 입선 원화를 바탕으로, 2026 트렌드에 맞춰 럭셔리 클린뷰티 BX 및 D2C 커머스로 재해석한 개인 리브랜딩 작업입니다. 펜으로 직접 그린 사슴 일러스트에서 시작한 브랜드가 어떤 철학으로 제품을 만드는지 전하기 위해 브랜드 메시지와 제품 이야기를 담은 웹사이트와 제품 상세페이지를 설계했고, 자연에서 온 순한 성분, 숲의 생기, 손으로 그린 온기를 블랙 · 아이보리 · 그레이 세 가지 톤 안에서 차분하게 보여 줍니다.",
   },
   {
     id: "bucket-museum",
@@ -93,7 +96,7 @@ const PROJECTS = [
     year: "2020 — 2022",
     role: "UX/UI · 운영 디자인 (동반성장몰 전 카테고리)",
     tools: "",
-    images: shots("korea-sale", 9),
+    images: shots("korea-sale", 7),
     summary:
       "중소기업 상품을 대기업·공공기관 임직원에게 연결하는 폐쇄형 쇼핑몰 동반성장몰에서 입점을 고민하는 기업을 위한 입점안내 페이지와 국가 소비 촉진 행사 '대한민국 동행세일' 이벤트 페이지를 디자인했습니다. 처음 온 사람도 무엇을 해야 하는지 한 화면에서 이해하도록, 절차는 카드로, 조건은 체크리스트로, 혜택은 크기 순으로 정리해 진입과 참여의 허들을 낮췄습니다.",
   },
