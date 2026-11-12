@@ -50,7 +50,7 @@ const CATEGORIES = {
 };
 
 // 이미지를 교체하면 IMG_VERSION을 바꿔주세요. 브라우저가 예전 이미지를 다시 쓰지 않게 합니다.
-const IMG_VERSION = "20261109b";
+const IMG_VERSION = "20261112a";
 const shots = (id, n) =>
   Array.from({ length: n }, (_, i) => `assets/works/${id}/${String(i + 1).padStart(2, "0")}.jpg?v=${IMG_VERSION}`);
 
@@ -63,7 +63,7 @@ const PROJECTS = [
     year: "2022.11 — 2026",
     role: "Research, UX/UI, Package Design (100%)",
     tools: "Figma, Photoshop",
-    images: shots("foodjang-renewal", 9),
+    images: shots("foodjang-renewal", 13),
     summary:
       "푸드장은 '내가 찾던 신선함의 기준'을 내건 축산·식품 커머스 브랜드입니다. 자사 앱과 PC 웹, 외부 채널, 매대에 놓이는 패키지까지 고객이 푸드장을 만나는 모든 지점을 한 명의 디자이너가 맡았습니다. 이용자 조사에서 반복된 불만은 '상품이 나빠서'가 아니라 '원하는 상품까지 가는 길이 멀어서'였고, 새 기능을 더하기보다 앱에서도 매대에서도 그 길을 짧게 만드는 것을 목표로 했습니다.",
   },
@@ -71,11 +71,11 @@ const PROJECTS = [
     id: "onimal",
     title: "오니몰 브랜드 웹사이트",
     subtitle: "Brand website · Detail page · Package",
-    category: ["uxui", "bx"],
+    category: ["uxui", "bx", "pkg"],
     year: "Original 2014 · Rebuilt 2026",
-    role: "Brand Identity, UX/UI, Detail Page",
+    role: "개인 프로젝트 — 원화 · 브랜드 · 패키지 · 웹/모바일 디자인",
     tools: "",
-    images: shots("onimal", 7),
+    images: shots("onimal", 8),
     summary:
       "2014 디자인전람회 입선 원화를 바탕으로, 2026 트렌드에 맞춰 럭셔리 클린뷰티 BX 및 D2C 커머스로 재해석한 개인 리브랜딩 작업입니다. 펜으로 직접 그린 사슴 일러스트에서 시작한 브랜드가 어떤 철학으로 제품을 만드는지 전하기 위해 브랜드 메시지와 제품 이야기를 담은 웹사이트와 제품 상세페이지를 설계했고, 자연에서 온 순한 성분, 숲의 생기, 손으로 그린 온기를 블랙 · 아이보리 · 그레이 세 가지 톤 안에서 차분하게 보여 줍니다.",
   },
