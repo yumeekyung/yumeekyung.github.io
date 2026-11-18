@@ -8,17 +8,20 @@
   <meta property="og:title" content="유미경 — Portfolio" />
   <meta property="og:description" content="UI/UX · Web · Branding · Package 디자이너 유미경 포트폴리오" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap" />
-  <link rel="stylesheet" href="css/style.css?v=motion-20261105c" />
+  <link rel="stylesheet" href="css/style.css?v=editorial-20261118" />
 </head>
 <body>
   <header class="nav">
-    <a href="./" class="logo" data-name-en></a>
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About</a>
-      <a href="#contact">Contact</a>
-    </nav>
+    <div class="wrap nav-inner">
+      <a href="./" class="logo" data-name-en></a>
+      <nav aria-label="포트폴리오">
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
   </header>
 
   <main>
@@ -26,19 +29,21 @@
       <div class="wrap hero-in">
         <p class="hero-eyebrow" data-hero-eyebrow></p>
         <h1 id="intro-title" class="hero-name" data-name></h1>
-        <p class="hero-lead"><span data-hero-lead></span> <span class="hero-accent" data-hero-accent></span></p>
-        <p class="hero-sub" data-hero-sub></p>
-        <a href="#work" class="hero-scroll">
-          작업 보기
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
-        </a>
+        <div class="hero-copy">
+          <p class="hero-lead"><span data-hero-lead></span> <span class="hero-accent" data-hero-accent></span></p>
+          <p class="hero-sub" data-hero-sub></p>
+          <a href="#work" class="hero-scroll">
+            작업 보기
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M6 13l6 6 6-6"/></svg>
+          </a>
+        </div>
       </div>
     </section>
 
     <section id="work" class="wrap">
       <div class="section-head">
         <h2>Work</h2>
-        <div class="filters" role="tablist"></div>
+        <div class="filters" role="group" aria-label="프로젝트 분류"></div>
       </div>
       <ul class="grid"></ul>
     </section>
@@ -72,7 +77,7 @@
 
   <footer class="wrap footer">© <span data-year></span> <span data-name-en></span></footer>
 
-  <script src="js/data.js?v=final-20261112a"></script>
-  <script src="js/main.js?v=motion-20261105d"></script>
+  <script src="js/data.js?v=editorial-20261118"></script>
+  <script src="js/main.js?v=editorial-20261118"></script>
 </body>
 </html>
