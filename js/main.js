@@ -3,19 +3,19 @@
   const $$ = (s, el = document) => [...el.querySelectorAll(s)];
   const setText = (sel, text) => $$(sel).forEach((el) => (el.textContent = text));
   const catLabel = (p) => p.category.map((c) => CATEGORIES[c] || c).join(" · ");
+  const imageSize = (p, i) => Array.isArray(p.imageSize?.[0]) ? p.imageSize[i] : p.imageSize;
 
-  // 공통
+  const media = (src, cls, { size, alt = "", priority = false } = {}) => {
+    if (!src) return "";
+    const dimensions = size ? ` width="${size[0]}" height="${size[1]}"` : "";
+    const loading = priority ? ' fetchpriority="high"' : ' loading="lazy"';
+    return `<img class="${cls}" src="${src}" alt="${alt}"${dimensions}${loading} decoding="async" />`;
+  };
+
   setText("[data-name]", PROFILE.name);
   setText("[data-name-en]", PROFILE.nameEn);
   setText("[data-year]", new Date().getFullYear());
 
-  // 이미지가 없으면 프로젝트 색으로 채운 플레이스홀더
-  const media = (src, p, cls, label) => {
-    if (src) return `<img class="${cls}" src="${src}" alt="${p.title}" loading="lazy" />`;
-    return `<div class="${cls} ph" style="--c:${p.color || "#bbb"}"><span>${label}</span></div>`;
-  };
-
-  // ---------- 메인 ----------
   const grid = $(".grid");
   if (grid) {
     document.title = `${PROFILE.nameEn} — Portfolio`;
@@ -23,8 +23,8 @@
     setText("[data-hero-lead]", PROFILE.hero.lead);
     setText("[data-hero-accent]", PROFILE.hero.accent);
     setText("[data-hero-sub]", PROFILE.hero.sub);
-
     setText("[data-about]", PROFILE.about);
+    setText("[data-motto]", PROFILE.motto);
 
     const resume = $("[data-resume]");
     if (PROFILE.resume) resume.href = PROFILE.resume;
@@ -42,92 +42,82 @@
       list.map((e) => `<li><span>${e.period}</span><div><strong>${e.title}</strong><p>${e.desc}</p></div></li>`).join("");
     $(".exp").innerHTML = rows(PROFILE.experience);
     $(".edu").innerHTML = rows(PROFILE.education);
-    setText("[data-motto]", PROFILE.motto);
 
-    grid.innerHTML = PROJECTS.map(
-      (p) => `
-      <li class="card" data-cat="${p.category.join(" ")}">
-        <a href="${p.url || `project.html#${p.id}`}"${/^https?:/.test(p.url || "") ? ' target="_blank" rel="noopener noreferrer"' : ""}>
-          <div class="thumb${p.thumbFit === "contain" ? " thumb--contain" : ""}" style="--c:${p.color || "#f3f3f3"}">${media(p.thumb || p.images[0], p, "thumb-img", p.title)}</div>
-          <h3>${p.title}${/^https?:/.test(p.url || "") ? ' <span aria-hidden="true">↗</span>' : ""}</h3>
-          <p>${p.subtitle}</p>
-          <span class="tags">${catLabel(p)}</span>
-        </a>
-      </li>`
-    ).join("");
+    grid.innerHTML = PROJECTS.map((p, i) => {
+      const external = /^https?:/.test(p.url || "");
+      const src = p.thumb || p.images[0];
+      const cover = src
+        ? media(src, "thumb-img", { size: p.thumb ? p.thumbSize : imageSize(p, 0), priority: i < 2 })
+        : '<span class="thumb-img ph" aria-hidden="true"></span>';
+      return `
+        <li class="card" data-cat="${p.category.join(" ")}">
+          <a href="${p.url || `project.html#${p.id}`}"${external ? ' target="_blank" rel="noopener noreferrer"' : ""}>
+            <div class="thumb" style="--c:${p.color || "#f3f3f3"}">${cover}</div>
+            <div class="card-caption">
+              <h3>${p.title}${external ? ' <span aria-hidden="true">↗</span>' : ""}</h3>
+              <p>${p.subtitle}</p>
+              <span class="tags">${catLabel(p)}</span>
+            </div>
+          </a>
+        </li>`;
+    }).join("");
 
-    // 필터
     const used = Object.keys(CATEGORIES).filter((c) => PROJECTS.some((p) => p.category.includes(c)));
     const filters = $(".filters");
     filters.innerHTML = [["all", "All"], ...used.map((c) => [c, CATEGORIES[c]])]
-      .map(([k, v], i) => `<button role="tab" data-f="${k}" aria-selected="${i === 0}">${v}</button>`)
+      .map(([k, v], i) => `<button type="button" data-f="${k}" aria-pressed="${i === 0}">${v}</button>`)
       .join("");
     filters.addEventListener("click", (e) => {
       const btn = e.target.closest("button");
       if (!btn) return;
-      $$("button", filters).forEach((b) => b.setAttribute("aria-selected", b === btn));
-      const f = btn.dataset.f;
-      $$(".card", grid).forEach((c) => {
-        c.hidden = f !== "all" && !c.dataset.cat.split(" ").includes(f);
+      $$("button", filters).forEach((b) => b.setAttribute("aria-pressed", b === btn));
+      const filter = btn.dataset.f;
+      $$(".card", grid).forEach((card) => {
+        card.hidden = filter !== "all" && !card.dataset.cat.split(" ").includes(filter);
       });
     });
   }
 
-  // ---------- 상세 ----------
-  addEventListener("hashchange", () => $(".shots") && location.reload());
-  const shots = $(".shots");
-  if (shots) {
-    // 외부 링크 프로젝트는 자체 상세페이지 및 이전/다음 순서에서 제외합니다.
-    const detailProjects = PROJECTS.filter((p) => !p.url);
-    const id = location.hash.slice(1) || new URLSearchParams(location.search).get("id");
-    const idx = Math.max(0, detailProjects.findIndex((p) => p.id === id));
-    const p = detailProjects[idx];
-    document.title = `${p.title} — ${PROFILE.nameEn}`;
-    setText("[data-p-cat]", catLabel(p));
-    setText("[data-p-title]", p.title);
-    setText("[data-p-subtitle]", p.subtitle);
-    setText("[data-p-year]", p.year);
-    if (!p.year) $("[data-p-year]").parentElement.remove();
-    setText("[data-p-role]", p.role);
-    setText("[data-p-tools]", p.tools);
-    if (!p.tools) $("[data-p-tools]").parentElement.remove();
-    setText("[data-p-summary]", p.summary);
+  const gallery = $(".shots");
+  if (gallery) {
+    const projects = PROJECTS.filter((p) => !p.url);
+    const pager = $(".pager");
 
-    const imgs = p.images.length ? p.images : ["", "", ""];
-    shots.innerHTML = imgs
-      .map((src, i) => media(src, p, "shot", `Image ${String(i + 1).padStart(2, "0")}`))
-      .join("");
+    const renderProject = () => {
+      const id = location.hash.slice(1) || new URLSearchParams(location.search).get("id");
+      const index = Math.max(0, projects.findIndex((p) => p.id === id));
+      const p = projects[index];
 
-    const prev = detailProjects[(idx - 1 + detailProjects.length) % detailProjects.length];
-    const next = detailProjects[(idx + 1) % detailProjects.length];
-    $(".pager").innerHTML = `
-      <a href="project.html#${prev.id}"><small>Prev</small>${prev.title}</a>
-      <a href="project.html#${next.id}" class="next"><small>Next</small>${next.title}</a>`;
+      document.title = `${p.title} — ${PROFILE.nameEn}`;
+      setText("[data-p-cat]", catLabel(p));
+      setText("[data-p-title]", p.title);
+      setText("[data-p-subtitle]", p.subtitle);
+      setText("[data-p-summary]", p.summary);
+      for (const field of ["year", "role", "tools"]) {
+        const value = $(`[data-p-${field}]`);
+        value.textContent = p[field] || "";
+        value.parentElement.hidden = !p[field];
+      }
+
+      gallery.parentElement.hidden = !p.images.length;
+      gallery.innerHTML = p.images.map((src, i) => {
+        const label = `${p.title} — 프로젝트 이미지 ${i + 1}`;
+        const img = media(src, "shot", { size: imageSize(p, i), priority: i === 0 });
+        return `<a href="${src}" target="_blank" rel="noopener" aria-label="${label} 원본 열기 (새 탭)">${img}</a>`;
+      }).join("");
+
+      const prev = projects[(index - 1 + projects.length) % projects.length];
+      const next = projects[(index + 1) % projects.length];
+      pager.innerHTML = `
+        <a href="project.html#${prev.id}"><small>Prev</small>${prev.title}</a>
+        <a href="project.html#${next.id}" class="next"><small>Next</small>${next.title}</a>`;
+    };
+
+    renderProject();
+    addEventListener("hashchange", () => {
+      renderProject();
+      window.scrollTo({ top: 0, behavior: "instant" });
+      $("[data-p-title]").focus({ preventScroll: true });
+    });
   }
-
-  // ---------- 모션: 화면에 들어올 때 아래에서 떠오름 ----------
-  const head = $$(".detail-head > *");
-  head.forEach((el, i) => {
-    el.classList.add("rv");
-    el.style.transitionDelay = `${i * 0.08}s`;
-  });
-  const targets = [...head, ...$$(".shots .shot"), ...$$(".grid .card")];
-  if (!("IntersectionObserver" in window)) return;
-  const io = new IntersectionObserver(
-    (entries) =>
-      entries.forEach((e) => {
-        if (!e.isIntersecting) return;
-        e.target.classList.add("in");
-        io.unobserve(e.target);
-      }),
-    { rootMargin: "0px 0px -8% 0px" }
-  );
-  targets.forEach((el) => {
-    el.classList.add("rv");
-    // lazy 이미지는 로드 전 높이가 0이라 전부 한꺼번에 보이는 것으로 잡히므로, 로드 후에 관찰합니다.
-    if (el.tagName === "IMG" && !el.complete) {
-      el.addEventListener("load", () => io.observe(el), { once: true });
-      el.addEventListener("error", () => el.classList.add("in"), { once: true });
-    } else io.observe(el);
-  });
 })();

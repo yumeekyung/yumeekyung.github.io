@@ -4,6 +4,8 @@
   - 이미지는 assets/works/프로젝트id/ 폴더에 넣고 경로를 적어주세요.
   - thumb: 목록에 보이는 썸네일 (비우면 images의 첫 장을 사용)
   - images: 상세 페이지에 위에서부터 순서대로 이어지는 이미지들
+  - imageSize: 상세 이미지의 실제 픽셀 크기 [너비, 높이]. 이미지별로 다르면 각 [너비, 높이]의 배열
+  - thumbSize: 별도 thumb 파일의 실제 픽셀 크기
   - category: CATEGORIES의 키 중 하나 이상
   - url: 외부 프로젝트 링크 (있으면 카드를 새 탭으로 엽니다)
 */
@@ -63,6 +65,7 @@ const PROJECTS = [
     year: "2022.11 — 2026",
     role: "Research, UX/UI, Package Design (100%)",
     tools: "Figma, Photoshop",
+    imageSize: [2400, 1521],
     images: shots("foodjang-renewal", 13),
     summary:
       "푸드장은 '내가 찾던 신선함의 기준'을 내건 축산·식품 커머스 브랜드입니다. 자사 앱과 PC 웹, 외부 채널, 매대에 놓이는 패키지까지 고객이 푸드장을 만나는 모든 지점을 한 명의 디자이너가 맡았습니다. 이용자 조사에서 반복된 불만은 '상품이 나빠서'가 아니라 '원하는 상품까지 가는 길이 멀어서'였고, 새 기능을 더하기보다 앱에서도 매대에서도 그 길을 짧게 만드는 것을 목표로 했습니다.",
@@ -75,6 +78,7 @@ const PROJECTS = [
     year: "Original 2014 · Rebuilt 2026",
     role: "개인 프로젝트 — 원화 · 브랜드 · 패키지 · 웹/모바일 디자인",
     tools: "",
+    imageSize: [2400, 1521],
     images: shots("onimal", 8),
     summary:
       "2014 디자인전람회 입선 원화를 바탕으로, 2026 트렌드에 맞춰 럭셔리 클린뷰티 BX 및 D2C 커머스로 재해석한 개인 리브랜딩 작업입니다. 펜으로 직접 그린 사슴 일러스트에서 시작한 브랜드가 어떤 철학으로 제품을 만드는지 전하기 위해 브랜드 메시지와 제품 이야기를 담은 웹사이트와 제품 상세페이지를 설계했고, 자연에서 온 순한 성분, 숲의 생기, 손으로 그린 온기를 블랙 · 아이보리 · 그레이 세 가지 톤 안에서 차분하게 보여 줍니다.",
@@ -85,6 +89,7 @@ const PROJECTS = [
     subtitle: "Personal project · App UX/UI · BX",
     category: ["uxui"],
     thumb: `assets/works/bucket-museum/cover.jpg?v=${IMG_VERSION}`,
+    thumbSize: [1600, 1014],
     images: [],
     url: "works/bucket-museum/",
   },
@@ -96,6 +101,7 @@ const PROJECTS = [
     year: "2020 — 2022",
     role: "UX/UI · 운영 디자인 (동반성장몰 전 카테고리)",
     tools: "",
+    imageSize: [2400, 1521],
     images: shots("korea-sale", 7),
     summary:
       "중소기업 상품을 대기업·공공기관 임직원에게 연결하는 폐쇄형 쇼핑몰 동반성장몰에서 입점을 고민하는 기업을 위한 입점안내 페이지와 국가 소비 촉진 행사 '대한민국 동행세일' 이벤트 페이지를 디자인했습니다. 처음 온 사람도 무엇을 해야 하는지 한 화면에서 이해하도록, 절차는 카드로, 조건은 체크리스트로, 혜택은 크기 순으로 정리해 진입과 참여의 허들을 낮췄습니다.",
@@ -108,6 +114,7 @@ const PROJECTS = [
     year: "",
     role: "Promotion Visual, Banner System, App · SNS Design",
     tools: "Photoshop, Figma",
+    imageSize: [1600, 1014],
     images: shots("beauty-promotion", 8),
     summary:
       "중소기업유통센터(동반성장몰·동행세일)의 뷰티 카테고리와 화장품 수출기업 지한아이씨에서 진행한 뷰티 프로모션 비주얼입니다. 기획전 메인 배너를 기준으로 카테고리 배너, 띠배너, 앱 타일, SNS 소재까지 하나의 시스템으로 확장해 운영했습니다.",
@@ -120,6 +127,7 @@ const PROJECTS = [
     year: "2025.08 — 2025.09",
     role: "BX Planning, Logo Design, Visual System, Application (100%)",
     tools: "Illustrator, Photoshop",
+    imageSize: [1600, 1014],
     images: shots("drline", 2),
     summary:
       "자연적인 변화를 의미하는 새싹 심볼로 피부 본연의 건강한 변화를 표현했습니다. 블랙과 실버를 중심으로 전문성과 고급스러움을 담고, 단순하고 명확한 로고 시스템으로 일관된 브랜드 이미지를 구축했습니다.",
@@ -132,6 +140,7 @@ const PROJECTS = [
     year: "2025.06 — 2025.07",
     role: "BX Planning, Logo Design, Visual Identity (100%)",
     tools: "Illustrator, Photoshop",
+    imageSize: [1600, 1014],
     images: shots("delicurry", 2),
     summary:
       "델리커리만의 국내 유일 퓨전 카레 이미지를 명확하게 전달하기 위해 로고를 재정비했습니다. 1984의 헤리티지와 한글 조형미를 결합해 '카레, 색다른 요리가 되다'라는 메시지가 기억되는 브랜드 아이덴티티를 구축했습니다.",
@@ -145,6 +154,8 @@ const PROJECTS = [
     role: "BX Planning, Identity Design, Character, Application (100%)",
     tools: "Illustrator, Photoshop",
     thumb: `assets/works/siminsanghoe/thumb.jpg?v=${IMG_VERSION}`,
+    thumbSize: [1600, 1014],
+    imageSize: [1600, 900],
     images: shots("siminsanghoe", 7),
     summary:
       "동네 상회의 친근함과 시민이 함께 만드는 열린 공간의 이미지를 하나의 브랜드로 정리했습니다. 옛 간판의 둥근 형태에 눈과 손발을 더한 캐릭터 '시민이'를 중심으로 로고, 컬러, 일러스트 시스템을 만들고 매장 외관, 패키지, 굿즈, SNS까지 적용했습니다.",
@@ -157,6 +168,7 @@ const PROJECTS = [
     year: "2025.11 — 2025.12",
     role: "Planning, Content Design, Detail Page (100%)",
     tools: "Figma, Photoshop",
+    imageSize: [1600, 1014],
     images: shots("anaconda-detail", 2),
     summary:
       "복잡하게 분산된 제품 기능과 착용 정보를 사용자 관점에서 다시 정리했습니다. 전문성과 편안함이 함께 느껴지는 콘텐츠로 제품 이해부터 구매 결정까지 자연스럽게 이어지는 상세페이지를 설계했습니다.",
